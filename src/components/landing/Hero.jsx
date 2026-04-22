@@ -48,7 +48,8 @@ export default function Hero() {
 
       {/* Bagian Kanan: Gambar Rumah & Badge */}
       <div className="flex-1 relative w-full mt-10 md:mt-0">
-        <div className="w-full h-[400px] md:h-[500px] bg-gray-200 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden relative">
+        {/* Kotak placeholder untuk gambar dengan ukuran presisi 584x500 di desktop */}
+        <div className="w-full max-w-[584px] h-[400px] md:h-[500px] bg-gray-200 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden relative mx-auto md:mx-0 md:ml-auto">
           <span className="text-gray-400">Taruh Gambar Rumah di Sini</span>
         </div>
 
