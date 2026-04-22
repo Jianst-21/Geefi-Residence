@@ -16,30 +16,43 @@ export default function Hero() {
           eksklusif.
         </p>
 
-        <div className="mt-10 flex gap-5 items-center">
+        {/* CONTAINER TOMBOL */}
+        <div className="mt-10 flex gap-6 items-center">
           <button className="bg-[#B48332] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-[#9a6f2a] transition">
             Eksplor Sekarang
           </button>
-          <button className="flex items-center gap-2 font-medium text-[#B48332] hover:text-gray-700 transition">
+
+          {/* TOMBOL LIHAT VIDEO TOUR YANG SUDAH DIPERBAIKI (TIDAK DOUBLE) */}
+          <button className="flex items-center gap-2 font-bold text-[#B48332] hover:opacity-80 transition">
             Lihat Video Tour
-            <span className="w-6 h-6 flex items-center justify-center border border-[#B48332] rounded-full text-xs">
-              ▶
-            </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="w-[20px] h-[20px]"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <polygon
+                points="10 8 16 12 10 16 10 8"
+                fill="currentColor"
+                stroke="none"
+              ></polygon>
+            </svg>
           </button>
         </div>
       </div>
 
       {/* Bagian Kanan: Gambar Rumah & Badge */}
       <div className="flex-1 relative w-full mt-10 md:mt-0">
-        {/* Bingkai Gambar */}
         <div className="w-full h-[400px] md:h-[500px] bg-gray-200 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden relative">
           <span className="text-gray-400">Taruh Gambar Rumah di Sini</span>
         </div>
 
-        {/* Floating Badge (Pilihan No. 1) - POSISI DIPERBAIKI (LEBIH BAWAH & KANAN) */}
-        <div className="absolute top-[35%] -left-4 md:left-4 lg:left-10 bg-white/95 backdrop-blur-md px-6 py-4 rounded-[2rem] shadow-xl flex items-center gap-4 border border-gray-100 z-10 w-max">
-          
-          {/* BULATAN BINTANG */}
+        <div className="absolute top-[35%] -left-6 md:-left-16 lg:-left-22 bg-white/95 backdrop-blur-md rounded-[2rem] shadow-xl flex items-center justify-start gap-4 border border-gray-100 z-10 w-[255.78px] h-[92px] pl-6">
           <div className="w-[44px] h-[43px] bg-[#FFDDB2] rounded-full text-[#B48332] flex items-center justify-center shrink-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -54,9 +67,11 @@ export default function Hero() {
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
           </div>
-          
+
           <div>
-            <p className="font-bold text-base text-gray-900 leading-tight">Pilihan No. 1</p>
+            <p className="font-bold text-base text-gray-900 leading-tight">
+              Pilihan No. 1
+            </p>
             <p className="text-sm text-gray-500 mt-1">Keluarga Muda Modern</p>
           </div>
         </div>
