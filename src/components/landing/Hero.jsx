@@ -1,4 +1,3 @@
-// src/components/landing/Hero.jsx
 import React from "react";
 
 export default function Hero() {
@@ -39,7 +38,9 @@ export default function Hero() {
 
         {/* Floating Badge (Pilihan No. 1) */}
         <div className="absolute top-10 -left-4 md:-left-10 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl flex items-center gap-3">
-          <div className="bg-[#fdf4e6] p-2 rounded-full text-[#B48332] flex items-center justify-center">
+          
+          {/* BULATAN BINTANG YANG SUDAH DIPERBAIKI (44x43px, warna FFDDB2, shrink-0) */}
+          <div className="w-[44px] h-[43px] bg-[#FFDDB2] rounded-full text-[#B48332] flex items-center justify-center shrink-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -52,7 +53,8 @@ export default function Hero() {
             >
               <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
             </svg>
-          </div>{" "}
+          </div>
+          
           <div>
             <p className="font-bold text-sm text-gray-800">Pilihan No. 1</p>
             <p className="text-xs text-gray-500">Keluarga Muda Modern</p>
