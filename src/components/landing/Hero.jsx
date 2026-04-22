@@ -31,15 +31,16 @@ export default function Hero() {
 
       {/* Bagian Kanan: Gambar Rumah & Badge */}
       <div className="flex-1 relative w-full mt-10 md:mt-0">
-        {/* Kotak placeholder untuk gambar (Nanti bisa diganti tag <Image /> Next.js) */}
-        <div className="w-full h-[400px] md:h-[500px] bg-gray-200 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden">
+        {/* Kotak placeholder untuk gambar */}
+        <div className="w-full h-[400px] md:h-[500px] bg-gray-200 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden relative">
           <span className="text-gray-400">Taruh Gambar Rumah di Sini</span>
         </div>
 
-        {/* Floating Badge (Pilihan No. 1) */}
-        <div className="absolute top-10 -left-4 md:-left-10 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl flex items-center gap-3">
+        {/* Floating Badge (Pilihan No. 1) - DIPERBAIKI POSISINYA */}
+        {/* Menggunakan top-[15%] atau nilai spesifik, dan -left-12 atau -left-20 agar menjorok keluar */}
+        <div className="absolute top-[20%] -left-6 md:-left-16 lg:-left-24 bg-white/95 backdrop-blur-md px-6 py-4 rounded-[2rem] shadow-xl flex items-center gap-4 border border-gray-100 z-10 w-max">
           
-          {/* BULATAN BINTANG YANG SUDAH DIPERBAIKI (44x43px, warna FFDDB2, shrink-0) */}
+          {/* BULATAN BINTANG */}
           <div className="w-[44px] h-[43px] bg-[#FFDDB2] rounded-full text-[#B48332] flex items-center justify-center shrink-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -56,8 +57,8 @@ export default function Hero() {
           </div>
           
           <div>
-            <p className="font-bold text-sm text-gray-800">Pilihan No. 1</p>
-            <p className="text-xs text-gray-500">Keluarga Muda Modern</p>
+            <p className="font-bold text-base text-gray-900 leading-tight">Pilihan No. 1</p>
+            <p className="text-sm text-gray-500 mt-1">Keluarga Muda Modern</p>
           </div>
         </div>
       </div>
