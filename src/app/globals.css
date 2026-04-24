@@ -10,6 +10,11 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: #B48832;
+  --color-secondary: #5F5E5E;
+  --color-background-secondary: #F4F3F1;
+
+  --background-image-gradient-primary: linear-gradient(to bottom right, #7E5300, #9D6A0C);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
