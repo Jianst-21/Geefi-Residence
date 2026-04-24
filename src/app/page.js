@@ -9,6 +9,7 @@ import Masterplan from "@/components/landing/Masterplan";
 import UnitTypes from "@/components/landing/UnitTypes";
 import Testimonials from "@/components/landing/Testimonials";
 import LocationSection from "@/components/landing/LocationSection";
+import Footer from "@/components/ui/Footer";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       <Testimonials/>
       <div className="w-full h-[28px] bg-[#FAF9F6]"></div>
       <LocationSection/>
+      <Footer />
     </div>
   );
 }
