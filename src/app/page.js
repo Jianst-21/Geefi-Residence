@@ -22,9 +22,7 @@ export default function Home() {
       <Facilities/>
       <Masterplan/>
       <UnitTypes/>
-      <div className="w-full h-[28px] bg-[#FAF9F6]"></div>
       <Testimonials/>
-      <div className="w-full h-[28px] bg-[#FAF9F6]"></div>
       <LocationSection/>
       <Footer />
     </div>

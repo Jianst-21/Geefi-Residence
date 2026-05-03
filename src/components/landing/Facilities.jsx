@@ -1,67 +1,62 @@
-"use client";
 import React from "react";
-// Import semua ikon murni dari lucide-react
-import { Waves, Dumbbell, Smile, Landmark } from "lucide-react";
+import { DoorOpen, ShieldEllipsis, Building2, MapPin } from "lucide-react";
 
 export default function Facilities() {
-  const facilities = [
+  const facilitiesData = [
     {
-      name: "Kolam Renang",
-      // Menggunakan ikon Ombak untuk representasi air
-      icon: <Waves size={28} strokeWidth={2} />
+      title: "One Gate System",
+      icon: <DoorOpen className="w-full h-full" strokeWidth={1.5} />,
     },
     {
-      name: "Clubhouse & Gym",
-      icon: <Dumbbell size={28} strokeWidth={2} />
+      title: "Pos Satpam",
+      icon: <ShieldEllipsis className="w-full h-full" strokeWidth={1.5} />,
     },
     {
-      name: "Playground",
-      icon: <Smile size={28} strokeWidth={2} />
+      title: "Dekat dengan Fasilitas Umum",
+      icon: <Building2 className="w-full h-full" strokeWidth={1.5} />,
     },
     {
-      name: "Masjid Modern",
-      // Menggunakan ikon Landmark untuk representasi bangunan ikonik/arsitektur
-      icon: <Landmark size={28} strokeWidth={2} />
-    }
+      title: "Masuk Wilayah Perkotaan",
+      icon: <MapPin className="w-full h-full" strokeWidth={1.5} />,
+    },
   ];
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-[1280px] mx-auto px-6 sm:px-10">
+    <>
+      {/* Ubah pt-[102px] menjadi pt-[46.5px] untuk mobile, lg:pt-[96px] untuk desktop */}
+      <section className="w-full bg-[#FFFFFF] pt-[46.5px] lg:pt-[96px] pb-20 font-['Manrope']">
         
-        {/* BAGIAN JUDUL */}
-        <div className="text-center flex flex-col items-center mb-12">
-          <h2 className="text-3xl md:text-[32px] font-bold text-[#1A1C1A] mb-4 font-['Manrope']">
-            Fasilitas Eksklusif
-          </h2>
-          <p className="w-full max-w-2xl text-gray-500 text-sm md:text-[16px] leading-[24px]">
-            Dirancang untuk memenuhi gaya hidup modern dan memberikan kenyamanan maksimal bagi setiap penghuni.
-          </p>
-        </div>
-
-        {/* BAGIAN GRID FASILITAS */}
-        <div className="w-full max-w-[1216px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-[24px]">
+        <div className="w-full px-[32px] flex flex-col gap-[64px] items-center">
           
-          {facilities.map((item, index) => (
-            <div 
-              key={index} 
-              className="flex flex-col items-center justify-center w-full h-[130px] bg-white border border-[#D4C4B1]/30 rounded-2xl hover:border-[#7E5300]/50 hover:shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-300 group cursor-pointer"
-            >
-              {/* Wadah Ikon (Warna Emas Gelap #7E5300) */}
-              <div className="text-[#7E5300] mb-3 group-hover:scale-110 transition-transform duration-300">
-                {item.icon}
+          <div className="flex flex-col items-center text-center gap-[16px] max-w-[500px]">
+            <h2 className="text-[24px] md:text-[36px] font-bold text-[#18181B] leading-tight">
+              Fasilitas Eksklusif
+            </h2>
+            <p className="text-[14px] md:text-[16px] text-[#52525B] leading-[1.6]">
+              Dirancang untuk memenuhi gaya hidup modern dan memberikan kenyamanan maksimal bagi setiap penghuni.
+            </p>
+          </div>
+
+          <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[32px]">
+            {facilitiesData.map((item, index) => (
+              <div 
+                key={index} 
+                className="flex flex-col items-center justify-center p-[24px] rounded-[16px] border border-[#D4C4B1]/30 gap-[16px] hover:shadow-lg hover:border-[#D4C4B1]/60 transition-all duration-300 bg-white group"
+              >
+                <div className="text-[#B27C21] w-8 h-8 md:w-10 md:h-10 group-hover:scale-110 transition-transform duration-300">
+                  {item.icon}
+                </div>
+                <h3 className="text-[14px] md:text-[15px] font-bold text-[#1A1A1A] text-center leading-snug">
+                  {item.title}
+                </h3>
               </div>
-              
-              {/* Teks Fasilitas (Warna Hitam Pekat #1A1C1A) */}
-              <span className="font-bold text-[#1A1C1A] text-[14px] lg:text-[15px] font-['Manrope']">
-                {item.name}
-              </span>
-            </div>
-          ))}
+            ))}
+          </div>
 
         </div>
+      </section>
 
-      </div>
-    </section>
+      <div className="w-full h-[28px] bg-[#FAF9F6]"></div>
+    </>
   );
 }

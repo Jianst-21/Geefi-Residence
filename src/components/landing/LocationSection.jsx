@@ -25,8 +25,8 @@ export default function LocationSection() {
   ];
 
   return (
-    // Background sama dengan section Testimoni, ditambah Padding Bottom presisi 200px
-    <section className="w-full bg-[#FAF9F6] pb-[200px] font-['Manrope']">
+    // Padding responsif: Mobile 24px (atas-bawah), Desktop 28px (atas) & 143px (bawah)
+    <section className="w-full bg-[#FAF9F6] pt-[24px] pb-[24px] md:pt-[28px] md:pb-[143px] font-['Manrope']">
       
       {/* Wadah Utama dibatasi 1216px */}
       <div className="max-w-[1216px] mx-auto px-6 xl:px-0">
@@ -36,9 +36,9 @@ export default function LocationSection() {
           
           {/* SISI KIRI: PETA (Lebar ~60%) */}
           <div className="w-full lg:w-[60%] h-[300px] lg:h-full relative bg-gray-200">
-            {/* Embed Google Maps interaktif (Area Sukoharjo sesuai gambar) */}
+            {/* PERBAIKAN: Embed Google Maps diubah ke Cluster Abyakta Pratama Grecol Purbalingga */}
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126497.66268045547!2d110.76569766943187!3d-7.676602324908082!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a16627cbdc6dd%3A0x4027a76e35308c0!2sSukoharjo%2C%20Sukoharjo%20Regency%2C%20Central%20Java!5e0!3m2!1sen!2sid!4v1700000000000!5m2!1sen!2sid"
+              src="https://www.google.com/maps?q=Cluster+Abyakta+Pratama+Grecol+Purbalingga&output=embed"
               className="absolute inset-0 w-full h-full border-0"
               allowFullScreen=""
               loading="lazy"
@@ -47,10 +47,11 @@ export default function LocationSection() {
           </div>
 
           {/* SISI KANAN: DAFTAR AKSESIBILITAS (Lebar ~40%) */}
-          <div className="w-full lg:w-[40%] p-8 md:p-10 xl:p-[56px] flex flex-col justify-between">
+          {/* Padding mobile p-[24px], Desktop xl:p-[56px] */}
+          <div className="w-full lg:w-[40%] p-[24px] md:p-10 xl:p-[56px] flex flex-col justify-between">
             
             <div>
-              <h2 className="text-[28px] lg:text-[32px] font-bold text-[#1A1C1A] mb-8 lg:mb-10 leading-tight">
+              <h2 className="text-[28px] lg:text-[32px] font-bold text-[#1A1C1A] mb-6 lg:mb-10 leading-tight">
                 Aksesibilitas Utama
               </h2>
 

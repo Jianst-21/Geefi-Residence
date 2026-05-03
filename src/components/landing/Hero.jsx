@@ -1,79 +1,97 @@
 import React from "react";
+import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="flex flex-col md:flex-row items-center pt-32 pb-16 gap-10 px-6 sm:px-10 max-w-7xl mx-auto">
-      {/* Bagian Kiri: Teks & Tombol */}
-      <div className="flex-1 mt-10 md:mt-0">
-        <h1 className="text-5xl md:text-6xl font-bold leading-tight text-gray-900">
-          Hunian <span className="text-[#B48332]">Minimalis</span> di
-          <br />
-          Jantung Kota
-        </h1>
-        <p className="mt-6 text-gray-500 text-lg max-w-md">
-          Menghadirkan harmoni antara desain arsitektur modern dan ketenangan
-          alam. Geefi Residence adalah simbol pencapaian hidup Anda yang
-          eksklusif.
-        </p>
+    <section className="w-full bg-[#FFFFFF] font-['Manrope'] flex justify-center items-center pt-8 pb-0 lg:pt-0 lg:pb-[115px] overflow-hidden">
+      <div className="relative w-full max-w-[1220px] flex flex-col lg:flex-row items-center lg:items-stretch px-[33.5px] lg:px-0 gap-[24px] lg:gap-[52px]">
+        {/* KOLOM KIRI: Teks & Tombol */}
+        <div className="flex flex-col justify-center gap-[31px] w-full lg:w-[584px] shrink-0">
+          <h1 className="text-[44px] md:text-[56px] lg:text-[60px] font-extrabold leading-[1.1] text-[#18181B] tracking-tight">
+            Hunian <span className="text-[#B48332]">Minimalis</span> di
+            <br />
+            Jantung Kota
+          </h1>
 
-        {/* CONTAINER TOMBOL */}
-        <div className="mt-10 flex gap-6 items-center">
-          <button className="bg-[#B48332] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:bg-[#9a6f2a] transition">
-            Eksplor Sekarang
-          </button>
+          <p className="text-[#52525B] text-[15px] lg:text-[18px] leading-[1.6]">
+            Menghadirkan harmoni antara desain arsitektur modern dan ketenangan
+            alam. Geefi Residence adalah simbol pencapaian hidup Anda yang
+            eksklusif.
+          </p>
 
-          {/* TOMBOL LIHAT VIDEO TOUR YANG SUDAH DIPERBAIKI (TIDAK DOUBLE) */}
-          <button className="flex items-center gap-2 font-bold text-[#B48332] hover:opacity-80 transition">
-            Lihat Video Tour
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-[20px] h-[20px]"
-            >
-              <circle cx="12" cy="12" r="10"></circle>
-              <polygon
-                points="10 8 16 12 10 16 10 8"
-                fill="currentColor"
-                stroke="none"
-              ></polygon>
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {/* Bagian Kanan: Gambar Rumah & Badge */}
-      <div className="flex-1 relative w-full mt-10 md:mt-0">
-        {/* Kotak placeholder untuk gambar dengan ukuran presisi 584x500 di desktop */}
-        <div className="w-full max-w-[584px] h-[400px] md:h-[500px] bg-gray-200 rounded-[3rem] shadow-2xl flex items-center justify-center overflow-hidden relative mx-auto md:mx-0 md:ml-auto">
-          <span className="text-gray-400">Taruh Gambar Rumah di Sini</span>
+          <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center w-full mt-2">
+            <button className="w-full sm:w-auto px-8 py-[18px] bg-[#936625] text-white rounded-full font-semibold text-[15px] lg:text-[18px] shadow-[0_8px_24px_rgba(147,102,37,0.25)] hover:bg-[#7a551f] transition duration-300">
+              Eksplor Sekarang
+            </button>
+            <button className="w-full sm:w-auto px-6 py-[18px] flex items-center justify-center gap-2 font-semibold text-[#B48332] text-[15px] lg:text-[18px] hover:bg-[#B48332]/5 rounded-full transition duration-300 group">
+              Lihat Video Tour
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-5 h-5 transition-transform group-hover:scale-110"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <polygon
+                  points="10 8 16 12 10 16 10 8"
+                  fill="none"
+                  stroke="currentColor"
+                ></polygon>
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <div className="absolute top-[35%] -left-6 md:-left-16 lg:-left-22 bg-white/95 backdrop-blur-md rounded-[2rem] shadow-xl flex items-center justify-start gap-4 border border-gray-100 z-10 w-[255.78px] h-[92px] pl-6">
-          <div className="w-[44px] h-[43px] bg-[#FFDDB2] rounded-full text-[#B48332] flex items-center justify-center shrink-0">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="w-5 h-5"
-            >
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-            </svg>
+        {/* KOLOM KANAN: Gambar & Floating Badge */}
+        <div className="relative w-full max-w-[345px] lg:max-w-none lg:w-[584px] h-[355px] lg:h-[500px] shrink-0 mx-auto lg:mx-0">
+          <div className="absolute inset-0 w-full h-full rounded-[32px] lg:rounded-[48px] overflow-hidden bg-gray-100">
+            {/* GAMBAR DESKTOP (Hanya muncul di layar lg ke atas) */}
+            <Image
+              src="/images/landings/Luxury house.png"
+              alt="Geefi Residence Luxury House"
+              fill
+              className="hidden lg:block object-cover"
+              priority
+            />
+
+            {/* GAMBAR MOBILE (Hanya muncul di layar di bawah lg) */}
+            <Image
+              src="/images/landings/HeroMobile.png" // Sesuaikan nama file ini dengan yang ada di folder Anda
+              alt="Geefi Residence Mobile View"
+              fill
+              className="block lg:hidden object-cover"
+              priority
+            />
           </div>
 
-          <div>
-            <p className="font-bold text-base text-gray-900 leading-tight">
-              Pilihan No. 1
-            </p>
-            <p className="text-sm text-gray-500 mt-1">Keluarga Muda Modern</p>
+          {/* Floating Badge */}
+          <div className="flex absolute top-[30%] lg:top-[35%] -left-[16px] lg:-left-[70px] bg-white/95 backdrop-blur-md rounded-[2rem] shadow-[0_12px_40px_rgb(0,0,0,0.08)] items-center justify-start gap-3 border border-gray-100 z-10 w-[255.78px] h-[92px] pl-5 pr-6">
+            <div className="w-[44px] h-[44px] bg-[#FFF4E5] rounded-full text-[#B48332] flex items-center justify-center shrink-0">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-5 h-5"
+              >
+                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+              </svg>
+            </div>
+            <div className="flex flex-col justify-center">
+              <p className="font-bold text-[16px] text-[#18181B] leading-tight mb-0.5">
+                Pilihan No. 1
+              </p>
+              <p className="text-[14px] text-[#52525B] leading-tight">
+                Keluarga Muda Modern
+              </p>
+            </div>
           </div>
         </div>
       </div>
