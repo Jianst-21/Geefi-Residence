@@ -1,127 +1,204 @@
 "use client";
-import React, { useState } from 'react';
-import Link from 'next/link';
-import { X, House, Building2, Sprout, Calculator, MapPin, Map } from 'lucide-react';
 
-const menuItems = [
-  { id: 1, label: 'Beranda', href: '#', icon: House, isActive: true },
-  { id: 2, label: 'Katalog Unit', href: '#', icon: Building2, isActive: false },
-  { id: 3, label: 'Fasilitas Eksklusif', href: '#', icon: Sprout, isActive: false }, 
-  { id: 4, label: 'Simulasi KPR', href: '#', icon: Calculator, isActive: false },
-  { id: 5, label: 'Lokasi Strategis', href: '#', icon: MapPin, isActive: false },
-  { id: 6, label: 'Hubungi Kami', href: '#', icon: Map, isActive: false },
-];
+import { nav_items } from "@/constants/navigation";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import React, { useState, useEffect } from "react";
+import {
+  Menu,
+  X,
+  Home,
+  Building2,
+  Flower2,
+  Calculator,
+  MapPin,
+  Map,
+  Info,
+} from "lucide-react";
+
+const getIcon = (href, isActive) => {
+  const props = {
+    size: 20,
+    className: isActive ? "text-[#9c7524] fill-[#9c7524]" : "text-stone-400",
+    strokeWidth: isActive ? 2 : 1.5,
+  };
+
+  switch (href) {
+    case "/":
+      return <Home {...props} />;
+    case "/tentang":
+      return <Info {...props} />;
+    case "/unit":
+      return <Building2 {...props} />;
+    case "/fasilitas":
+      return <Flower2 {...props} />;
+    case "/simulasi-kpr":
+      return <Calculator {...props} />;
+    case "/lokasi":
+      return <MapPin {...props} />;
+    default:
+      return <Info {...props} />;
+  }
+};
 
 const Navbar = () => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  // Prevent scrolling when drawer is open
+  useEffect(() => {
+    if (isDrawerOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isDrawerOpen]);
 
   return (
     <>
-      {/* PERUBAHAN: px-[9.5px] diubah menjadi px-[11.5px] */}
-      <nav className='h-[68px] lg:h-auto lg:py-[18px] px-[20px] lg:px-[32px] max-w-[1440px] mx-auto w-full flex justify-between items-center bg-[#FAF9F6] relative z-40 font-["Manrope"] border-b border-[#E4E4E7]'>
-        
-        <div className='flex gap-2 items-center'>
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="12" cy="12" r="11" stroke="#B48332" strokeWidth="1.5"/>
-            <path d="M12 5.5L7 9.5V17M12 5.5L17 9.5V17M12 5.5V17M9.5 7.5V17M14.5 7.5V17" stroke="#B48332" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-          <h5 className='font-bold text-[20px] text-[#B48332]'>Geefi Residence</h5>
+      <nav className="py-[18px] font- px-6 md:px-[32px] w-full flex justify-between items-center sticky top-0 bg-[#FBFBFB] z-40 border-b border-stone-100/50 shadow-sm">
+        <div className="flex items-center gap-3">
+          <Image
+            src="/images/logo.png"
+            alt="Geefi Residence Logo"
+            width={32}
+            height={32}
+            className="w-8 h-8 md:w-9 md:h-9 object-contain"
+          />
+          <h5 className="font-bold text-[18px] md:text-[20px] text-[#9c7524]">
+            Geefi Residence
+          </h5>
         </div>
 
-        <ul className='hidden lg:flex gap-8'>
-          {menuItems.filter(item => item.label !== 'Hubungi Kami').map((item) => (
-            <li key={item.id} className="flex items-center h-full">
-              <Link 
-                href={item.href} 
-                className={`transition-colors duration-200 text-[14px] font-medium pb-1 border-b-2 ${
-                  item.isActive 
-                    ? 'text-[#B48332] border-[#B48332]' 
-                    : 'text-[#52525B] border-transparent hover:text-[#B48332]'
-                }`}
-              >
-                {item.label}
-              </Link>
-            </li>
-          ))}
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex gap-8">
+          {nav_items.map((item) => {
+            const isActive =
+              pathname === item.href ||
+              (item.href !== "/" && pathname.startsWith(item.href));
+
+            return (
+              <li key={item.id}>
+                <Link
+                  href={item.href}
+                  className={`transition-all duration-200 text-[14px] ${isActive
+                      ? "text-[#9c7524] font-bold border-b-2 border-[#9c7524] pb-1"
+                      : "text-stone-500 hover:text-[#9c7524] font-medium"
+                    }`}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
 
-        <Link 
+        {/* Desktop Contact Button */}
+        <Link
           href={"#"}
-          className='hidden lg:flex py-2.5 px-6 font-semibold text-[14px] rounded-full bg-[#B48332] text-white hover:bg-[#9a6f2a] transition-colors duration-200'
+          className="hidden lg:block py-2.5 px-6 text-[14px] font-semibold rounded-full bg-[#9c7524] text-white hover:bg-[#85631e] transition-colors duration-200 shadow-sm"
         >
           Hubungi Kami
         </Link>
 
-        <button 
-          className='lg:hidden text-[#B48332] p-1.5'
-          onClick={() => setIsMobileMenuOpen(true)}
-          aria-label="Buka Menu"
+        {/* Mobile Hamburger Button */}
+        <button
+          className="lg:hidden text-[#9c7524] p-1"
+          onClick={() => setIsDrawerOpen(true)}
+          aria-label="Open menu"
         >
-          <svg width="24" height="18" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect y="0" width="24" height="2" fill="currentColor"/>
-            <rect y="8" width="24" height="2" fill="currentColor"/>
-            <rect y="16" width="24" height="2" fill="currentColor"/>
-          </svg>
+          <Menu size={28} strokeWidth={2} />
         </button>
-
       </nav>
 
-      {/* OVERLAY GELAP & SIDEBAR MOBILE MENU */}
-      <div 
-        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-50 transition-opacity duration-300 lg:hidden ${
-          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={() => setIsMobileMenuOpen(false)}
-      >
-        <div 
-          className={`absolute top-0 right-0 h-full w-[320px] bg-[#FAF9F6] rounded-l-[40px] px-8 py-10 flex flex-col shadow-2xl transform transition-transform duration-300 ease-out font-["Manrope"] ${
-            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+      {/* Mobile Drawer Overlay */}
+      <div
+        className={`fixed inset-0 bg-black/40 z-50 transition-opacity duration-300 lg:hidden ${isDrawerOpen ? "opacity-100" : "opacity-0 pointer-events-none"
           }`}
-          onClick={(e) => e.stopPropagation()} 
-        >
-          <div className="flex justify-between items-start mb-12">
-            <div className='flex gap-2 items-center'>
-               <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="12" cy="12" r="11" stroke="#B48332" strokeWidth="1.5"/>
-                <path d="M12 5.5L7 9.5V17M12 5.5L17 9.5V17M12 5.5V17M9.5 7.5V17M14.5 7.5V17" stroke="#B48332" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <h5 className='font-bold text-[22px] tracking-wide text-[#B48332] leading-[1.2]'>
-                Geefi <br/> Residence
-              </h5>
-            </div>
-            <button 
-              onClick={() => setIsMobileMenuOpen(false)} 
-              className="w-[34px] h-[34px] flex items-center justify-center bg-[#F4F4F5] hover:bg-[#E4E4E7] rounded-full text-[#A1A1AA] transition-colors mt-1"
-              aria-label="Tutup Menu"
-            >
-              <X size={18} strokeWidth={1.5} />
-            </button>
-          </div>
+        onClick={() => setIsDrawerOpen(false)}
+      />
 
-          <ul className='flex flex-col gap-[30px]'>
-            {menuItems.map((item) => {
-              const Icon = item.icon;
-              const strokeWidth = item.isActive ? 2 : 1;
-              const iconColor = item.isActive ? "text-[#B48332]" : "text-[#A1A1AA]";
-              const textColor = item.isActive ? "text-[#B48332] font-medium" : "text-[#52525B] font-light hover:text-[#B48332]";
+      {/* Mobile Drawer */}
+      <div
+        className={`fixed top-0 left-0 h-full w-[85%] max-w-[320px] bg-[#FCFBF8] z-50 transform transition-transform duration-300 ease-in-out lg:hidden rounded-r-3xl shadow-2xl flex flex-col ${isDrawerOpen ? "translate-x-0" : "-translate-x-full"
+          }`}
+      >
+        <div className="flex justify-between items-start p-8 pb-10">
+          <div className="flex flex-col">
+            <h2 className="text-[26px] font-bold text-[#875C0C] leading-[1.1] tracking-tight">
+              Geefi
+              <br />
+              Residence
+            </h2>
+          </div>
+          <button
+            onClick={() => setIsDrawerOpen(false)}
+            className="p-2 bg-stone-100 rounded-full text-stone-500 hover:bg-stone-200 transition-colors mt-1"
+            aria-label="Close menu"
+          >
+            <X size={20} strokeWidth={2} />
+          </button>
+        </div>
+
+        <div className="flex-1 overflow-y-auto px-8 pb-8">
+          <ul className="flex flex-col gap-6">
+            {nav_items.map((item) => {
+              const isActive =
+                pathname === item.href ||
+                (item.href !== "/" && pathname.startsWith(item.href));
+
+              // Map labels from constants to match drawer screenshot labels
+              let displayLabel = item.label;
+              if (item.label === "Unit") displayLabel = "Katalog Unit";
+              if (item.label === "Fasilitas") displayLabel = "Fasilitas Eksklusif";
+              if (item.label === "Lokasi") displayLabel = "Lokasi Strategis";
 
               return (
                 <li key={item.id}>
-                  <Link href={item.href} onClick={() => setIsMobileMenuOpen(false)} className="flex items-center gap-4 transition-colors duration-200 group">
-                    <div className="flex items-center justify-start w-[24px]">
-                      {item.isActive && item.label === 'Beranda' ? (
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className={iconColor} xmlns="http://www.w3.org/2000/svg">
-                          <path fillRule="evenodd" clipRule="evenodd" d="M10.709 2.473a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-9a2 2 0 0 1 .709-1.528l7-5.999zM9 21v-8a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v8H9z" />
-                        </svg>
-                      ) : (
-                        <Icon size={22} strokeWidth={strokeWidth} className={iconColor} fill="none" />
-                      )}
+                  <Link
+                    href={item.href}
+                    onClick={() => setIsDrawerOpen(false)}
+                    className="flex items-center gap-5 group"
+                  >
+                    <div className="w-6 flex justify-center">
+                      {getIcon(item.href, isActive)}
                     </div>
-                    <span className={`text-[15px] tracking-wide mt-[3px] ${textColor}`}>{item.label}</span>
+                    <span
+                      className={`text-[16px] transition-colors ${isActive
+                          ? "text-[#875C0C] font-semibold"
+                          : "text-[#333333] font-normal group-hover:text-[#875C0C]"
+                        }`}
+                    >
+                      {displayLabel}
+                    </span>
                   </Link>
                 </li>
               );
             })}
+
+            {/* Extra Hubungi Kami Link for Mobile */}
+            <li>
+              <Link
+                href="#"
+                onClick={() => setIsDrawerOpen(false)}
+                className="flex items-center gap-5 group mt-2 pt-6 border-t border-stone-200/60"
+              >
+                <div className="w-6 flex justify-center">
+                  <Map
+                    size={20}
+                    className="text-stone-400 group-hover:text-[#875C0C]"
+                    strokeWidth={1.5}
+                  />
+                </div>
+                <span className="text-[16px] text-[#333333] font-normal group-hover:text-[#875C0C] transition-colors">
+                  Hubungi Kami
+                </span>
+              </Link>
+            </li>
           </ul>
         </div>
       </div>
