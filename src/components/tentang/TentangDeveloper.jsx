@@ -33,7 +33,7 @@ export default function TentangDeveloper() {
               </div>
 
               {/* Floating Developer Badge */}
-              <div className="absolute bottom-[25%] right-[-10%] transform translate-y-4 bg-[#7A5612] rounded-[1.5rem] px-8 py-6 shadow-xl z-20 w-[240px]">
+              <div className="absolute bottom-[25%] md:right-[-10%] right-[-6%] transform translate-y-4 bg-[#7A5612] rounded-[1.5rem] px-8 py-6 shadow-xl z-20 md:w-[240px] w-[220px]">
                 <div className="w-full h-full rounded-[2.5rem] overflow-hidden">
 
                 </div>
@@ -50,7 +50,7 @@ export default function TentangDeveloper() {
 
           {/* ── Right Column: Text + Stats ── */}
           <div className="flex-1 lg:pl-4">
-            <h2 className="text-4xl md:text-[48px] font-bold text-[#232323] leading-[1.2] mb-8 tracking-tight">
+            <h2 className="text-4xl md:text-[48px] font-bold text-[#232323] leading-[1.2] mb-8 tracking-tight md:text-start text-center text-[42px]">
               {tentangDeveloper.sectionTitle} <br />
               <span className="text-[#9c7524]">{tentangDeveloper.sectionTitleAccent}</span>{" "}
               {tentangDeveloper.sectionSubtitle}
@@ -65,7 +65,7 @@ export default function TentangDeveloper() {
             </p>
 
             {/* Stats Row */}
-            <div className="flex flex-wrap gap-x-12 gap-y-8">
+            <div className="md:flex md:flex-wrap grid grid-cols-3 md:gap-x-12 gap-x-8 gap-y-8">
               {tentangStats.map((stat) => (
                 <div key={stat.id} className="flex flex-col">
                   <span className="text-3xl md:text-[34px] font-bold text-[#232323] leading-none mb-2">
