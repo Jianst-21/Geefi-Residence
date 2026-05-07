@@ -10,7 +10,7 @@ import {
   X,
   Home,
   Building2,
-  Flower2,
+  Flower,
   Calculator,
   MapPin,
   Map,
@@ -20,7 +20,7 @@ import {
 const getIcon = (href, isActive) => {
   const props = {
     size: 20,
-    className: isActive ? "text-[#9c7524] fill-[#9c7524]" : "text-stone-400",
+    className: isActive ? "text-[#875C0C]" : "text-stone-400",
     strokeWidth: isActive ? 2 : 1.5,
   };
 
@@ -32,7 +32,7 @@ const getIcon = (href, isActive) => {
     case "/unit":
       return <Building2 {...props} />;
     case "/fasilitas":
-      return <Flower2 {...props} />;
+      return <Flower {...props} />;
     case "/simulasi-kpr":
       return <Calculator {...props} />;
     case "/lokasi":
@@ -124,7 +124,7 @@ const Navbar = () => {
 
       {/* Mobile Drawer */}
       <div
-        className={`fixed top-0 left-0 h-full w-[85%] max-w-[320px] bg-[#FCFBF8] z-50 transform transition-transform duration-300 ease-in-out lg:hidden rounded-r-3xl shadow-2xl flex flex-col ${isDrawerOpen ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-0 right-0 h-full w-[85%] max-w-[320px] bg-[#FCFBF8] z-50 transform transition-transform duration-300 ease-in-out lg:hidden rounded-l-[40px] shadow-2xl flex flex-col ${isDrawerOpen ? "translate-x-0" : "translate-x-full"
           }`}
       >
         <div className="flex justify-between items-start p-8 pb-10">
@@ -151,12 +151,6 @@ const Navbar = () => {
                 pathname === item.href ||
                 (item.href !== "/" && pathname.startsWith(item.href));
 
-              // Map labels from constants to match drawer screenshot labels
-              let displayLabel = item.label;
-              if (item.label === "Unit") displayLabel = "Katalog Unit";
-              if (item.label === "Fasilitas") displayLabel = "Fasilitas Eksklusif";
-              if (item.label === "Lokasi") displayLabel = "Lokasi Strategis";
-
               return (
                 <li key={item.id}>
                   <Link
@@ -173,7 +167,7 @@ const Navbar = () => {
                           : "text-[#333333] font-normal group-hover:text-[#875C0C]"
                         }`}
                     >
-                      {displayLabel}
+                      {item.label}
                     </span>
                   </Link>
                 </li>
