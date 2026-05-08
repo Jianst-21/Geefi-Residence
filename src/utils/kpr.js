@@ -1,31 +1,36 @@
-// src/utils/kpr.js
+// src/utils/kprUtils.js
 
-// Fungsi murni untuk memformat angka menjadi Rupiah (tanpa desimal)
-export const formatRupiah = (number) => {
-  return new Intl.NumberFormat("id-ID", {
-    style: "currency",
-    currency: "IDR",
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(number);
+// Fungsi pembantu untuk memformat input angka dengan titik (misal: 500.000.000)
+export const formatInputRupiah = (value) => {
+  if (!value) return "0";
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 };
 
-// Fungsi murni untuk menghitung cicilan dan DP
-export const hitungCicilanKPR = (hargaRumah, dpPercent, tenor) => {
-  const dpAmount = (hargaRumah * dpPercent) / 100;
-  const plafon = hargaRumah - dpAmount;
+// Fungsi pembantu untuk mengembalikan string berformat ke number
+export const parseInputRupiah = (value) => {
+  if (!value) return 0;
+  return Number(value.toString().replace(/\./g, ""));
+};
 
-  // Asumsi bunga flat 7% per tahun (Bisa kamu ubah jika diperlukan)
-  const bungaPerTahun = 0.07;
-  const totalBunga = plafon * bungaPerTahun * tenor;
-  const totalPinjaman = plafon + totalBunga;
+// Asumsi Anda punya fungsi hitungCicilanKPR di file yang sama sebelumnya, pindahkan juga ke sini:
+export const hitungCicilanKPR = (hargaRumah, dpPercent, tenorTahun, bungaPerTahun = 5) => {
+  const dpAmount = hargaRumah * (dpPercent / 100);
+  const pokokPinjaman = hargaRumah - dpAmount;
   
-  // Mencegah nilai infinity jika tenor 0
-  const cicilanPerBulan = tenor > 0 ? totalPinjaman / (tenor * 12) : 0;
+  const bungaPerBulan = bungaPerTahun / 100 / 12;
+  const tenorBulan = tenorTahun * 12;
 
-  // Mengembalikan data sebagai object agar mudah diambil di komponen
+  let cicilanPerBulan = 0;
+  if (bungaPerBulan > 0) {
+    cicilanPerBulan =
+      (pokokPinjaman * bungaPerBulan) /
+      (1 - Math.pow(1 + bungaPerBulan, -tenorBulan));
+  } else {
+    cicilanPerBulan = pokokPinjaman / tenorBulan;
+  }
+
   return { 
     dpAmount, 
-    cicilanPerBulan 
+    cicilanPerBulan: Math.round(cicilanPerBulan) 
   };
 };
