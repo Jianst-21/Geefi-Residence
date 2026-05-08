@@ -51,7 +51,7 @@ export default function Hero() {
           <div className="absolute inset-0 w-full h-full rounded-[32px] lg:rounded-[48px] overflow-hidden bg-gray-100">
             {/* GAMBAR DESKTOP (Hanya muncul di layar lg ke atas) */}
             <Image
-              src="/images/landings/Luxury house.png"
+              src="/images/landings/Luxury House.png"
               alt="Geefi Residence Luxury House"
               fill
               className="hidden lg:block object-cover"
