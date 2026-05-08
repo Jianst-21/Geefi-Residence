@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function Hero() {
   return (
     <section className="w-full bg-[#FFFFFF] font-['Manrope'] flex justify-center items-center pt-8 pb-0 lg:pt-0 lg:pb-[115px] overflow-hidden">
-      <div className="relative w-full max-w-[1220px] flex flex-col lg:flex-row items-center lg:items-stretch px-[33.5px] lg:px-0 gap-[24px] lg:gap-[52px]">
+      <div className="relative w-full max-w-[1220px] flex flex-col lg:flex-row items-center lg:items-stretch px-[33.5px] lg:px-0 gap-[24px] lg:gap-[52px] pt-16">
         {/* KOLOM KIRI: Teks & Tombol */}
         <div className="flex flex-col justify-center gap-[31px] w-full lg:w-[584px] shrink-0">
           <h1 className="text-[44px] md:text-[56px] lg:text-[60px] font-extrabold leading-[1.1] text-[#18181B] tracking-tight">
