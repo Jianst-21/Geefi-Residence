@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 
-export async function GET(request, { params }) {
-    const { house_id } = await params  // ← await params
+export async function GET() {
 
     const { data, error } = await supabase
         .from('FeatureBenefits')
@@ -28,28 +27,19 @@ export async function GET(request, { params }) {
                 electricity,
                 water_source,
                 description,
-                status
             )
         `)
-        .eq('house_id', house_id)
 
     if (error) {
-        return NextResponse.json({ success: false, error: error.message })
+        return NextResponse.json({
+            success: false,
+            error: error.message
+        })
     }
-
-    const house = data?.[0]?.Houses ?? null
-    const benefits = data.map(({ benefit_id, benefit_name, created_at }) => ({
-        benefit_id,
-        benefit_name,
-        created_at
-    }))
 
     return NextResponse.json({
         success: true,
-        total_benefits: benefits.length,
-        data: {
-            ...house,
-            benefits
-        }
+        total: data.length,
+        data: data
     })
 }
