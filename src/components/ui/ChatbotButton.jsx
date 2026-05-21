@@ -139,7 +139,7 @@ export default function ChatbotButton() {
                   type="submit"
                   className="w-full py-4 mt-2 bg-[#9C6B1B] hover:bg-[#855913] text-white rounded-full font-bold text-[13px] flex items-center justify-center gap-2 transition-all shadow-md"
                 >
-                  <MessageCircle size={18} fill="white" className="text-white" /> Hubungkan ke WhatsApp
+                  <MessageCircle size={18} className="text-white" /> Hubungkan ke WhatsApp
                 </button>
               </form>
             </div>
@@ -159,14 +159,15 @@ export default function ChatbotButton() {
         </div>
       )}
 
-      {/* FLOATING TRIGGER BUTTON - Sekarang hanya dirender jika modal tertutup (!isOpen) */}
+      {/* FLOATING TRIGGER BUTTON - Ikon diperbaiki sesuai Figma */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
           className="w-[104px] h-[104px] flex-shrink-0 bg-[#9C6B1B] hover:bg-[#855913] text-white rounded-full flex items-center justify-center shadow-[0_10px_40px_rgba(156,107,27,0.4)] transition-all duration-300 hover:scale-105 active:scale-95 relative pointer-events-auto animate-in zoom-in duration-300"
         >
           <div className="flex flex-col items-center">
-             <MessageCircle size={44} fill="white" className="text-white" />
+             {/* Perubahan utama ada di sini: Hapus fill="white" dan ubah size menjadi 28 */}
+             <MessageCircle size={28} strokeWidth={2.5} className="text-white" />
           </div>
         </button>
       )}
