@@ -4,6 +4,7 @@ import TentangHero from "@/components/tentang/TentangHero";
 import TentangDeveloper from "@/components/tentang/TentangDeveloper";
 import TentangValues from "@/components/tentang/TentangValues";
 import TentangCTA from "@/components/tentang/TentangCTA";
+import ChatbotButton from "@/components/ui/ChatbotButton"; 
 
 export const metadata = {
   title: "Tentang Kami — Geefi Residence",
@@ -20,6 +21,7 @@ export default function TentangPage() {
       <TentangValues />
       <TentangCTA />
       <Footer />
+      <ChatbotButton />
     </main>
   );
 }
