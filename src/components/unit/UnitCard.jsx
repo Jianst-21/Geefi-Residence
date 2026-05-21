@@ -53,12 +53,6 @@ export default function UnitCard({ unit }) {
           >
             LIHAT DETAIL
           </Link>
-          <button
-            aria-label="Bandingkan"
-            className="w-11 h-11 flex-shrink-0 rounded-full border border-stone-200 bg-white text-primary hover:border-primary hover:bg-primary/5 flex items-center justify-center transition-all cursor-pointer"
-          >
-            <Calculator width={20} height={20} />
-          </button>
         </div>
       </div>
     </div>

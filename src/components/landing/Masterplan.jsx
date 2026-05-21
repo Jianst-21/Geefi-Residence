@@ -23,7 +23,7 @@ export default function Masterplan() {
     }
 
     const isSelected = selectedPlot?.id === item.id;
-    const isAvailable = item.status === "available";
+    const isAvailable = item.is_available === "TRUE";
 
     return (
       <button

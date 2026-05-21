@@ -28,7 +28,7 @@ export async function GET(request, { params }) {
                 electricity,
                 water_source,
                 description,
-                status
+                is_available
             )
         `)
         .eq('house_id', house_id)

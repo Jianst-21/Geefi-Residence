@@ -23,7 +23,7 @@ export async function GET() {
             electricity,
             water_source,
             description,
-            status
+            is_available
         `)
 
     if (error) {
