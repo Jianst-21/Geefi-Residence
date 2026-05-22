@@ -28,6 +28,7 @@ export async function GET() {
                 water_source,
                 description,
                 is_available
+
             )
         `)
 

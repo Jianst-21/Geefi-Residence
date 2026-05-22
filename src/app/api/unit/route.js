@@ -1,9 +1,11 @@
 import { NextResponse } from 'next/server'
 import { supabase } from '@/lib/supabase'
 
-export async function GET() {
+export async function GET(request) {
+    const { searchParams } = new URL(request.url)
+    const house_name = searchParams.get('house_name')
 
-    const { data, error } = await supabase
+    let query = supabase
         .from('Houses')
         .select(`
             house_id,
@@ -26,11 +28,14 @@ export async function GET() {
             is_available
         `)
 
+    if (house_name) {
+        query = query.eq('house_name', house_name)
+    }
+
+    const { data, error } = await query
+
     if (error) {
-        return NextResponse.json({
-            success: false,
-            error: error.message
-        })
+        return NextResponse.json({ success: false, error: error.message })
     }
 
     return NextResponse.json({

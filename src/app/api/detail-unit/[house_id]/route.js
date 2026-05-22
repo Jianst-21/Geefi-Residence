@@ -29,6 +29,7 @@ export async function GET(request, { params }) {
                 water_source,
                 description,
                 is_available
+
             )
         `)
         .eq('house_id', house_id)
