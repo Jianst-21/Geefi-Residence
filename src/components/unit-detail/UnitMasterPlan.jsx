@@ -30,7 +30,7 @@ export default function UnitMasterPlan({ masterplan }) {
           <div className="relative w-full max-w-[640px] bg-white rounded-[32px] sm:rounded-[40px] overflow-hidden shadow-[0_20px_50px_-12px_rgba(0,0,0,0.05)] p-4 sm:p-8">
             <div className="relative w-full aspect-[2/3] sm:aspect-square md:aspect-[3/5]">
               <Image
-                src={"/images/Denah CH 1.png"}
+                src={"/images/DENAH CH 1.png"}
                 alt="Masterplan"
                 fill
                 className="object-contain"
