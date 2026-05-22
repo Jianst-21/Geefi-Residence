@@ -24,7 +24,8 @@ export async function GET(request) {
             sanitation,
             electricity,
             water_source,
-            description
+            description,
+            is_available
         `)
 
     if (house_name) {

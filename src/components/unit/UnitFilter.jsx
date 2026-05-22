@@ -10,7 +10,7 @@ export default function UnitFilter({ categories, activeCategory, onSelect }) {
             onClick={() => onSelect(cat)}
             className={`px-8 py-3 rounded-full text-sm font-medium transition-all whitespace-nowrap cursor-pointer border-0 ${
               activeCategory === cat
-                ? "bg-gradient-primary text-white font-semibold shadow-sm"
+                ? "bg-gradient-primary text-white shadow-sm"
                 : "bg-background-secondary text-secondary hover:text-foreground hover:bg-primary/10"
             }`}
           >

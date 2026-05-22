@@ -27,6 +27,8 @@ export async function GET() {
                 electricity,
                 water_source,
                 description,
+                is_available
+
             )
         `)
 
