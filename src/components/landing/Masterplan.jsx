@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
+import Link from "next/link"; // <-- 1. Import Link dari Next.js
 import { 
   Bed, 
   Bath, 
@@ -8,7 +10,7 @@ import {
   ArrowRight
 } from "lucide-react";
 
-// DATA DUMMY DIPERBARUI SESUAI KETERSEDIAAN ASLI (FINAL)
+// DATA DUMMY
 const unitData = [
   {
     id: "subsidi-plumpung",
@@ -16,7 +18,7 @@ const unitData = [
     name: "Geefi Subsidi Plumpung",
     typeSize: "Tipe 30/60",
     category: "Subsidi",
-    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    slug: "geefi-subsidi-plumpung-30-60", 
     beds: 2,
     baths: 1,
     cars: 1,
@@ -29,7 +31,7 @@ const unitData = [
     name: "Geefi Subsidi 2 Plumpung",
     typeSize: "Tipe 30/60",
     category: "Subsidi",
-    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    slug: "geefi-subsidi-2-plumpung", 
     beds: 2,
     baths: 1,
     cars: 1,
@@ -42,7 +44,7 @@ const unitData = [
     name: "Geefi Residence",
     typeSize: "Tipe 42/60",
     category: "Premium",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    slug: "classic-haven-42-65",
     beds: 2,
     baths: 1,
     cars: 1,
@@ -51,21 +53,25 @@ const unitData = [
   },
   {
     id: "residence-54",
-    blockRange: "Blok G.1 - H.9", // <--- Diperbarui sesuai gambar terakhir
-    name: "Geefi Residence Exclusive",
+    blockRange: "Blok G.1 - H.9",
+    name: "Geefi Residence",
     typeSize: "Tipe 54/60",
-    category: "Exclusive",
-    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    category: "Premium",
+    slug: "geefi-residence-54-60",
     beds: 3,
     baths: 2,
     cars: 2,
-    price: "Rp 450 Juta",
+    price: "Rp 265 Juta",
     status: "available"
   }
 ];
 
 export default function Masterplan() {
-  const [selectedPlot, setSelectedPlot] = useState(unitData[0]); // Default ke unit pertama
+  const [selectedPlot, setSelectedPlot] = useState(unitData[0]);
+
+  // Logika path gambar
+  const selectedFormattedSlug = selectedPlot ? selectedPlot.slug.replaceAll('-', '') : '';
+  const selectedImageUnitPath = `/images/units/${selectedFormattedSlug}.png`;
 
   return (
     <>
@@ -98,6 +104,9 @@ export default function Masterplan() {
                 {unitData.map((unit) => {
                   const isSelected = selectedPlot?.id === unit.id;
                   
+                  const formattedSlug = unit.slug.replaceAll('-', '');
+                  const imageUnitPath = `/images/units/${formattedSlug}.png`;
+                  
                   return (
                     <div 
                       key={unit.id}
@@ -108,21 +117,19 @@ export default function Masterplan() {
                           : 'border-transparent shadow-sm hover:shadow-md hover:-translate-y-1'
                       }`}
                     >
-                      {/* Foto Unit */}
-                      <div className="w-full h-[180px] md:h-[200px] rounded-[16px] overflow-hidden mb-5 relative">
-                        <img 
-                          src={unit.image} 
+                      <div className="w-full h-[180px] md:h-[200px] rounded-[16px] overflow-hidden mb-5 relative pointer-events-none">
+                        <Image 
+                          src={imageUnitPath} 
                           alt={unit.name} 
-                          className="w-full h-full object-cover"
+                          fill
+                          className="object-cover"
                         />
-                        {/* Label Blok Dinamis */}
-                        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-[#9D6A0C] uppercase tracking-wider shadow-sm">
+                        <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-[#9D6A0C] uppercase tracking-wider shadow-sm">
                           {unit.blockRange}
                         </div>
                       </div>
 
-                      {/* Info Unit */}
-                      <div className="flex-1 flex flex-col justify-between px-1 pb-2">
+                      <div className="flex-1 flex flex-col justify-between px-1 pb-2 pointer-events-none">
                         <h3 className="font-bold text-gray-900 text-lg mb-4 line-clamp-2 leading-snug">
                           {unit.name}
                         </h3>
@@ -170,7 +177,6 @@ export default function Masterplan() {
                     </div>
                   </div>
 
-                  {/* Fasilitas Kamar dll */}
                   <div className="flex justify-between gap-2 mb-8">
                     <div className="bg-[#F4F3F1] rounded-[16px] py-4 px-2 flex-1 flex flex-col items-center justify-center gap-1.5">
                       <Bed size={20} className="text-gray-500" />
@@ -189,19 +195,23 @@ export default function Masterplan() {
                     </div>
                   </div>
 
-                  {/* Foto Detail di Panel Kanan */}
-                  <div className="w-full h-[180px] bg-gray-100 rounded-[20px] mb-8 overflow-hidden relative">
-                    <img
-                      src={selectedPlot.image}
+                  <div className="w-full h-[180px] bg-gray-100 rounded-[20px] mb-8 overflow-hidden relative border border-gray-200 shadow-sm">
+                    <Image
+                      src={selectedImageUnitPath}
                       alt={selectedPlot.name}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   </div>
 
-                  <button className="mt-auto w-full bg-[#7E5300] text-white text-sm md:text-base font-bold py-4 rounded-full hover:bg-[#684400] transition-colors shadow-lg flex justify-center items-center gap-2">
+                  {/* 2. Diubah dari <button> menjadi <Link href="..."> */}
+                  <Link 
+                    href={`/unit/${selectedPlot.slug}`}
+                    className="mt-auto w-full bg-[#7E5300] text-white text-sm md:text-base font-bold py-4 rounded-full hover:bg-[#684400] transition-colors shadow-lg flex justify-center items-center gap-2"
+                  >
                     Reservasi Sekarang
                     <ArrowRight size={18} />
-                  </button>
+                  </Link>
                 </div>
               ) : null}
             </div>
@@ -210,7 +220,6 @@ export default function Masterplan() {
         </div>
       </section>
       
-      {/* GAP BAWAH TAMBAHAN */}
       <div className="w-full h-[28px] bg-[#FAF9F6]"></div>
     </>
   );
