@@ -5,46 +5,67 @@ import {
   Bath, 
   CarFront, 
   Home, 
-  ArrowRight, 
-  MousePointer2 
+  ArrowRight
 } from "lucide-react";
 
-// IMPORT DATA DARI FOLDER CONSTANTS
-import { row1Data, row2Data } from "../../constants/masterplan";
+// DATA DUMMY DIPERBARUI SESUAI KETERSEDIAAN ASLI (FINAL)
+const unitData = [
+  {
+    id: "subsidi-plumpung",
+    blockRange: "Blok A.1 - B.10",
+    name: "Geefi Subsidi Plumpung",
+    typeSize: "Tipe 30/60",
+    category: "Subsidi",
+    image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    beds: 2,
+    baths: 1,
+    cars: 1,
+    price: "Rp 160 Juta",
+    status: "available"
+  },
+  {
+    id: "subsidi-2",
+    blockRange: "Blok C.1 - D.5", 
+    name: "Geefi Subsidi 2 Plumpung",
+    typeSize: "Tipe 30/60",
+    category: "Subsidi",
+    image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    beds: 2,
+    baths: 1,
+    cars: 1,
+    price: "Rp 166 Juta",
+    status: "available"
+  },
+  {
+    id: "residence-42",
+    blockRange: "Blok E.1 - F.5",
+    name: "Geefi Residence",
+    typeSize: "Tipe 42/60",
+    category: "Premium",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    beds: 2,
+    baths: 1,
+    cars: 1,
+    price: "Rp 200 Juta",
+    status: "available"
+  },
+  {
+    id: "residence-54",
+    blockRange: "Blok G.1 - H.9", // <--- Diperbarui sesuai gambar terakhir
+    name: "Geefi Residence Exclusive",
+    typeSize: "Tipe 54/60",
+    category: "Exclusive",
+    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    beds: 3,
+    baths: 2,
+    cars: 2,
+    price: "Rp 450 Juta",
+    status: "available"
+  }
+];
 
 export default function Masterplan() {
-  const [selectedPlot, setSelectedPlot] = useState(
-    row1Data.find((p) => p.id === "B02"),
-  );
-
-  const renderSlot = (item) => {
-    if (item.type === "empty") {
-      return <div key={item.id} className="w-[60px] md:w-[76px] flex-shrink-0"></div>;
-    }
-
-    const isSelected = selectedPlot?.id === item.id;
-    const isAvailable = item.status === "available";
-
-    return (
-      <button
-        key={item.id}
-        onClick={() => isAvailable && setSelectedPlot(item)}
-        disabled={!isAvailable}
-        className={`
-          relative flex-shrink-0 w-[60px] md:w-[76px] h-[160px] md:h-[200px] rounded-full flex items-center justify-center font-bold text-xs md:text-sm transition-all duration-300
-          ${
-            isAvailable
-              ? isSelected
-                ? "bg-gradient-to-b from-[#7E5300] to-[#9D6A0C] text-white shadow-[0_10px_20px_rgba(126,83,0,0.4)] scale-105 border-[3px] md:border-[4px] border-white z-10"
-                : "bg-gradient-to-b from-[#7E5300] to-[#9D6A0C] text-white/90 hover:-translate-y-2 hover:shadow-lg cursor-pointer"
-              : "bg-gray-200/50 text-gray-400 cursor-not-allowed"
-          }
-        `}
-      >
-        <span className="block tracking-widest">{item.id}</span>
-      </button>
-    );
-  };
+  const [selectedPlot, setSelectedPlot] = useState(unitData[0]); // Default ke unit pertama
 
   return (
     <>
@@ -65,47 +86,64 @@ export default function Masterplan() {
                 sesuai dengan profil Anda, lengkap dengan informasi spesifikasi
                 dan ketersediaan secara real-time.
               </p>
-              <div className="flex items-center gap-[24px] text-[12px] md:text-[14px] font-bold">
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-[#9D6A0C]"></div>
-                  <span className="text-[#52525B] tracking-widest uppercase">Tersedia</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 rounded-full bg-[#E4E4E7]"></div>
-                  <span className="text-[#A1A1AA] tracking-widest uppercase">Habis</span>
-                </div>
-              </div>
             </div>
           </div>
 
           {/* WADAH UTAMA INTERAKTIF */}
           <div className="w-full bg-[#F4F3F1] rounded-[48px] flex flex-col xl:flex-row min-h-[781px] overflow-hidden shadow-sm border border-gray-100">
             
-            {/* SISI KIRI: Peta Masterplan */}
-            <div className="flex-1 flex flex-col relative overflow-x-auto custom-scrollbar">
-              
-              <div className="flex-1 flex flex-col justify-center gap-8 lg:gap-12 p-10 pb-24 lg:pb-10">
-                <div className="flex items-center gap-4 md:gap-[24px] min-w-max">
-                  {row1Data.map(renderSlot)}
-                </div>
-                <div className="flex items-center gap-4 md:gap-[24px] min-w-max">
-                  {row2Data.map(renderSlot)}
-                </div>
-              </div>
+            {/* SISI KIRI: GRID 2x2 KARTU RUMAH */}
+            <div className="flex-1 flex flex-col p-6 md:p-10 overflow-y-auto">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {unitData.map((unit) => {
+                  const isSelected = selectedPlot?.id === unit.id;
+                  
+                  return (
+                    <div 
+                      key={unit.id}
+                      onClick={() => setSelectedPlot(unit)}
+                      className={`bg-white rounded-[24px] p-4 flex flex-col cursor-pointer transition-all duration-300 border-2 ${
+                        isSelected 
+                          ? 'border-[#9D6A0C] shadow-lg scale-[1.02]' 
+                          : 'border-transparent shadow-sm hover:shadow-md hover:-translate-y-1'
+                      }`}
+                    >
+                      {/* Foto Unit */}
+                      <div className="w-full h-[180px] md:h-[200px] rounded-[16px] overflow-hidden mb-5 relative">
+                        <img 
+                          src={unit.image} 
+                          alt={unit.name} 
+                          className="w-full h-full object-cover"
+                        />
+                        {/* Label Blok Dinamis */}
+                        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-[#9D6A0C] uppercase tracking-wider shadow-sm">
+                          {unit.blockRange}
+                        </div>
+                      </div>
 
-              {/* BAR INSTRUKSI SESUAI FIGMA (Hanya muncul di desktop) */}
-              <div className="absolute bottom-0 left-0 ml-[47px] mb-[32px] z-20">
-                <div className="hidden lg:flex bg-white px-6 py-4 rounded-full shadow-md text-[11px] md:text-[12px] font-bold tracking-widest text-[#5F5E5E] items-center gap-3 whitespace-nowrap">
-                  <div className="p-1.5 bg-[#9D6A0C] rounded-full text-white">
-                    <MousePointer2 size={14} fill="currentColor" />
-                  </div>
-                  KLIK WARNA EMAS UNTUK MELIHAT SPESIFIKASI DETAIL
-                </div>
+                      {/* Info Unit */}
+                      <div className="flex-1 flex flex-col justify-between px-1 pb-2">
+                        <h3 className="font-bold text-gray-900 text-lg mb-4 line-clamp-2 leading-snug">
+                          {unit.name}
+                        </h3>
+                        
+                        <div>
+                          <span className="block text-[11px] text-gray-400 mb-0.5 font-medium uppercase tracking-wider">
+                            Harga mulai dari
+                          </span>
+                          <span className="font-bold text-[#9D6A0C] text-[20px]">
+                            {unit.price}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
 
-            {/* SISI KANAN: Panel Detail Unit */}
-            <div className="w-full xl:w-[292px] shrink-0 bg-white p-6 md:p-8 flex flex-col border-l border-gray-100">
+            {/* SISI KANAN: PANEL DETAIL UNIT */}
+            <div className="w-full xl:w-[320px] shrink-0 bg-white p-6 md:p-8 flex flex-col border-l border-gray-100">
               <div className="flex items-center gap-3 text-[#7E5300] font-bold text-lg mb-8 border-b border-gray-100 pb-4">
                 <Home size={22} />
                 <h3>Detail Unit</h3>
@@ -115,15 +153,15 @@ export default function Masterplan() {
                 <div className="flex flex-col h-full">
                   <div className="mb-8">
                     <p className="text-[10px] md:text-xs font-bold text-gray-400 tracking-widest uppercase mb-1">
-                      Unit Terpilih
+                      Tipe Terpilih
                     </p>
                     <h4 className="text-[28px] md:text-[32px] font-bold text-[#7E5300] mb-6">
-                      Plot {selectedPlot.id}
+                      {selectedPlot.typeSize}
                     </h4>
                     <div className="space-y-4">
                       <div className="flex justify-between items-center">
                         <span className="text-gray-500 text-xs md:text-sm">Tipe Unit</span>
-                        <span className="font-bold text-gray-900 text-xs md:text-sm">{selectedPlot.unitType}</span>
+                        <span className="font-bold text-gray-900 text-xs md:text-sm">{selectedPlot.category}</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-gray-500 text-xs md:text-sm">Harga Mulai dari</span>
@@ -132,6 +170,7 @@ export default function Masterplan() {
                     </div>
                   </div>
 
+                  {/* Fasilitas Kamar dll */}
                   <div className="flex justify-between gap-2 mb-8">
                     <div className="bg-[#F4F3F1] rounded-[16px] py-4 px-2 flex-1 flex flex-col items-center justify-center gap-1.5">
                       <Bed size={20} className="text-gray-500" />
@@ -150,11 +189,12 @@ export default function Masterplan() {
                     </div>
                   </div>
 
-                  <div className="w-full h-[180px] bg-gray-100 rounded-[20px] mb-8 overflow-hidden relative group cursor-pointer">
+                  {/* Foto Detail di Panel Kanan */}
+                  <div className="w-full h-[180px] bg-gray-100 rounded-[20px] mb-8 overflow-hidden relative">
                     <img
-                      src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
-                      alt={`Tipe ${selectedPlot.unitType}`}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      src={selectedPlot.image}
+                      alt={selectedPlot.name}
+                      className="w-full h-full object-cover"
                     />
                   </div>
 
@@ -165,6 +205,7 @@ export default function Masterplan() {
                 </div>
               ) : null}
             </div>
+            
           </div>
         </div>
       </section>
