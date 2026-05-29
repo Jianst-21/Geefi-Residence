@@ -35,8 +35,8 @@ const getIcon = (href, isActive) => {
       return <Flower {...props} />;
     case "/simulasi-kpr":
       return <Calculator {...props} />;
-    case "/lokasi":
-      return <MapPin {...props} />;
+    // case "/lokasi":
+    //   return <MapPin {...props} />;
     default:
       return <Info {...props} />;
   }
