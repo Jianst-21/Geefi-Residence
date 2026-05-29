@@ -16,10 +16,10 @@ export default function TentangValues() {
 
         {/* Header */}
         <div className="text-center mb-16">
-          <p className="text-[10px] font-bold tracking-[0.2em] text-[#9c7524] uppercase mb-4">
+          <p className="text-[12px] font-bold tracking-[0.2em] text-[#9c7524] uppercase mb-4">
             PRINSIP KAMI
           </p>
-          <h2 className="text-[40px] md:text-[46px] font-bold text-[#232323] leading-tight tracking-tight">
+          <h2 className="text-[48px] md:text-[46px] font-bold text-[#232323] leading-tight tracking-tight">
             Nilai Utama Hunian Kami
           </h2>
         </div>

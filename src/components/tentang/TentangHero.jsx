@@ -10,12 +10,12 @@ export default function TentangHero() {
           {/* ── Left Column ── */}
           <div className="flex-1 lg:pr-10 xl:pr-16 z-10">
             {/* Badge */}
-            <p className="text-[10px] font-bold tracking-[0.2em] text-[#9c7524] uppercase mb-5">
+            <p className="text-[10px] font-bold tracking-[0.2em] text-[#9c7524] uppercase mb-5 md:text-start text-center">
               {tentangHero.badge}
             </p>
 
             {/* Heading */}
-            <h1 className="text-5xl md:text-6xl lg:text-[64px] font-bold text-[#232323] leading-[1.1] mb-6 tracking-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-[64px] font-bold text-[#232323] leading-[1.1] text-[58px] mb-6 tracking-tight md:text-start text-center">
               Tentang <span className="text-[#9c7524]">Geefi</span>
               <br />
               <span className="text-[#9c7524]">Residence</span>
