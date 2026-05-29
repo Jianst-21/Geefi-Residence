@@ -5,5 +5,5 @@ export const nav_items = [
   { id: 3, label: 'Unit', href: '/unit' },
   { id: 4, label: 'Fasilitas', href: '/fasilitas' },
   { id: 5, label: 'Simulasi KPR', href: '/simulasi-kpr' },
-  {id: 6, label: 'Lokasi', href: '/lokasi' },
+  // {id: 6, label: 'Lokasi', href: '/lokasi' },
 ];
