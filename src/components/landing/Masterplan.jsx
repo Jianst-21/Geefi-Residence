@@ -44,7 +44,7 @@ const unitData = [
     name: "Geefi Residence",
     typeSize: "Tipe 42/60",
     category: "Premium",
-    slug: "classic-haven-42-65",
+    slug: "geefi-residence-42-60",
     beds: 2,
     baths: 1,
     cars: 1,
