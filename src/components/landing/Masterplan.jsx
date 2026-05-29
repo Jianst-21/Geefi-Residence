@@ -58,9 +58,9 @@ const unitData = [
     typeSize: "Tipe 54/60",
     category: "Premium",
     slug: "geefi-residence-54-60",
-    beds: 3,
-    baths: 2,
-    cars: 2,
+    beds: 2,
+    baths: 1,
+    cars: 1,
     price: "Rp 265 Juta",
     status: "available"
   }
