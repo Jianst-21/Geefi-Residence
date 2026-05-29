@@ -2,6 +2,7 @@ import Navbar from "@/components/ui/Navbar";
 import Footer from "@/components/ui/Footer";
 import UnitHero from "@/components/unit/UnitHero";
 import UnitGrid from "@/components/unit/UnitGrid";
+import ChatbotButton from "@/components/ui/ChatbotButton"; 
 
 export const metadata = {
   title: "Unit — Geefi Residence",
@@ -16,6 +17,7 @@ export default function UnitPage() {
       <UnitHero />
       <UnitGrid />
       <Footer />
+      <ChatbotButton />
     </main>
   );
 }

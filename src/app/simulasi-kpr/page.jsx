@@ -6,6 +6,8 @@ import KprAmortizationTable from "@/components/simulasiKPR/KprAmortizationTable"
 import HousingRecommendations from "@/components/simulasiKPR/HousingRecommendations";
 import CtaSection from "@/components/simulasiKPR/CtaSection";
 import Footer from "@/components/ui/Footer";
+import ChatbotButton from "@/components/ui/ChatbotButton"; 
+
 export default function SimulasiKPR() {
   return (
     <main className="min-h-screen bg-white">
@@ -17,6 +19,7 @@ export default function SimulasiKPR() {
       <HousingRecommendations />
       <CtaSection />
       <Footer />
+      <ChatbotButton />
     </main>
   );
 }
