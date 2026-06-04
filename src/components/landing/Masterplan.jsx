@@ -69,29 +69,9 @@ const unitData = [
 export default function Masterplan() {
   const [selectedPlot, setSelectedPlot] = useState(unitData[0]);
 
-    const isSelected = selectedPlot?.id === item.id;
-    const isAvailable = item.is_available === "TRUE";
-
-    return (
-      <button
-        key={item.id}
-        onClick={() => isAvailable && setSelectedPlot(item)}
-        disabled={!isAvailable}
-        className={`
-          relative flex-shrink-0 w-[60px] md:w-[76px] h-[160px] md:h-[200px] rounded-full flex items-center justify-center font-bold text-xs md:text-sm transition-all duration-300
-          ${
-            isAvailable
-              ? isSelected
-                ? "bg-gradient-to-b from-[#7E5300] to-[#9D6A0C] text-white shadow-[0_10px_20px_rgba(126,83,0,0.4)] scale-105 border-[3px] md:border-[4px] border-white z-10"
-                : "bg-gradient-to-b from-[#7E5300] to-[#9D6A0C] text-white/90 hover:-translate-y-2 hover:shadow-lg cursor-pointer"
-              : "bg-gray-200/50 text-gray-400 cursor-not-allowed"
-          }
-        `}
-      >
-        <span className="block tracking-widest">{item.id}</span>
-      </button>
-    );
-  };
+  // Mendeklarasikan path gambar untuk panel di sisi kanan
+  const formattedSelectedSlug = selectedPlot ? selectedPlot.slug.replaceAll('-', '') : '';
+  const selectedImageUnitPath = selectedPlot ? `/images/units/${formattedSelectedSlug}.png` : '';
 
   return (
     <>
