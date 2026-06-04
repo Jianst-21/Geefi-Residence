@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import Link from "next/link"; // <-- 1. Import Link dari Next.js
+import Link from "next/link"; 
 import { 
   Bed, 
   Bath, 
