@@ -2,9 +2,7 @@
 import React, { useState } from "react";
 
 // Pastikan path ini sesuai dengan struktur folder Anda.
-// Sesuaikan import dengan nama file utils dan constants Anda
 import { hitungCicilanKPR, formatInputRupiah, parseInputRupiah } from "../../utils/kpr";
-import { KPR_DEFAULTS } from "../../constants/kpr";
 
 // Helper function untuk format Rupiah biasa (jika belum ada di utils)
 const formatRupiah = (angka) => {
@@ -16,20 +14,30 @@ const formatRupiah = (angka) => {
 };
 
 export default function KprCalculator() {
-  const [hargaRumah, setHargaRumah] = useState(KPR_DEFAULTS.HARGA_RUMAH);
-  const [dpPercent, setDpPercent] = useState(KPR_DEFAULTS.DP_PERCENT);
-  const [tenor, setTenor] = useState(KPR_DEFAULTS.TENOR);
+  // State Parameter - Default diatur ke nilai paling minimum
+  const [hargaRumah, setHargaRumah] = useState(50000000);
+  const [dpPercent, setDpPercent] = useState(0);
+  const [tenor, setTenor] = useState(1);
 
-  // Batas maksimal untuk slider
-  const maxHarga = KPR_DEFAULTS.MAX_HARGA || 500000000;
-  const maxTenor = KPR_DEFAULTS.MAX_TENOR || 25;
+  // Batas minimum dan maksimum untuk slider
+  const minHarga = 50000000;
+  const maxHarga = 265000000;
+  const minTenor = 1;
+  const maxTenor = 30;
 
-  // Ambil hasil perhitungan dari Utils
-  const { dpAmount, cicilanPerBulan } = hitungCicilanKPR(
+  // Ambil hasil perhitungan dari Utils (dpAmount dihapus karena tidak ditampilkan lagi)
+  const { cicilanPerBulan } = hitungCicilanKPR(
     hargaRumah,
     dpPercent,
     tenor
   );
+
+  // Helper untuk mewarnai track slider (kiri emas, kanan abu-abu)
+  const getSliderBackground = (value, min, max) => {
+    // Math.max dan Math.min memastikan persentase tidak bocor di bawah 0 atau di atas 100 saat diketik manual
+    const percentage = Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
+    return `linear-gradient(to right, #B27C21 ${percentage}%, #E5E7EB ${percentage}%)`;
+  };
 
   return (
     <section className="pt-[87px] lg:pt-[215px] pb-[78px] lg:pb-[114px] bg-[#FAF9F6]">
@@ -102,15 +110,13 @@ export default function KprCalculator() {
                 <div className="relative flex items-center">
                   <input
                     type="range"
-                    min="0"
+                    min={minHarga}
                     max={maxHarga}
                     step="1000000"
                     value={hargaRumah}
                     onChange={(e) => setHargaRumah(Number(e.target.value))}
                     className="custom-range w-full h-[6px] bg-gray-200 rounded-lg appearance-none outline-none relative z-10"
-                    style={{
-                      background: `linear-gradient(to right, #B27C21 ${(hargaRumah / maxHarga) * 100}%, #E5E7EB ${(hargaRumah / maxHarga) * 100}%)`,
-                    }}
+                    style={{ background: getSliderBackground(hargaRumah, minHarga, maxHarga) }}
                   />
                 </div>
               </div>
@@ -122,9 +128,6 @@ export default function KprCalculator() {
                     Uang Muka (DP)
                   </span>
                   <div className="flex items-center gap-2">
-                    <span className="font-bold text-[#B27C21] text-[14px] lg:text-[15px]">
-                      {formatRupiah(dpAmount)}
-                    </span>
                     <div className="flex items-center">
                       <input
                         type="number"
@@ -151,9 +154,7 @@ export default function KprCalculator() {
                   value={dpPercent}
                   onChange={(e) => setDpPercent(Number(e.target.value))}
                   className="custom-range w-full h-[6px] bg-gray-200 rounded-lg appearance-none outline-none"
-                  style={{
-                    background: `linear-gradient(to right, #B27C21 ${dpPercent}%, #E5E7EB ${dpPercent}%)`,
-                  }}
+                  style={{ background: getSliderBackground(dpPercent, 0, 100) }}
                 />
               </div>
 
@@ -182,15 +183,13 @@ export default function KprCalculator() {
                 </div>
                 <input
                   type="range"
-                  min="0"
+                  min={minTenor}
                   max={maxTenor}
                   step="1"
                   value={tenor}
                   onChange={(e) => setTenor(Number(e.target.value))}
                   className="custom-range w-full h-[6px] bg-gray-200 rounded-lg appearance-none outline-none"
-                  style={{
-                    background: `linear-gradient(to right, #B27C21 ${(tenor / maxTenor) * 100}%, #E5E7EB ${(tenor / maxTenor) * 100}%)`,
-                  }}
+                  style={{ background: getSliderBackground(tenor, minTenor, maxTenor) }}
                 />
               </div>
             </div>
