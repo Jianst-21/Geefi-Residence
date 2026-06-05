@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link"; // Tambahkan import Link dari next/link
 
 export default function Hero() {
   return (
@@ -20,29 +21,14 @@ export default function Hero() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-center w-full mt-2">
-            <button className="w-full sm:w-auto px-8 py-[18px] bg-[#936625] text-white rounded-full font-semibold text-[15px] lg:text-[18px] shadow-[0_8px_24px_rgba(147,102,37,0.25)] hover:bg-[#7a551f] transition duration-300">
+            {/* Tombol Eksplor Sekarang diubah menjadi tag Link */}
+            <Link 
+              href="/unit" 
+              className="w-full sm:w-auto px-8 py-[18px] bg-[#936625] text-white rounded-full font-semibold text-[15px] lg:text-[18px] shadow-[0_8px_24px_rgba(147,102,37,0.25)] hover:bg-[#7a551f] transition duration-300 text-center flex justify-center items-center"
+            >
               Eksplor Sekarang
-            </button>
-            <button className="w-full sm:w-auto px-6 py-[18px] flex items-center justify-center gap-2 font-semibold text-[#B48332] text-[15px] lg:text-[18px] hover:bg-[#B48332]/5 rounded-full transition duration-300 group">
-              Lihat Video Tour
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="w-5 h-5 transition-transform group-hover:scale-110"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <polygon
-                  points="10 8 16 12 10 16 10 8"
-                  fill="none"
-                  stroke="currentColor"
-                ></polygon>
-              </svg>
-            </button>
+            </Link>
+            {/* Tombol Lihat Video Tour dihapus */}
           </div>
         </div>
 
