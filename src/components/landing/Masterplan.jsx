@@ -44,7 +44,7 @@ const unitData = [
     name: "Geefi Residence",
     typeSize: "Tipe 42/60",
     category: "Premium",
-    slug: "classic-haven-42-65",
+    slug: "geefi-residence-42-60",
     beds: 2,
     baths: 1,
     cars: 1,
@@ -58,9 +58,9 @@ const unitData = [
     typeSize: "Tipe 54/60",
     category: "Premium",
     slug: "geefi-residence-54-60",
-    beds: 3,
-    baths: 2,
-    cars: 2,
+    beds: 2,
+    baths: 1,
+    cars: 1,
     price: "Rp 265 Juta",
     status: "available"
   }
@@ -69,9 +69,9 @@ const unitData = [
 export default function Masterplan() {
   const [selectedPlot, setSelectedPlot] = useState(unitData[0]);
 
-  // Mendeklarasikan path gambar untuk panel di sisi kanan
-  const formattedSelectedSlug = selectedPlot ? selectedPlot.slug.replaceAll('-', '') : '';
-  const selectedImageUnitPath = selectedPlot ? `/images/units/${formattedSelectedSlug}.png` : '';
+  // Logika path gambar
+  const selectedFormattedSlug = selectedPlot ? selectedPlot.slug.replaceAll('-', '') : '';
+  const selectedImageUnitPath = `/images/units/${selectedFormattedSlug}.png`;
 
   return (
     <>
