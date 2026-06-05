@@ -36,9 +36,9 @@ export default function LocationSection() {
           
           {/* SISI KIRI: PETA (Lebar ~60%) */}
           <div className="w-full lg:w-[60%] h-[300px] lg:h-full relative bg-gray-200">
-            {/* PERBAIKAN: Embed Google Maps diubah ke Abyakta Sukoharjo */}
+            {/* PERBAIKAN: Embed Google Maps diubah ke Geefi Residence Sukoharjo */}
             <iframe
-              src="https://www.google.com/maps?q=Abyakta+Sukoharjo&output=embed"
+              src="https://www.google.com/maps?q=Geefi+Residence+Sukoharjo&output=embed"
               className="absolute inset-0 w-full h-full border-0"
               allowFullScreen=""
               loading="lazy"
@@ -78,7 +78,7 @@ export default function LocationSection() {
 
             {/* TOMBOL (Diubah menjadi tag <a> yang mengarah ke Google Maps) */}
             <a 
-              href="https://www.google.com/maps/search/?api=1&query=Abyakta+Sukoharjo" 
+              href="https://www.google.com/maps/search/?api=1&query=Geefi+Residence+Sukoharjo" 
               target="_blank" 
               rel="noopener noreferrer"
               className="mt-10 lg:mt-auto w-full h-[52px] rounded-full border-[1.5px] border-[#B48832] text-[#7E5300] font-bold text-[14px] tracking-wide hover:bg-[#7E5300] hover:text-white transition-all duration-300 flex items-center justify-center"

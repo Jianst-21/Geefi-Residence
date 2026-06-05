@@ -140,31 +140,6 @@ export default function UnitTypes() {
                         >
                           LIHAT DETAIL
                         </Link>
-
-                        <button className="hidden md:flex shrink-0 items-center justify-center text-[#9D6A0C] hover:text-[#7E5300] transition-colors pr-2">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="22"
-                            height="22"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="1.5"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          >
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="12" y1="3" x2="12" y2="21"></line>
-                            <line x1="3" y1="12" x2="21" y2="12"></line>
-                            <line x1="6.5" y1="7.5" x2="8.5" y2="7.5"></line>
-                            <line x1="15.5" y1="6.5" x2="17.5" y2="8.5"></line>
-                            <line x1="17.5" y1="6.5" x2="15.5" y2="8.5"></line>
-                            <line x1="7.5" y1="15.5" x2="7.5" y2="17.5"></line>
-                            <line x1="6.5" y1="16.5" x2="8.5" y2="16.5"></line>
-                            <line x1="15.5" y1="16" x2="17.5" y2="16"></line>
-                            <line x1="15.5" y1="17.5" x2="17.5" y2="17.5"></line>
-                          </svg>
-                        </button>
                       </div>
                     </div>
                   </div>
