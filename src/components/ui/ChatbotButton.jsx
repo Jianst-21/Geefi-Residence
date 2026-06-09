@@ -2,6 +2,7 @@
 //3
 import React, { useState } from 'react';
 import { X, Send, MessageCircle, ChevronDown } from 'lucide-react';
+import { sendChatToN8n } from "../../services/chatbot";
 
 export default function ChatbotButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,6 +11,9 @@ export default function ChatbotButton() {
     whatsapp: '',
     unit: ''
   });
+
+  const [chatInput, setChatInput] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -28,14 +32,39 @@ export default function ChatbotButton() {
     window.open(`https://wa.me/${adminNumber}?text=${message}`, '_blank');
   };
 
+  const handleSendChat = async (customMessage) => {
+    const finalMessage = customMessage || chatInput;
+
+    if (!finalMessage.trim() || loading) return;
+
+    try {
+      setLoading(true);
+
+      const result = await sendChatToN8n({
+        name: formData.nama || "Guest",
+        phone_number: formData.whatsapp || "",
+        message: finalMessage,
+      });
+
+      console.log("Response N8N:", result);
+
+      alert(result.reply || result.output || "Chatbot berhasil merespon");
+
+      setChatInput("");
+    } catch (error) {
+      console.error("DETAIL ERROR CHATBOT:", error);
+      alert(error.message || "Gagal menghubungi chatbot");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="fixed bottom-6 right-6 top-6 z-[999] flex flex-col justify-end items-end font-sans pointer-events-none">
       
-      {/* MODAL CONTAINER */}
       {isOpen && (
         <div className="mb-4 w-[calc(100vw-3rem)] md:w-[360px] max-h-full bg-[#FCFCFD] rounded-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-300 pointer-events-auto origin-bottom-right">
           
-          {/* HEADER */}
           <div className="bg-[#9C6B1B] px-6 py-4 text-white relative flex-shrink-0">
             <button 
               onClick={() => setIsOpen(false)}
@@ -60,7 +89,6 @@ export default function ChatbotButton() {
             </div>
           </div>
 
-          {/* SCROLLABLE BODY */}
           <div className="flex-1 overflow-y-auto px-6 pt-6 pb-3 custom-scrollbar bg-white">
             
             <div className="bg-white p-4 rounded-[20px] rounded-tl-sm shadow-sm border border-[#D4C4B1]/30 mb-1.5 w-[95%]">
@@ -72,13 +100,22 @@ export default function ChatbotButton() {
             <p className="text-[10px] text-gray-400 ml-1 mb-5 font-medium">Baru saja</p>
 
             <div className="flex flex-col gap-2.5 mb-8 items-start">
-              <button className="py-2 px-5 bg-transparent border border-[#9C6B1B] rounded-full text-[12px] font-semibold text-[#9C6B1B] hover:bg-[#9C6B1B] hover:text-white transition-all">
+              <button
+                onClick={() => handleSendChat("Info tipe rumah")}
+                className="py-2 px-5 bg-transparent border border-[#9C6B1B] rounded-full text-[12px] font-semibold text-[#9C6B1B] hover:bg-[#9C6B1B] hover:text-white transition-all"
+              >
                 Info Tipe Rumah
               </button>
-              <button className="py-2 px-5 bg-transparent border border-[#9C6B1B] rounded-full text-[12px] font-semibold text-[#9C6B1B] hover:bg-[#9C6B1B] hover:text-white transition-all">
+              <button
+                onClick={() => handleSendChat("Informasi lokasi Geefi Residence")}
+                className="py-2 px-5 bg-transparent border border-[#9C6B1B] rounded-full text-[12px] font-semibold text-[#9C6B1B] hover:bg-[#9C6B1B] hover:text-white transition-all"
+              >
                 Informasi Lokasi
               </button>
-              <button className="py-2 px-5 bg-transparent border border-[#9C6B1B] rounded-full text-[12px] font-semibold text-[#9C6B1B] hover:bg-[#9C6B1B] hover:text-white transition-all">
+              <button
+                onClick={() => handleSendChat("Saya ingin hubungi admin")}
+                className="py-2 px-5 bg-transparent border border-[#9C6B1B] rounded-full text-[12px] font-semibold text-[#9C6B1B] hover:bg-[#9C6B1B] hover:text-white transition-all"
+              >
                 Hubungi Admin
               </button>
             </div>
@@ -145,21 +182,30 @@ export default function ChatbotButton() {
             </div>
           </div>
 
-          {/* BOTTOM CHAT INPUT (FOOTER) */}
           <div className="bg-white px-6 py-4 border-t border-[#D4C4B1]/30 flex items-center justify-between flex-shrink-0">
              <input 
-                type="text" 
+                type="text"
+                value={chatInput}
+                onChange={(e) => setChatInput(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleSendChat();
+                  }
+                }}
                 placeholder="Ketik pesan..." 
                 className="w-full bg-transparent text-[12px] text-gray-600 placeholder-gray-400 focus:outline-none"
              />
-             <button className="text-[#9C6B1B] hover:text-[#855913] transition-colors p-1.5">
+             <button
+                onClick={() => handleSendChat()}
+                disabled={loading}
+                className="text-[#9C6B1B] hover:text-[#855913] transition-colors p-1.5"
+             >
                 <Send size={17} />
              </button>
           </div>
         </div>
       )}
 
-      {/* FLOATING TRIGGER BUTTON */}
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
