@@ -149,7 +149,7 @@ export default function UnitGallery({ images }) {
           {/* Main Slide Image */}
           <div className="relative max-w-5xl w-full h-[60vh] px-4 flex items-center justify-center">
             <div className="relative w-full h-full max-h-[60vh]">
-              <Image
+               <Image
                 src={images[activeIndex]}
                 alt={`Gallery image ${activeIndex + 1}`}
                 fill
