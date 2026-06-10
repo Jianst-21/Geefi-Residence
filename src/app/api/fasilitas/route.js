@@ -23,12 +23,9 @@ out center tags;
     "https://overpass.kumi.systems/api/interpreter"
   ];
 
-  let rawData = null;
-  let lastError = null;
-
-  for (const url of ENDPOINTS) {
+  const fetchPromise = (url) => new Promise(async (resolve, reject) => {
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 2500);
+    const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 detik timeout per request
 
     try {
       const res = await fetch(url, {
@@ -49,7 +46,7 @@ out center tags;
         },
         body: "data=" + encodeURIComponent(q),
         signal: controller.signal,
-        next: { revalidate: 86400 } // Cache data di level Next.js fetch selama 24 jam
+        next: { revalidate: 86400 } // Cache di level Next.js fetch selama 24 jam
       });
 
       clearTimeout(timeoutId);
@@ -57,23 +54,26 @@ out center tags;
       if (res.ok) {
         const contentType = res.headers.get("content-type");
         if (contentType && contentType.includes("application/json")) {
-          rawData = await res.json();
-          break;
+          const data = await res.json();
+          resolve(data);
+          return;
         }
       }
+      reject(new Error(`Status ${res.status} dari ${url}`));
     } catch (err) {
       clearTimeout(timeoutId);
-      console.warn(`Gagal memuat dari ${url} di server:`, err.message);
-      lastError = err;
+      reject(err);
     }
-  }
+  });
 
-  if (!rawData) {
+  try {
+    const rawData = await Promise.any(ENDPOINTS.map(fetchPromise));
+    return NextResponse.json(rawData);
+  } catch (err) {
+    console.error("Semua server Overpass gagal:", err);
     return NextResponse.json(
-      { success: false, error: lastError?.message || "Semua server Overpass sibuk atau error" },
+      { success: false, error: "Semua server Overpass sibuk atau tidak merespons" },
       { status: 500 }
     );
   }
-
-  return NextResponse.json(rawData);
 }
