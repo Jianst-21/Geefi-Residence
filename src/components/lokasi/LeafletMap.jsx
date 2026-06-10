@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
 // ─── Koordinat Geefi Residence Sukoharjo ──────────────────────────────────────
@@ -191,7 +192,7 @@ async function fetchFasilitas(lat, lng, radius) {
 }
 
 // ─── Buat SVG icon marker ─────────────────────────────────────────────────────
-function buatIcon(L, svgMarkup, color) {
+function buatIcon(svgMarkup, color) {
   return L.divIcon({
     className: "",
     html: `
@@ -224,90 +225,83 @@ export default function LeafletMap({ activeCategory, onFasilitasLoaded, onFasili
 
   // Inisialisasi peta sekali saja
   useEffect(() => {
-    if (mapInstanceRef.current) return;
+    if (mapInstanceRef.current || !mapRef.current || mapRef.current._leaflet_id) return;
 
-    // Import Leaflet dinamis (agar tidak error saat SSR)
-    import("leaflet").then((L) => {
-      if (mapInstanceRef.current || !mapRef.current || mapRef.current._leaflet_id) return;
-
-      // Fix icon default
-      delete L.Icon.Default.prototype._getIconUrl;
-      L.Icon.Default.mergeOptions({
-        iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
-        iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-        shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-      });
-
-      const map = L.map(mapRef.current, { zoomControl: false }).setView(
-        [PERUMAHAN.lat, PERUMAHAN.lng],
-        15
-      );
-
-      // OSM tile
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution: "&copy; <a href='https://openstreetmap.org'>OpenStreetMap</a> contributors",
-      }).addTo(map);
-
-      // Custom zoom control kanan bawah
-      L.control.zoom({ position: "bottomright" }).addTo(map);
-
-      // Marker perumahan menggunakan Lucide MapPin Icon
-      const homeIcon = L.divIcon({
-        className: "",
-        html: `<div style="
-          width:40px;height:40px;
-          background:#8B6914;
-          border:3px solid white;
-          border-radius:50%;
-          display:flex;align-items:center;justify-content:center;
-          box-shadow:0 4px 12px rgba(0,0,0,0.4);
-        ">
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-            <circle cx="12" cy="10" r="3"></circle>
-          </svg>
-        </div>`,
-        iconSize: [40, 40],
-        iconAnchor: [20, 20],
-        popupAnchor: [0, -22],
-      });
-
-      L.marker([PERUMAHAN.lat, PERUMAHAN.lng], { icon: homeIcon })
-        .addTo(map)
-        .bindPopup(
-          `<div style="font-family:sans-serif;min-width:160px;display:flex;flex-direction:column;gap:4px">
-            <div style="display:flex;align-items:center;gap:6px">
-              <svg viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="flex-shrink:0">
-                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                <circle cx="12" cy="10" r="3"></circle>
-              </svg>
-              <b style="color:#8B6914;font-size:13px">${PERUMAHAN.nama}</b>
-            </div>
-            <span style="font-size:12px;color:#555">${PERUMAHAN.alamat}</span>
-          </div>`,
-          { maxWidth: 220 }
-        )
-        .openPopup();
-
-      // Layer fasilitas
-      markerLayerRef.current = L.layerGroup().addTo(map);
-      mapInstanceRef.current = map;
-
-      // Fetch Overpass via proxy server-side
-      fetchFasilitas(PERUMAHAN.lat, PERUMAHAN.lng, RADIUS_METER)
-        .then((data) => {
-          fasilitasDataRef.current = data;
-          renderMarkers(L, data, "Semua");
-          if (onFasilitasLoaded) onFasilitasLoaded(data);
-        })
-        .catch((err) => {
-          console.error("Overpass error:", err);
-          if (onFasilitasLoaded) onFasilitasLoaded([]);
-        });
+    // Fix icon default
+    delete L.Icon.Default.prototype._getIconUrl;
+    L.Icon.Default.mergeOptions({
+      iconRetinaUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",
+      iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
+      shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
     });
 
+    const map = L.map(mapRef.current, { zoomControl: false }).setView(
+      [PERUMAHAN.lat, PERUMAHAN.lng],
+      15
+    );
 
+    // OSM tile
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; <a href='https://openstreetmap.org'>OpenStreetMap</a> contributors",
+    }).addTo(map);
+
+    // Custom zoom control kanan bawah
+    L.control.zoom({ position: "bottomright" }).addTo(map);
+
+    // Marker perumahan menggunakan Lucide MapPin Icon
+    const homeIcon = L.divIcon({
+      className: "",
+      html: `<div style="
+        width:40px;height:40px;
+        background:#8B6914;
+        border:3px solid white;
+        border-radius:50%;
+        display:flex;align-items:center;justify-content:center;
+        box-shadow:0 4px 12px rgba(0,0,0,0.4);
+      ">
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+          <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+          <circle cx="12" cy="10" r="3"></circle>
+        </svg>
+      </div>`,
+      iconSize: [40, 40],
+      iconAnchor: [20, 20],
+      popupAnchor: [0, -22],
+    });
+
+    L.marker([PERUMAHAN.lat, PERUMAHAN.lng], { icon: homeIcon })
+      .addTo(map)
+      .bindPopup(
+        `<div style="font-family:sans-serif;min-width:160px;display:flex;flex-direction:column;gap:4px">
+          <div style="display:flex;align-items:center;gap:6px">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="flex-shrink:0">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+            <b style="color:#8B6914;font-size:13px">${PERUMAHAN.nama}</b>
+          </div>
+          <span style="font-size:12px;color:#555">${PERUMAHAN.alamat}</span>
+        </div>`,
+        { maxWidth: 220 }
+      )
+      .openPopup();
+
+    // Layer fasilitas
+    markerLayerRef.current = L.layerGroup().addTo(map);
+    mapInstanceRef.current = map;
+
+    // Fetch Overpass via proxy server-side
+    fetchFasilitas(PERUMAHAN.lat, PERUMAHAN.lng, RADIUS_METER)
+      .then((data) => {
+        fasilitasDataRef.current = data;
+        renderMarkers(data, "Semua");
+        if (onFasilitasLoaded) onFasilitasLoaded(data);
+      })
+      .catch((err) => {
+        console.error("Overpass error:", err);
+        if (onFasilitasLoaded) onFasilitasLoaded([]);
+      });
 
     return () => {
       if (mapInstanceRef.current) {
@@ -321,9 +315,7 @@ export default function LeafletMap({ activeCategory, onFasilitasLoaded, onFasili
   // Re-render marker saat kategori berubah
   useEffect(() => {
     if (!mapInstanceRef.current || !fasilitasDataRef.current.length) return;
-    import("leaflet").then((L) => {
-      renderMarkers(L, fasilitasDataRef.current, activeCategory);
-    });
+    renderMarkers(fasilitasDataRef.current, activeCategory);
   }, [activeCategory]);
 
   // Handle highlight marker jika dipilih dari list
@@ -336,7 +328,7 @@ export default function LeafletMap({ activeCategory, onFasilitasLoaded, onFasili
     marker.openPopup();
   }, [highlightId]);
 
-  function renderMarkers(L, data, kategori) {
+  function renderMarkers(data, kategori) {
     if (!markerLayerRef.current) return;
     markerLayerRef.current.clearLayers();
     markersMapRef.current = {}; // reset mapping marker
@@ -351,7 +343,7 @@ export default function LeafletMap({ activeCategory, onFasilitasLoaded, onFasili
 
     filtered.forEach((f) => {
       const cfg = KATEGORI_CONFIG[f.kategori] || KATEGORI_CONFIG.default;
-      const icon = buatIcon(L, cfg.svg, cfg.color);
+      const icon = buatIcon(cfg.svg, cfg.color);
 
       const marker = L.marker([f.lat, f.lng], { icon })
         .addTo(markerLayerRef.current)
