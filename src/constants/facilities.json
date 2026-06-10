@@ -1,0 +1,876 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-06-10T21:57:25Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+    {
+      "type": "node",
+      "id": 1204537077,
+      "lat": -7.6794422,
+      "lon": 110.8432827,
+      "tags": {
+        "name": "Sukoharjo",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "railway:ref": "SKH",
+        "ref": "BK03",
+        "train": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 5727044421,
+      "lat": -7.6727987,
+      "lon": 110.8380715,
+      "tags": {
+        "addr:street": "Jalan Panglima Besar Sudirman",
+        "amenity": "restaurant",
+        "name": "Ayam Goreng Mbah Karto",
+        "name:en": "Ayam Goreng Mbah Karto"
+      }
+    },
+    {
+      "type": "node",
+      "id": 6484783459,
+      "lat": -7.6844889,
+      "lon": 110.8438224,
+      "tags": {
+        "amenity": "place_of_worship",
+        "denomination": "catholic",
+        "name": "Gereja Hati Kudus Yesus",
+        "religion": "christian"
+      }
+    },
+    {
+      "type": "node",
+      "id": 7469450808,
+      "lat": -7.6893171,
+      "lon": 110.8429846,
+      "tags": {
+        "addr:city": "Sukoharjo",
+        "addr:housenumber": "No.21 Joho RT01 RT04, Joho",
+        "addr:postcode": "57513",
+        "addr:street": "Jl. Kepodang",
+        "amenity": "hospital",
+        "email": "royal.baby.spa@gmail.com",
+        "emergency": "no",
+        "healthcare": "hospital",
+        "healthcare:speciality": "physiotherapy;general;clinic",
+        "internet_access": "wlan",
+        "name": "Royal Baby Spa",
+        "operator": "Melanie RSS, AMd, Keb",
+        "operator:type": "public",
+        "website": "https://royal-baby-spa.business.site/"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8926013305,
+      "lat": -7.6817895,
+      "lon": 110.8202501,
+      "tags": {
+        "amenity": "place_of_worship"
+      }
+    },
+    {
+      "type": "node",
+      "id": 8926013306,
+      "lat": -7.6820707,
+      "lon": 110.814208,
+      "tags": {
+        "amenity": "place_of_worship"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9752261815,
+      "lat": -7.6883611,
+      "lon": 110.8455675,
+      "tags": {
+        "amenity": "bank",
+        "brand": "BRI",
+        "brand:wikidata": "Q623042",
+        "name": "BRI",
+        "official_name": "Bank Rakyat Indonesia"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9752263073,
+      "lat": -7.6998579,
+      "lon": 110.8522914,
+      "tags": {
+        "amenity": "pharmacy",
+        "healthcare": "pharmacy",
+        "name": "Apotek Sajadah"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9752264929,
+      "lat": -7.6930599,
+      "lon": 110.8477554,
+      "tags": {
+        "amenity": "restaurant",
+        "name": "Ayam Goreng Sambal Blondo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 9752265402,
+      "lat": -7.691524,
+      "lon": 110.8473225,
+      "tags": {
+        "air_conditioning": "yes",
+        "brand": "Indomaret",
+        "brand:wikidata": "Q4262825",
+        "brand:wikipedia": "id:Indomaret",
+        "name": "Indomaret",
+        "name:en": "Indomaret",
+        "name:id": "Indomaret",
+        "name:ja": "インドマレット",
+        "operator": "PT. Indomarco Prismatama",
+        "shop": "convenience",
+        "toilets": "yes",
+        "toilets:access": "permissive",
+        "website": "https://www.klikindomaret.com"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10181537058,
+      "lat": -7.6762494,
+      "lon": 110.8330114,
+      "tags": {
+        "amenity": "cafe",
+        "name": "Wedangan Mbah Bayan"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10181555072,
+      "lat": -7.6765276,
+      "lon": 110.8325501,
+      "tags": {
+        "name": "Warung Ijo",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10181582110,
+      "lat": -7.6759003,
+      "lon": 110.8333923,
+      "tags": {
+        "name": "Toko Bagus",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10181584375,
+      "lat": -7.6756858,
+      "lon": 110.8324437,
+      "tags": {
+        "name": "Toko Kue ASSYFA CAKE & COOKIES",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10181607317,
+      "lat": -7.675996,
+      "lon": 110.8332313,
+      "tags": {
+        "name": "Toko Herbal Griya Aasiyah",
+        "shop": "supermarket"
+      }
+    },
+    {
+      "type": "node",
+      "id": 10181614191,
+      "lat": -7.6776402,
+      "lon": 110.8341838,
+      "tags": {
+        "amenity": "place_of_worship",
+        "name": "Mushola Gawanan",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11101773906,
+      "lat": -7.6619524,
+      "lon": 110.8355812,
+      "tags": {
+        "addr:street": "Jalan Panglima Besar Sudirman",
+        "amenity": "fuel",
+        "brand": "Pertamina",
+        "brand:wikidata": "Q1641044",
+        "name": "SPBU Pertamina 44.575.03 Jombor",
+        "name:en": "SPBU Jombor 44.575.03"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11101783705,
+      "lat": -7.6827094,
+      "lon": 110.8429881,
+      "tags": {
+        "addr:street": "Jalan Panglima Besar Sudirman",
+        "amenity": "bank",
+        "name": "BRI Kantor Cabang Sukoharjo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11101810205,
+      "lat": -7.6619648,
+      "lon": 110.8353354,
+      "tags": {
+        "amenity": "atm",
+        "operator": "BRI"
+      }
+    },
+    {
+      "type": "node",
+      "id": 11883136901,
+      "lat": -7.6797595,
+      "lon": 110.8433721,
+      "tags": {
+        "addr:city": "Sukoharjo",
+        "addr:district": "Sukoharjo",
+        "addr:postcode": "57514",
+        "addr:province": "Jawa Tengah",
+        "addr:subdistrict": "Gayam",
+        "ele": "98",
+        "name": "Sukoharjo",
+        "network": "KAI",
+        "network:wikidata": "Q2745027",
+        "public_transport": "station",
+        "railway": "station",
+        "railway:ref": "SKH",
+        "train": "yes",
+        "wikidata": "Q4576737",
+        "wikipedia": "id:Stasiun Sukoharjo"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12151404060,
+      "lat": -7.6803243,
+      "lon": 110.843595,
+      "tags": {
+        "name": "Sukoharjo",
+        "public_transport": "stop_position",
+        "railway": "stop",
+        "railway:ref": "SKH",
+        "ref": "BK03",
+        "train": "yes"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12397882288,
+      "lat": -7.69329,
+      "lon": 110.836847,
+      "tags": {
+        "addr:district": "Sukoharjo",
+        "addr:province": "Jawa Tengah",
+        "addr:street": "Jl. Rajawali Mlangsen RT 02 RW 06 Joho- Sukoharjo- Sukoharjo",
+        "addr:subdistrict": "Sukoharjo",
+        "addr:village": "Joho",
+        "amenity": "blood_bank",
+        "email": "pmikabsukoharjoudd@gmail.com",
+        "name": "UDD PMI Kabupaten Sukoharjo",
+        "operator": "Palang Merah Indonesia",
+        "operator:short": "PMI",
+        "phone": "271593157.0"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12840421702,
+      "lat": -7.6806597,
+      "lon": 110.8334489,
+      "tags": {
+        "addr:city": "sukoharjo",
+        "addr:district": "kec sukoharjo",
+        "addr:housenumber": "10",
+        "addr:neighbourhood": "kutorejo",
+        "addr:postcode": "57512",
+        "addr:province": "central java",
+        "addr:street": "jl. Gatot Subroto",
+        "addr:subdistrict": "jetis",
+        "amenity": "restaurant",
+        "cuisine": "indonesian",
+        "diet:halal": "yes",
+        "diet:local": "yes",
+        "diet:meat": "yes",
+        "name": "Soto Carikan",
+        "opening_hours": "Mo-Su 03:00-19:00",
+        "phone": "085229604449"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12840421703,
+      "lat": -7.6727431,
+      "lon": 110.8380641,
+      "tags": {
+        "addr:city": "Kab Sukoharjo",
+        "addr:district": "kec. bendosari",
+        "addr:housenumber": "08",
+        "addr:neighbourhood": "gabusan",
+        "addr:postcode": "57512",
+        "addr:province": "Central Java",
+        "addr:street": "jl. Jaksa Agung Raya Suprapto",
+        "addr:subdistrict": "jombor",
+        "amenity": "restaurant",
+        "cuisine": "indonesian",
+        "diet:chicken": "yes",
+        "diet:halal": "yes",
+        "diet:local": "yes",
+        "diet:meat": "yes",
+        "name": "Ayam Goreng Karto Tembel",
+        "opening_hours": "Mo-Sa 08:00-19:00",
+        "phone": "082219977676"
+      }
+    },
+    {
+      "type": "node",
+      "id": 12840421704,
+      "lat": -7.6674001,
+      "lon": 110.8370028,
+      "tags": {
+        "addr:city": "Kab Sukoharjo",
+        "addr:district": "Kec Bendosari",
+        "addr:housenumber": "4",
+        "addr:neighbourhood": "Calen",
+        "addr:postcode": "57521",
+        "addr:province": "Central Java",
+        "addr:street": "jl. Calen",
+        "addr:subdistrict": "Jombor",
+        "amenity": "cafe",
+        "cuisine": "indonesian;ice_cream;juice;dessert",
+        "internet_access": "yes",
+        "internet_access:fee": "no",
+        "name": "Kyn Eatery",
+        "opening_hours": "Mo-Su 10:00-22:00",
+        "outdoor_seating": "yes",
+        "phone": "085158346811"
+      }
+    },
+    {
+      "type": "way",
+      "id": 419688896,
+      "center": {
+        "lat": -7.6861159,
+        "lon": 110.8436879
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "name": "Masjid Agung Sukoharjo",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 419697691,
+      "center": {
+        "lat": -7.6797753,
+        "lon": 110.8432782
+      },
+      "tags": {
+        "building": "train_station",
+        "name": "Stasiun Sukoharjo",
+        "name:en": "Sukoharjo Station",
+        "public_transport": "station"
+      }
+    },
+    {
+      "type": "way",
+      "id": 420150179,
+      "center": {
+        "lat": -7.6947682,
+        "lon": 110.8485311
+      },
+      "tags": {
+        "amenity": "bus_station",
+        "bus": "yes",
+        "name": "Terminal Sukoharjo",
+        "public_transport": "station"
+      }
+    },
+    {
+      "type": "way",
+      "id": 420150180,
+      "center": {
+        "lat": -7.6947755,
+        "lon": 110.8482912
+      },
+      "tags": {
+        "amenity": "bus_station",
+        "building": "yes",
+        "bus": "yes",
+        "public_transport": "station"
+      }
+    },
+    {
+      "type": "way",
+      "id": 470891884,
+      "center": {
+        "lat": -7.6838178,
+        "lon": 110.841694
+      },
+      "tags": {
+        "amenity": "school",
+        "name": "SMK Muhammadiyah 1 Sukoharjo",
+        "operator:type": "private",
+        "school:type_idn": "sma"
+      }
+    },
+    {
+      "type": "way",
+      "id": 470891890,
+      "center": {
+        "lat": -7.6780126,
+        "lon": 110.8382682
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "mosque",
+        "name": "Masjid Jami",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 486753539,
+      "center": {
+        "lat": -7.6828622,
+        "lon": 110.8424471
+      },
+      "tags": {
+        "access:roof": "no",
+        "amenity": "bank",
+        "building": "yes",
+        "building:floor": "ceramics",
+        "building:levels": "2",
+        "building:roof": "tile",
+        "building:structure": "confined_masonry",
+        "building:walls": "brick",
+        "capacity:persons": "50-100",
+        "name": "Bank Pasar Sukoharjo",
+        "wheelchair": "no"
+      }
+    },
+    {
+      "type": "way",
+      "id": 688430945,
+      "center": {
+        "lat": -7.7026048,
+        "lon": 110.8113077
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 737163624,
+      "center": {
+        "lat": -7.6936267,
+        "lon": 110.850731
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 737163625,
+      "center": {
+        "lat": -7.693731,
+        "lon": 110.8492537
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 737163626,
+      "center": {
+        "lat": -7.6912572,
+        "lon": 110.8476916
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 737163627,
+      "center": {
+        "lat": -7.6912575,
+        "lon": 110.8498288
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 737163628,
+      "center": {
+        "lat": -7.6886516,
+        "lon": 110.8481461
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 749697794,
+      "center": {
+        "lat": -7.6781443,
+        "lon": 110.8414352
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Mitra Toserba Swalayan",
+        "shop": "mall"
+      }
+    },
+    {
+      "type": "way",
+      "id": 850700887,
+      "center": {
+        "lat": -7.6893309,
+        "lon": 110.8463214
+      },
+      "tags": {
+        "building": "yes",
+        "name": "Laris Supermarket",
+        "shop": "mall"
+      }
+    },
+    {
+      "type": "way",
+      "id": 966135335,
+      "center": {
+        "lat": -7.7084045,
+        "lon": 110.8217321
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 966677170,
+      "center": {
+        "lat": -7.7077003,
+        "lon": 110.8151199
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 966677171,
+      "center": {
+        "lat": -7.706683,
+        "lon": 110.8208698
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 966677176,
+      "center": {
+        "lat": -7.7029664,
+        "lon": 110.8251945
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 966901100,
+      "center": {
+        "lat": -7.7036726,
+        "lon": 110.810039
+      },
+      "tags": {
+        "amenity": "school"
+      }
+    },
+    {
+      "type": "way",
+      "id": 966902326,
+      "center": {
+        "lat": -7.7036195,
+        "lon": 110.8360078
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 966902328,
+      "center": {
+        "lat": -7.7081217,
+        "lon": 110.8327547
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 966902330,
+      "center": {
+        "lat": -7.7036091,
+        "lon": 110.8100714
+      },
+      "tags": {
+        "amenity": "place_of_worship",
+        "building": "yes",
+        "religion": "muslim"
+      }
+    },
+    {
+      "type": "way",
+      "id": 969667752,
+      "center": {
+        "lat": -7.6953587,
+        "lon": 110.8088274
+      },
+      "tags": {
+        "amenity": "school"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1046406486,
+      "center": {
+        "lat": -7.6787789,
+        "lon": 110.8529209
+      },
+      "tags": {
+        "amenity": "hospital",
+        "building:levels": "2",
+        "healthcare": "hospital",
+        "height": "15",
+        "name": "Joyo Alkes",
+        "smoking": "outside"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1092010924,
+      "center": {
+        "lat": -7.6773676,
+        "lon": 110.8412882
+      },
+      "tags": {
+        "amenity": "bank",
+        "building": "yes",
+        "name": "Bank Jateng KC Sukoharjo"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1110661177,
+      "center": {
+        "lat": -7.6820945,
+        "lon": 110.8507012
+      },
+      "tags": {
+        "amenity": "school",
+        "name": "SMP Negeri 3 Sukoharjo"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1110663169,
+      "center": {
+        "lat": -7.6690337,
+        "lon": 110.8374735
+      },
+      "tags": {
+        "addr:postcode": "57521",
+        "amenity": "school",
+        "name": "SMK Negeri 1 Sukoharjo"
+      }
+    },
+    {
+      "type": "way",
+      "id": 1159250048,
+      "center": {
+        "lat": -7.6739306,
+        "lon": 110.8296887
+      },
+      "tags": {
+        "amenity": "clinic",
+        "building": "house",
+        "name": "SKD"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 6930776,
+      "center": {
+        "lat": -7.6808683,
+        "lon": 110.8363576
+      },
+      "tags": {
+        "addr:full": "Jalan Pemuda",
+        "amenity": "school",
+        "name": "SMA Negeri 1 Sukoharjo",
+        "operator:type": "government",
+        "school:type_idn": "sma",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 6930777,
+      "center": {
+        "lat": -7.6805444,
+        "lon": 110.8373198
+      },
+      "tags": {
+        "addr:full": "Jalan Pemuda Nomor 36 Sukoharjo",
+        "amenity": "school",
+        "name": "SMP Negeri 1 Sukoharjo",
+        "operator:type": "government",
+        "school:type_idn": "smp",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 6930778,
+      "center": {
+        "lat": -7.6814344,
+        "lon": 110.8372132
+      },
+      "tags": {
+        "addr:full": "Jalan Veteran",
+        "amenity": "school",
+        "name": "SMP Negeri 2 Sukoharjo",
+        "operator:type": "government",
+        "school:type_idn": "smp",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 6934767,
+      "center": {
+        "lat": -7.6833627,
+        "lon": 110.849973
+      },
+      "tags": {
+        "amenity": "hospital",
+        "landuse": "yes",
+        "name": "Kompleks RSUD DKR Sukoharjo",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 6934768,
+      "center": {
+        "lat": -7.6846046,
+        "lon": 110.8488411
+      },
+      "tags": {
+        "amenity": "school",
+        "name": "SD Negeri Gayam I",
+        "operator:type": "government",
+        "school:type_idn": "sd",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 6934770,
+      "center": {
+        "lat": -7.6824874,
+        "lon": 110.8513684
+      },
+      "tags": {
+        "amenity": "fuel",
+        "name": "SPBU Gayam",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 6934812,
+      "center": {
+        "lat": -7.6872155,
+        "lon": 110.840489
+      },
+      "tags": {
+        "amenity": "school",
+        "name": "SMK Bina Patria 1 Sukoharjo",
+        "operator:type": "private",
+        "school:type_idn": "sma",
+        "type": "multipolygon"
+      }
+    },
+    {
+      "type": "relation",
+      "id": 6942636,
+      "center": {
+        "lat": -7.6651089,
+        "lon": 110.8380639
+      },
+      "tags": {
+        "amenity": "university",
+        "name": "Universitas Veteran Sukoharjo",
+        "operator:type": "private",
+        "type": "multipolygon"
+      }
+    }
+  ]
+}
