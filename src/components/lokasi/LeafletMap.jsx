@@ -14,14 +14,63 @@ const RADIUS_METER = 3000; // 3 km radius pencarian (diperkecil karena 5km terla
 
 // ─── Kategori & warna marker ─────────────────────────────────────────────────
 const KATEGORI_CONFIG = {
-  "Pusat Pendidikan": { color: "#B45309", emoji: "🎓" },
-  Kesehatan: { color: "#DC2626", emoji: "🏥" },
-  Perbelanjaan: { color: "#16A34A", emoji: "🛒" },
-  Transportasi: { color: "#2563EB", emoji: "🚉" },
-  Keuangan: { color: "#7C3AED", emoji: "🏦" },
-  "Tempat Ibadah": { color: "#0891B2", emoji: "🕌" },
-  Kuliner: { color: "#EA580C", emoji: "🍴" },
-  default: { color: "#6B7280", emoji: "📍" },
+  "Pusat Pendidikan": {
+    color: "#B45309",
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+      <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
+      <path d="M6 12v5c3 3 9 3 12 0v-5" />
+    </svg>`
+  },
+  Kesehatan: {
+    color: "#DC2626",
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+      <rect x="3" y="3" width="18" height="18" rx="2" />
+      <path d="M12 8v8M8 12h8" />
+    </svg>`
+  },
+  Perbelanjaan: {
+    color: "#16A34A",
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+      <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z" />
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <path d="M16 10a4 4 0 01-8 0" />
+    </svg>`
+  },
+  Transportasi: {
+    color: "#2563EB",
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+      <rect x="3" y="4" width="18" height="12" rx="2" />
+      <path d="M8 20h8M12 16v4" />
+      <path d="M3 8h18" />
+    </svg>`
+  },
+  Keuangan: {
+    color: "#7C3AED",
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+      <rect x="2" y="5" width="20" height="14" rx="2" />
+      <line x1="2" y1="10" x2="22" y2="10" />
+    </svg>`
+  },
+  "Tempat Ibadah": {
+    color: "#0891B2",
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+      <path d="M12 2L4 8v14h16V8z" />
+      <path d="M9 22V12h6v10" />
+    </svg>`
+  },
+  Kuliner: {
+    color: "#EA580C",
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+      <path d="M3 2v7c0 2.8 2.2 5 5 5s5-2.2 5-5V2M8 14v8M21 2v4c0 1.6-1 3-2.5 3.5L18 22" />
+    </svg>`
+  },
+  default: {
+    color: "#6B7280",
+    svg: `<svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+      <circle cx="12" cy="12" r="10" />
+      <path d="M12 8v4l3 3" />
+    </svg>`
+  },
 };
 
 // ─── Haversine formula ────────────────────────────────────────────────────────
@@ -83,7 +132,7 @@ function normalisasi(item) {
   };
 }
 
-// ─── Query Overpass ───────────────────────────────────────────────────────────
+// ─── Query Overpass Proxy API ─────────────────────────────────────────────────
 async function fetchFasilitas(lat, lng, radius) {
   // Cek cache dulu (berlaku 24 jam)
   const cacheKey = `overpass_${lat}_${lng}_${radius}`;
@@ -100,58 +149,21 @@ async function fetchFasilitas(lat, lng, radius) {
     console.warn("Cache error:", e);
   }
 
-  const q = `
-[out:json][timeout:25];
-(
-  node["amenity"~"school|kindergarten|college|university"](around:${radius},${lat},${lng});
-  way["amenity"~"school|kindergarten|college|university"](around:${radius},${lat},${lng});
-  node["amenity"~"hospital|clinic|doctors|pharmacy"](around:${radius},${lat},${lng});
-  way["amenity"~"hospital|clinic|doctors|pharmacy"](around:${radius},${lat},${lng});
-  node["shop"~"supermarket|convenience|mall|department_store"](around:${radius},${lat},${lng});
-  way["shop"~"supermarket|convenience|mall|department_store"](around:${radius},${lat},${lng});
-  node["amenity"~"fuel|bank|atm|restaurant|cafe|fast_food"](around:${radius},${lat},${lng});
-  way["amenity"~"fuel|bank|atm|restaurant|cafe|fast_food"](around:${radius},${lat},${lng});
-  node["amenity"~"place_of_worship"](around:${radius},${lat},${lng});
-  way["amenity"~"place_of_worship"](around:${radius},${lat},${lng});
-  node["public_transport"~"station|stop_position"](around:${radius},${lat},${lng});
-  way["public_transport"~"station"](around:${radius},${lat},${lng});
-);
-out center tags;
-`;
-
-  const ENDPOINTS = [
-    "https://overpass-api.de/api/interpreter",
-    "https://lz4.overpass-api.de/api/interpreter",
-    "https://z.overpass-api.de/api/interpreter",
-    "https://overpass.kumi.systems/api/interpreter"
-  ];
-
   let rawData = null;
 
-  for (const url of ENDPOINTS) {
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: "data=" + encodeURIComponent(q),
-      });
-
-      const contentType = res.headers.get("content-type");
-      if (res.ok && contentType && contentType.includes("application/json")) {
-        rawData = await res.json();
-        break; // berhasil, keluar dari loop
-      } else {
-        console.warn(`Overpass API ${url} sibuk atau error. Mencoba server lain...`);
-      }
-    } catch (err) {
-      console.warn(`Gagal memuat dari ${url}:`, err.message);
+  try {
+    const res = await fetch(`/api/fasilitas?lat=${lat}&lng=${lng}&radius=${radius}`);
+    if (res.ok) {
+      rawData = await res.json();
+    } else {
+      console.warn(`API /api/fasilitas error: ${res.status}`);
     }
+  } catch (err) {
+    console.warn(`Gagal memuat dari /api/fasilitas:`, err.message);
   }
 
   if (!rawData) {
-    console.error("Semua server Overpass API sedang sibuk atau di limit (429).");
+    console.error("Gagal mendapatkan data fasilitas.");
     return [];
   }
 
@@ -178,7 +190,7 @@ out center tags;
 }
 
 // ─── Buat SVG icon marker ─────────────────────────────────────────────────────
-function buatIcon(L, emoji, color) {
+function buatIcon(L, svgMarkup, color) {
   return L.divIcon({
     className: "",
     html: `
@@ -191,7 +203,9 @@ function buatIcon(L, emoji, color) {
         display:flex;align-items:center;justify-content:center;
         box-shadow:0 2px 8px rgba(0,0,0,0.3);
       ">
-        <span style="transform:rotate(45deg);font-size:14px;line-height:1">${emoji}</span>
+        <div style="transform:rotate(45deg);display:flex;align-items:center;justify-content:center;color:white;">
+          ${svgMarkup}
+        </div>
       </div>`,
     iconSize: [34, 34],
     iconAnchor: [17, 34],
@@ -237,7 +251,7 @@ export default function LeafletMap({ activeCategory, onFasilitasLoaded, onFasili
       // Custom zoom control kanan bawah
       L.control.zoom({ position: "bottomright" }).addTo(map);
 
-      // Marker perumahan
+      // Marker perumahan menggunakan Lucide MapPin Icon
       const homeIcon = L.divIcon({
         className: "",
         html: `<div style="
@@ -247,7 +261,12 @@ export default function LeafletMap({ activeCategory, onFasilitasLoaded, onFasili
           border-radius:50%;
           display:flex;align-items:center;justify-content:center;
           box-shadow:0 4px 12px rgba(0,0,0,0.4);
-        "><span style="font-size:18px">📍</span></div>`,
+        ">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="20" height="20">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+        </div>`,
         iconSize: [40, 40],
         iconAnchor: [20, 20],
         popupAnchor: [0, -22],
@@ -256,9 +275,15 @@ export default function LeafletMap({ activeCategory, onFasilitasLoaded, onFasili
       L.marker([PERUMAHAN.lat, PERUMAHAN.lng], { icon: homeIcon })
         .addTo(map)
         .bindPopup(
-          `<div style="font-family:sans-serif;min-width:160px">
-            <b style="color:#8B6914;font-size:13px">📍 ${PERUMAHAN.nama}</b>
-            <br><span style="font-size:12px;color:#555">${PERUMAHAN.alamat}</span>
+          `<div style="font-family:sans-serif;min-width:160px;display:flex;flex-direction:column;gap:4px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14" style="flex-shrink:0">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <b style="color:#8B6914;font-size:13px">${PERUMAHAN.nama}</b>
+            </div>
+            <span style="font-size:12px;color:#555">${PERUMAHAN.alamat}</span>
           </div>`,
           { maxWidth: 220 }
         )
@@ -268,7 +293,7 @@ export default function LeafletMap({ activeCategory, onFasilitasLoaded, onFasili
       markerLayerRef.current = L.layerGroup().addTo(map);
       mapInstanceRef.current = map;
 
-      // Fetch Overpass
+      // Fetch Overpass via proxy server-side
       fetchFasilitas(PERUMAHAN.lat, PERUMAHAN.lng, RADIUS_METER)
         .then((data) => {
           fasilitasDataRef.current = data;
@@ -332,15 +357,20 @@ export default function LeafletMap({ activeCategory, onFasilitasLoaded, onFasili
 
     filtered.forEach((f) => {
       const cfg = KATEGORI_CONFIG[f.kategori] || KATEGORI_CONFIG.default;
-      const icon = buatIcon(L, cfg.emoji, cfg.color);
+      const icon = buatIcon(L, cfg.svg, cfg.color);
 
       const marker = L.marker([f.lat, f.lng], { icon })
         .addTo(markerLayerRef.current)
         .bindPopup(
-          `<div style="font-family:sans-serif;min-width:160px">
-            <b style="font-size:13px">${cfg.emoji} ${f.nama}</b>
-            <br><span style="font-size:11px;color:#555">${f.kategori}</span>
-            <br><span style="font-size:12px;color:#8B6914;font-weight:600">
+          `<div style="font-family:sans-serif;min-width:160px;display:flex;flex-direction:column;gap:4px">
+            <div style="display:flex;align-items:center;gap:6px">
+              <div style="color:${cfg.color};display:flex;align-items:center;justify-content:center;flex-shrink:0">
+                ${cfg.svg.replace('stroke="white"', `stroke="${cfg.color}"`).replace('width="16"', 'width="14"').replace('height="16"', 'height="14"')}
+              </div>
+              <b style="font-size:13px;color:#1A1C1A">${f.nama}</b>
+            </div>
+            <span style="font-size:11px;color:#555">${f.kategori}</span>
+            <span style="font-size:12px;color:#8B6914;font-weight:600">
               ${f.jarakKm} km · ~${f.menit} menit
             </span>
           </div>`,

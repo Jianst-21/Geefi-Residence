@@ -1,0 +1,63 @@
+import { NextResponse } from 'next/server';
+
+export async function GET(request) {
+  const { searchParams } = new URL(request.url);
+  const lat = searchParams.get('lat') || '-7.6882';
+  const lng = searchParams.get('lng') || '110.8299';
+  const radius = searchParams.get('radius') || '3000';
+
+  const q = `
+[out:json][timeout:15];
+(
+  nwr["amenity"~"school|kindergarten|college|university|hospital|clinic|doctors|pharmacy|fuel|bank|atm|restaurant|cafe|fast_food|place_of_worship"](around:${radius},${lat},${lng});
+  nwr["shop"~"supermarket|convenience|mall|department_store"](around:${radius},${lat},${lng});
+  nwr["public_transport"~"station|stop_position"](around:${radius},${lat},${lng});
+);
+out center tags;
+`;
+
+  const ENDPOINTS = [
+    "https://overpass-api.de/api/interpreter",
+    "https://lz4.overpass-api.de/api/interpreter",
+    "https://z.overpass-api.de/api/interpreter",
+    "https://overpass.kumi.systems/api/interpreter"
+  ];
+
+  let rawData = null;
+  let lastError = null;
+
+  for (const url of ENDPOINTS) {
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+          "Referer": "https://geefi-residence.vercel.app/",
+        },
+        body: "data=" + encodeURIComponent(q),
+        next: { revalidate: 86400 } // Cache data di level Next.js fetch selama 24 jam
+      });
+
+      if (res.ok) {
+        const contentType = res.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          rawData = await res.json();
+          break;
+        }
+      }
+    } catch (err) {
+      console.warn(`Gagal memuat dari ${url} di server:`, err.message);
+      lastError = err;
+    }
+  }
+
+  if (!rawData) {
+    return NextResponse.json(
+      { success: false, error: lastError?.message || "Semua server Overpass sibuk atau error" },
+      { status: 500 }
+    );
+  }
+
+  return NextResponse.json(rawData);
+}

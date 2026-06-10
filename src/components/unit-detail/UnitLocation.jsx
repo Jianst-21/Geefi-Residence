@@ -1,3 +1,5 @@
+import { Map } from "lucide-react";
+
 export default function UnitLocation({ location }) {
   return (
     <section className="max-w-6xl mx-auto px-6 py-16">
@@ -28,7 +30,8 @@ export default function UnitLocation({ location }) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-foreground hover:bg-foreground/80 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition-colors"
             >
-              🗺 Buka di Google Maps
+              <Map size={14} className="shrink-0" />
+              Buka di Google Maps
             </a>
           </div>
         </div>
