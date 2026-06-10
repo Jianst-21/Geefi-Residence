@@ -2,7 +2,11 @@
 import React, { useState } from "react";
 
 // Pastikan path ini sesuai dengan struktur folder Anda.
-import { hitungCicilanKPR, formatInputRupiah, parseInputRupiah } from "../../utils/kpr";
+import {
+  hitungCicilanKPR,
+  formatInputRupiah,
+  parseInputRupiah,
+} from "../../utils/kpr";
 
 // Helper function untuk format Rupiah biasa (jika belum ada di utils)
 const formatRupiah = (angka) => {
@@ -26,16 +30,15 @@ export default function KprCalculator() {
   const maxTenor = 30;
 
   // Ambil hasil perhitungan dari Utils (dpAmount dihapus karena tidak ditampilkan lagi)
-  const { cicilanPerBulan } = hitungCicilanKPR(
-    hargaRumah,
-    dpPercent,
-    tenor
-  );
+  const { cicilanPerBulan } = hitungCicilanKPR(hargaRumah, dpPercent, tenor);
 
   // Helper untuk mewarnai track slider (kiri emas, kanan abu-abu)
   const getSliderBackground = (value, min, max) => {
     // Math.max dan Math.min memastikan persentase tidak bocor di bawah 0 atau di atas 100 saat diketik manual
-    const percentage = Math.max(0, Math.min(100, ((value - min) / (max - min)) * 100));
+    const percentage = Math.max(
+      0,
+      Math.min(100, ((value - min) / (max - min)) * 100),
+    );
     return `linear-gradient(to right, #B27C21 ${percentage}%, #E5E7EB ${percentage}%)`;
   };
 
@@ -72,10 +75,9 @@ export default function KprCalculator() {
           -moz-appearance: textfield;
         }
       `}</style>
-      
+
       <div className="max-w-[1280px] mx-auto px-6 sm:px-10 flex justify-center">
         <div className="w-full max-w-[1020px] bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-gray-100 flex flex-col lg:flex-row overflow-hidden font-['Manrope']">
-          
           <div className="w-full lg:w-[576px] p-[32px] md:p-[40px] flex flex-col justify-start items-start shrink-0">
             <h2 className="text-[30px] md:text-[30px] leading-[36px] font-bold text-[#1A1A1A] mb-[40px]">
               Simulasi Cicilan <br /> KPR
@@ -116,7 +118,13 @@ export default function KprCalculator() {
                     value={hargaRumah}
                     onChange={(e) => setHargaRumah(Number(e.target.value))}
                     className="custom-range w-full h-[6px] bg-gray-200 rounded-lg appearance-none outline-none relative z-10"
-                    style={{ background: getSliderBackground(hargaRumah, minHarga, maxHarga) }}
+                    style={{
+                      background: getSliderBackground(
+                        hargaRumah,
+                        minHarga,
+                        maxHarga,
+                      ),
+                    }}
                   />
                 </div>
               </div>
@@ -189,7 +197,9 @@ export default function KprCalculator() {
                   value={tenor}
                   onChange={(e) => setTenor(Number(e.target.value))}
                   className="custom-range w-full h-[6px] bg-gray-200 rounded-lg appearance-none outline-none"
-                  style={{ background: getSliderBackground(tenor, minTenor, maxTenor) }}
+                  style={{
+                    background: getSliderBackground(tenor, minTenor, maxTenor),
+                  }}
                 />
               </div>
             </div>
@@ -222,22 +232,27 @@ export default function KprCalculator() {
             </div>
 
             {/* BUTTON KIRIM KE WHATSAPP */}
-            <button className="w-full h-[56px] bg-white text-[#B27C21] font-bold text-[15px] rounded-full flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors shadow-lg mt-auto">
+            <button
+              onClick={() => {
+                setHargaRumah(50000000);
+                setDpPercent(0);
+                setTenor(1);
+              }}
+              className="w-full h-[56px] bg-white text-[#B27C21] font-bold text-[15px] rounded-full flex items-center justify-center gap-2.5 hover:bg-gray-50 active:scale-95 transition-all shadow-lg mt-auto group"
+            >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
+                strokeWidth="2.5"
+                width="18"
+                height="18"
+                className="group-hover:-rotate-45 transition-transform duration-300"
               >
-                <line x1="22" y1="2" x2="11" y2="13"></line>
-                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                <path d="M3 3v5h5" />
               </svg>
-              Kirim ke WhatsApp
+              Reset Simulasi
             </button>
           </div>
         </div>
