@@ -6,6 +6,7 @@ import FasilitasMap from "@/components/fasilitas/FasilitasMap";
 import FasilitasCTA from "@/components/fasilitas/FasilitasCTA";
 import Footer from '@/components/ui/Footer';
 import Navbar from '@/components/ui/Navbar';
+import ChatbotButton from '@/components/ui/ChatbotButton';
 
 export const metadata = {
     title: 'Fasilitas | Geefi Residence',
@@ -22,6 +23,8 @@ export default function Page() {
                 <FasilitasUmum />
                 <FasilitasMap />
                 <FasilitasCTA />
+                <ChatbotButton />
+
             </div>
             <Footer />
         </>
