@@ -27,6 +27,9 @@ out center tags;
   let lastError = null;
 
   for (const url of ENDPOINTS) {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 2500);
+
     try {
       const res = await fetch(url, {
         method: "POST",
@@ -36,8 +39,11 @@ out center tags;
           "Referer": "https://geefi-residence.vercel.app/",
         },
         body: "data=" + encodeURIComponent(q),
+        signal: controller.signal,
         next: { revalidate: 86400 } // Cache data di level Next.js fetch selama 24 jam
       });
+
+      clearTimeout(timeoutId);
 
       if (res.ok) {
         const contentType = res.headers.get("content-type");
@@ -47,6 +53,7 @@ out center tags;
         }
       }
     } catch (err) {
+      clearTimeout(timeoutId);
       console.warn(`Gagal memuat dari ${url} di server:`, err.message);
       lastError = err;
     }

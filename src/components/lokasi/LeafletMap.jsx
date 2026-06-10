@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import "leaflet/dist/leaflet.css";
 
 // ─── Koordinat Geefi Residence Sukoharjo ──────────────────────────────────────
 const PERUMAHAN = {
@@ -306,14 +307,7 @@ export default function LeafletMap({ activeCategory, onFasilitasLoaded, onFasili
         });
     });
 
-    // Load Leaflet CSS
-    if (!document.getElementById("leaflet-css")) {
-      const link = document.createElement("link");
-      link.id = "leaflet-css";
-      link.rel = "stylesheet";
-      link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
-      document.head.appendChild(link);
-    }
+
 
     return () => {
       if (mapInstanceRef.current) {
