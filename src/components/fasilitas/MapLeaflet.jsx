@@ -16,8 +16,8 @@ const customIcon = new L.Icon({
 });
 
 export default function MapLeaflet() {
-  // Approximate coordinates for Sukoharjo / Plus Code 6P4G7CWP+GG
-  const position = [-7.6749, 110.8354]; 
+  // Correct coordinates for Geefi Residence
+  const position = [-7.7019289, 110.8636104]; 
 
   return (
     <MapContainer center={position} zoom={13} style={{ height: "100%", width: "100%", zIndex: 0 }}>

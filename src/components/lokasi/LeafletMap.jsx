@@ -8,8 +8,8 @@ import "leaflet/dist/leaflet.css";
 const PERUMAHAN = {
   nama: "Geefi Residence",
   alamat: "Begajah, Sukoharjo, Jawa Tengah",
-  lat: -7.6882,
-  lng: 110.8299,
+  lat: -7.7019289,
+  lng: 110.8636104,
 };
 
 const RADIUS_METER = 3000; // 3 km radius pencarian (diperkecil karena 5km terlalu berat & memicu limit)

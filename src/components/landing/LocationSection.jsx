@@ -38,7 +38,7 @@ export default function LocationSection() {
           <div className="w-full lg:w-[60%] h-[300px] lg:h-full relative bg-gray-200">
             {/* PERBAIKAN: Embed Google Maps diubah ke Geefi Residence Sukoharjo */}
             <iframe
-              src="https://www.google.com/maps?q=Geefi+Residence+Sukoharjo&output=embed"
+              src="https://www.google.com/maps?q=-7.7019289,110.8636104&output=embed"
               className="absolute inset-0 w-full h-full border-0"
               allowFullScreen=""
               loading="lazy"

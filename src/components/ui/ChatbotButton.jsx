@@ -15,6 +15,91 @@ const INITIAL_MESSAGE = {
   time: "Baru saja",
 };
 
+// ─── Chatbot Text Formatting Helpers ──────────────────────────────────────────
+function parseInlineFormat(text) {
+  if (typeof text !== "string") return text;
+  
+  const regex = /(\*\*.*?\*\*|\*.*?\*)/g;
+  const splitParts = text.split(regex);
+  
+  return splitParts.map((part, index) => {
+    if (part.startsWith("**") && part.endsWith("**")) {
+      return <strong key={index} className="font-bold text-gray-900">{part.slice(2, -2)}</strong>;
+    } else if (part.startsWith("*") && part.endsWith("*")) {
+      return <strong key={index} className="font-bold text-gray-900">{part.slice(1, -1)}</strong>;
+    }
+    return part;
+  });
+}
+
+function formatMessageText(text) {
+  if (!text) return null;
+
+  const lines = text.split("\n");
+  const formattedElements = [];
+
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i].trim();
+
+    if (!line) {
+      formattedElements.push(<div key={`empty-${i}`} className="h-2" />);
+      continue;
+    }
+
+    // 1. Numbered lists / Section headers (e.g. "1. Tipe 30/60" or "1. ID Rumah: B1")
+    const numberHeaderMatch = line.match(/^(\d+)\.\s+(.*)$/);
+    if (numberHeaderMatch) {
+      const num = numberHeaderMatch[1];
+      const title = numberHeaderMatch[2];
+      formattedElements.push(
+        <div key={`header-${i}`} className="font-bold text-[14px] text-[#9C6B1B] mt-4 mb-1.5 flex items-start gap-1">
+          <span>{num}.</span>
+          <span>{parseInlineFormat(title)}</span>
+        </div>
+      );
+      continue;
+    }
+
+    // 2. Bullet lists (e.g. "- Luas Bangunan: 30 m²" or "* Harga: Rp160,000,000")
+    const isBullet = line.startsWith("- ") || line.startsWith("* ") || line.startsWith("• ");
+    if (isBullet) {
+      const bulletContent = line.substring(2).trim();
+      const colonIndex = bulletContent.indexOf(":");
+      
+      if (colonIndex > 0) {
+        const key = bulletContent.substring(0, colonIndex).trim();
+        const value = bulletContent.substring(colonIndex + 1).trim();
+        formattedElements.push(
+          <div key={`bullet-${i}`} className="flex items-start gap-2 text-[12.5px] text-gray-650 ml-3 mb-1 leading-relaxed animate-in fade-in duration-200">
+            <span className="text-[#9C6B1B] shrink-0 mt-[7px] text-[6px]">●</span>
+            <div>
+              <span className="font-bold text-gray-800">{key}:</span>{" "}
+              <span className="text-gray-700">{parseInlineFormat(value)}</span>
+            </div>
+          </div>
+        );
+      } else {
+        formattedElements.push(
+          <div key={`bullet-${i}`} className="flex items-start gap-2 text-[12.5px] text-gray-650 ml-3 mb-1 leading-relaxed animate-in fade-in duration-200">
+            <span className="text-[#9C6B1B] shrink-0 mt-[7px] text-[6px]">●</span>
+            <span className="text-gray-700">{parseInlineFormat(bulletContent)}</span>
+          </div>
+        );
+      }
+      continue;
+    }
+
+    // 3. Normal paragraph
+    formattedElements.push(
+      <p key={`p-${i}`} className="text-[13px] text-gray-700 leading-relaxed mb-2">
+        {parseInlineFormat(line)}
+      </p>
+    );
+  }
+
+  return <div className="space-y-0.5">{formattedElements}</div>;
+}
+
 export default function ChatbotButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -195,9 +280,9 @@ export default function ChatbotButton() {
                   <div
                     className={`bg-white p-4 rounded-[20px] rounded-tl-sm shadow-sm border ${msg.isError ? "border-red-200 bg-red-50" : "border-[#D4C4B1]/30"} w-[95%]`}
                   >
-                    <p className="text-[13px] text-gray-700 leading-relaxed whitespace-pre-line">
-                      {msg.text}
-                    </p>
+                    <div className="text-[13px] text-gray-700 leading-relaxed">
+                      {formatMessageText(msg.text)}
+                    </div>
                   </div>
                 ) : (
                   <div className="bg-[#9C6B1B] p-3.5 rounded-[20px] rounded-tr-sm max-w-[85%]">

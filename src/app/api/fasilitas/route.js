@@ -3,14 +3,14 @@ import facilitiesData from '@/constants/facilities.json';
 
 export async function GET(request) {
   const { searchParams } = new URL(request.url);
-  const lat = searchParams.get('lat') || '-7.6882';
-  const lng = searchParams.get('lng') || '110.8299';
+  const lat = searchParams.get('lat') || '-7.7019289';
+  const lng = searchParams.get('lng') || '110.8636104';
   const radius = searchParams.get('radius') || '3000';
   const isDynamic = searchParams.get('dynamic') === 'true';
 
   // Jika parameter radius diubah dari default 3000, koordinat berubah, atau parameter dynamic=true dipicu,
   // maka lakukan pencarian dinamis (real-time) ke OpenStreetMap menggunakan paralel fetch (Promise.any).
-  if (radius !== '3000' || lat !== '-7.6882' || lng !== '110.8299' || isDynamic) {
+  if (radius !== '3000' || lat !== '-7.7019289' || lng !== '110.8636104' || isDynamic) {
     const q = `
 [out:json][timeout:15];
 (

@@ -16,8 +16,8 @@ const LeafletMap = dynamic(() => import("./LeafletMap"), {
 
 // ─── Koordinat & info Geefi Residence ────────────────────────────────────────
 const PERUMAHAN = {
-  lat: -7.6882,
-  lng: 110.8299,
+  lat: -7.7019289,
+  lng: 110.8636104,
 };
 
 const MAPS_LINK =
