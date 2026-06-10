@@ -57,7 +57,7 @@ export default function Footer() {
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" className="text-primary shrink-0">
                 <path d="M3 3H21C21.5523 3 22 3.44772 22 4V20C22 20.5523 21.5523 21 21 21H3C2.44772 21 2 20.5523 2 20V4C2 3.44772 2.44772 3 3 3ZM20 7.23792L12.0718 14.338L4 7.21594V19H20V7.23792ZM4.51146 5L12.0619 11.662L19.501 5H4.51146Z"/>
               </svg>
-              hello@geefi.com
+              gegeefiresidence@gmail.com
             </li>
           </ul>
         </div>
@@ -71,28 +71,28 @@ export default function Footer() {
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" className="text-primary shrink-0">
                 <path d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4ZM13 9.5H14V7H13.5C11.567 7 10 8.567 10 10.5V12H8.99542L9.0004 14H10V18H12V14H13.9958L14 12H12V10.5C12 9.94772 12.4477 9.5 13 9.5Z"/>
               </svg>
-              <Link href="#" className="hover:text-primary transition-colors">Aapn</Link>
+              <Link href="https://www.facebook.com/aapn.2025/?rdid=ffq92EP59jkYEbPE" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Aapn</Link>
             </li>
             <li className="flex gap-2 items-center text-xs text-secondary/80">
               {/* Instagram Line - Remix Icon */}
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" className="text-primary shrink-0">
                 <path d="M7.8 2H16.2C19.4033 2 22 4.59675 22 7.8V16.2C22 19.4033 19.4033 22 16.2 22H7.8C4.59675 22 2 19.4033 2 16.2V7.8C2 4.59675 4.59675 2 7.8 2ZM7.8 4C5.70135 4 4 5.70135 4 7.8V16.2C4 18.2986 5.70135 20 7.8 20H16.2C18.2986 20 20 18.2986 20 16.2V7.8C20 5.70135 18.2986 4 16.2 4H7.8ZM12 7.5C14.4853 7.5 16.5 9.51472 16.5 12C16.5 14.4853 14.4853 16.5 12 16.5C9.51472 16.5 7.5 14.4853 7.5 12C7.5 9.51472 9.51472 7.5 12 7.5ZM12 9.5C10.6193 9.5 9.5 10.6193 9.5 12C9.5 13.3807 10.6193 14.5 12 14.5C13.3807 14.5 14.5 13.3807 14.5 12C14.5 10.6193 13.3807 9.5 12 9.5ZM16.5 6C17.3284 6 18 6.67157 18 7.5C18 8.32843 17.3284 9 16.5 9C15.6716 9 15 8.32843 15 7.5C15 6.67157 15.6716 6 16.5 6Z"/>
               </svg>
-              <Link href="#" className="hover:text-primary transition-colors">geefiresidence</Link>
+              <Link href="https://www.instagram.com/geefiresidence/" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">geefiresidence</Link>
             </li>
             <li className="flex gap-2 items-center text-xs text-secondary/80">
               {/* TikTok Line - Remix Icon */}
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" className="text-primary shrink-0">
                 <path d="M16 8V2H18C18.3224 4.51261 20.3705 6.43598 22 6.8123V9C20.6508 9 19.3496 8.52834 18.3582 7.69741V13.5C18.3582 17.0899 15.448 20 11.8582 20C8.2684 20 5.35822 17.0899 5.35822 13.5C5.35822 9.91015 8.2684 7 11.8582 7V9.5C9.64908 9.5 7.85822 11.2909 7.85822 13.5C7.85822 15.7091 9.64908 17.5 11.8582 17.5C14.0674 17.5 15.8582 15.7091 15.8582 13.5V8H16Z"/>
               </svg>
-              <Link href="#" className="hover:text-primary transition-colors">Abyakta Ageng</Link>
+              <Link href="https://www.tiktok.com/@geefiresidence" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Abyakta Ageng</Link>
             </li>
             <li className="flex gap-2 items-center text-xs text-secondary/80">
               {/* WhatsApp Line - Remix Icon */}
               <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14" className="text-primary shrink-0">
                 <path d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.8 3.08 1.22 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.02Zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a7.896 7.896 0 0 1-1.2-4.25c0-4.36 3.55-7.91 7.91-7.91 2.11 0 4.1.82 5.6 2.32 1.5 1.5 2.32 3.49 2.32 5.6 0 4.36-3.55 7.91-7.91 7.91Zm4.34-5.92c-.24-.12-1.41-.7-1.63-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.19-.71-.64-1.19-1.43-1.33-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.41-.54-.42h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.69 2.58 4.09 3.62.57.25 1.02.39 1.37.5.57.18 1.09.16 1.5.09.46-.07 1.41-.58 1.61-1.14.2-.56.2-.1.14-.16Z"/>
               </svg>
-              <Link href="#" className="hover:text-primary transition-colors">0882-1501-2059</Link>
+              <Link href="https://api.whatsapp.com/send/?phone=6288215012059&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">0882-1501-2059</Link>
             </li>
           </ul>
         </div>
