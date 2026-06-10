@@ -143,8 +143,10 @@ async function fetchFasilitas(lat, lng, radius) {
     if (cached) {
       const parsed = JSON.parse(cached);
       if (Date.now() - parsed.timestamp < 24 * 60 * 60 * 1000) {
-        console.log("Menggunakan data cache Overpass");
-        return parsed.data;
+        if (parsed.data && parsed.data.length > 0) {
+          console.log("Menggunakan data cache Overpass");
+          return parsed.data;
+        }
       }
     }
   } catch (e) {
