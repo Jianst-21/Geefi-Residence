@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Navigation, Loader2 } from "lucide-react";
 
 // Import LeafletMap secara dinamis (no SSR) karena Leaflet butuh browser APIs
@@ -15,6 +15,11 @@ const LeafletMap = dynamic(() => import("./LeafletMap"), {
 });
 
 // ─── Koordinat & info Geefi Residence ────────────────────────────────────────
+const PERUMAHAN = {
+  lat: -7.6882,
+  lng: 110.8299,
+};
+
 const MAPS_LINK =
   "https://www.google.com/maps/search/?api=1&query=Geefi+Residence+Sukoharjo";
 
@@ -148,6 +153,7 @@ export default function LokasiPage() {
   const [fasilitas, setFasilitas] = useState([]);
   const [loading, setLoading] = useState(true);
   const [highlightId, setHighlightId] = useState(null);
+  const [selectedFacility, setSelectedFacility] = useState(null);
 
   const handleFasilitasLoaded = useCallback((data) => {
     setFasilitas(data);
@@ -156,7 +162,14 @@ export default function LokasiPage() {
 
   const handleFasilitasClick = useCallback((f) => {
     setHighlightId(f.id);
+    setSelectedFacility(f);
   }, []);
+
+  // Reset selected facility when active category changes
+  useEffect(() => {
+    setSelectedFacility(null);
+    setHighlightId(null);
+  }, [activeCategory]);
 
   // Filter untuk sidebar berdasarkan active category
   const mapCategory = SIDEBAR_FILTER_MAP[activeCategory] || "Semua";
@@ -170,6 +183,14 @@ export default function LokasiPage() {
 
   // Tampilkan semua data
   const displayed = filtered;
+
+  const mapsHref = selectedFacility
+    ? `https://www.google.com/maps/dir/?api=1&origin=${PERUMAHAN.lat},${PERUMAHAN.lng}&destination=${selectedFacility.lat},${selectedFacility.lng}`
+    : MAPS_LINK;
+
+  const buttonText = selectedFacility
+    ? `Rute ke ${selectedFacility.nama}`
+    : "Buka Google Maps";
 
   return (
     <div className="bg-[#FAF9F6] min-h-screen">
@@ -241,13 +262,13 @@ export default function LokasiPage() {
 
           {/* ── Tombol Buka Google Maps ── */}
           <a
-            href={MAPS_LINK}
+            href={mapsHref}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 w-full py-4 rounded-2xl bg-[#1A1C1A] text-white font-semibold text-[14px] flex items-center justify-center gap-2.5 hover:bg-[#333] transition-colors duration-200"
+            className="mt-8 w-full py-4 rounded-2xl bg-[#1A1C1A] text-white font-semibold text-[14px] flex items-center justify-center gap-2.5 hover:bg-[#333] transition-colors duration-200 text-center px-4 shrink-0"
           >
-            <Navigation size={16} />
-            Buka Google Maps
+            <Navigation size={16} className="shrink-0" />
+            <span className="truncate">{buttonText}</span>
           </a>
         </div>
 
