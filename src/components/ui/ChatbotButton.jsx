@@ -11,7 +11,7 @@ const QUICK_REPLIES = ["Info Tipe Rumah", "Informasi Lokasi", "Hubungi Admin"];
 
 const INITIAL_MESSAGE = {
   role: "assistant",
-  text: "Halo! Saya asisten Geefi Residence.\nMau lihat tipe rumah atau hitung KPR?",
+  text: "Halo! Saya asisten Geefi Residence.\nAda yang bisa saya bantu?",
   time: "Baru saja",
 };
 
