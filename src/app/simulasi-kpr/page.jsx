@@ -6,7 +6,13 @@ import KprAmortizationTable from "@/components/simulasiKPR/KprAmortizationTable"
 import HousingRecommendations from "@/components/simulasiKPR/HousingRecommendations";
 import CtaSection from "@/components/simulasiKPR/CtaSection";
 import Footer from "@/components/ui/Footer";
-import ChatbotButton from "@/components/ui/ChatbotButton"; 
+import ChatbotButton from "@/components/ui/ChatbotButton";
+
+export const metadata = {
+  title: "Simulasi KPR — Geefi Residence",
+  description:
+    "Kalkulator simulasi KPR membantu Anda menghitung cicilan bulanan, DP, dan simulasi tenor KPR dengan berbagai promo bank terkini.",
+};
 
 export default function SimulasiKPR() {
   return (

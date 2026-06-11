@@ -9,7 +9,7 @@ import Navbar from '@/components/ui/Navbar';
 import ChatbotButton from '@/components/ui/ChatbotButton';
 
 export const metadata = {
-    title: 'Fasilitas | Geefi Residence',
+    title: 'Fasilitas — Geefi Residence',
     description: 'Fasilitas terbaik untuk keluarga di Geefi Residence',
 };
 

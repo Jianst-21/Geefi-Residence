@@ -10,7 +10,13 @@ import UnitTypes from "@/components/landing/UnitTypes";
 import Testimonials from "@/components/landing/Testimonials";
 import LocationSection from "@/components/landing/LocationSection";
 import Footer from "@/components/ui/Footer";
-import ChatbotButton from "@/components/ui/ChatbotButton"; 
+import ChatbotButton from "@/components/ui/ChatbotButton";
+
+export const metadata = {
+  title: "Geefi Residence",
+  description:
+    "Geefi Residence menawarkan hunian modern minimalis dengan fasilitas lengkap dan lokasi strategis di Sukoharjo.",
+};
 
 export default function Home() {
   return (
