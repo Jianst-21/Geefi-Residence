@@ -10,6 +10,10 @@ export default function KprCalculator() {
   const [tenor, setTenor] = useState(1);
   const [bunga, setBunga] = useState(1);
 
+  // State Cek Kelayakan KPR
+  const [penghasilanBulanan, setPenghasilanBulanan] = useState(50000000);
+  const [cicilanLainnya, setCicilanLainnya] = useState(0);
+
   // State Perhitungan Dinamis
   const [cicilanPerBulan, setCicilanPerBulan] = useState(0);
   const [totalPinjaman, setTotalPinjaman] = useState(0);
@@ -55,6 +59,8 @@ export default function KprCalculator() {
     setUangMuka(0);
     setTenor(1);
     setBunga(1);
+    setPenghasilanBulanan(50000000);
+    setCicilanLainnya(0);
   };
 
   // Helper untuk mewarnai track slider (kiri cokelat, kanan abu-abu)
@@ -244,43 +250,84 @@ export default function KprCalculator() {
               </div>
 
               {/* 3. CEK KELAYAKAN */}
-              <div className="w-full md:w-[272px] bg-[#F4F3F1] rounded-[24px] p-[32px] flex flex-col gap-[20px]">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck size={20} className="text-[#A67B27]" />
-                  <h5 className="text-[16px] font-bold text-[#1A1C1A]">
-                    Cek Kelayakan
-                  </h5>
-                </div>
+              {(() => {
+                const totalDebt = cicilanPerBulan + cicilanLainnya;
+                const dti = penghasilanBulanan > 0 ? (totalDebt / penghasilanBulanan) * 100 : 100;
 
-                <div className="flex flex-col gap-4">
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-                      Penghasilan Bulanan
-                    </label>
-                    <div className="h-[44px] bg-white rounded-[12px] px-4 flex items-center text-[13px] text-gray-500 border border-gray-100 italic">
-                      Rp 50.000.000
+                let statusText = "Sangat Layak";
+                let statusColor = "bg-[#E6F4EA] text-[#137333] border-[#137333]/20";
+                let statusDesc = "Rasio hutang Anda berada di bawah 30% dari penghasilan.";
+
+                if (dti > 30 && dti <= 50) {
+                  statusText = "Cukup Layak";
+                  statusColor = "bg-[#FEF7E0] text-[#B06000] border-[#B06000]/20";
+                  statusDesc = "Rasio hutang Anda berada di kisaran 30% - 50% dari penghasilan.";
+                } else if (dti > 50) {
+                  statusText = "Kurang Layak";
+                  statusColor = "bg-[#FCE8E6] text-[#C5221F] border-[#C5221F]/20";
+                  statusDesc = "Rasio hutang Anda melebihi 50% dari penghasilan. Disarankan memperpanjang tenor atau menaikkan uang muka.";
+                }
+
+                return (
+                  <div className="w-full md:w-[272px] bg-[#F4F3F1] rounded-[24px] p-[32px] flex flex-col gap-[20px]">
+                    <div className="flex items-center gap-2">
+                      <ShieldCheck size={20} className="text-[#A67B27]" />
+                      <h5 className="text-[16px] font-bold text-[#1A1C1A]">
+                        Cek Kelayakan
+                      </h5>
+                    </div>
+
+                    <div className="flex flex-col gap-4">
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                          Penghasilan Bulanan
+                        </label>
+                        <div className="relative h-[44px] bg-white rounded-[12px] border border-gray-200 focus-within:border-[#A67B27] flex items-center px-4 transition-colors">
+                          <span className="text-[13px] text-gray-500 mr-1">Rp</span>
+                          <input
+                            type="text"
+                            inputMode="numeric"
+                            value={formatIDR(penghasilanBulanan)}
+                            onChange={(e) => {
+                              const val = Number(e.target.value.replace(/\D/g, ""));
+                              setPenghasilanBulanan(val);
+                            }}
+                            className="w-full bg-transparent text-[13px] font-medium text-gray-700 focus:outline-none border-none p-0"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="flex flex-col gap-1.5">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                          Cicilan Lainnya
+                        </label>
+                        <div className="relative h-[44px] bg-white rounded-[12px] border border-gray-200 focus-within:border-[#A67B27] flex items-center px-4 transition-colors">
+                          <span className="text-[13px] text-gray-500 mr-1">Rp</span>
+                          <input
+                            type="text"
+                            inputMode="numeric"
+                            value={formatIDR(cicilanLainnya)}
+                            onChange={(e) => {
+                              const val = Number(e.target.value.replace(/\D/g, ""));
+                              setCicilanLainnya(val);
+                            }}
+                            className="w-full bg-transparent text-[13px] font-medium text-gray-700 focus:outline-none border-none p-0"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className={`rounded-[20px] p-4 mt-auto border ${statusColor}`}>
+                      <p className="text-[11px] leading-relaxed">
+                        <span className="font-bold">
+                          Status Anda: {statusText}.
+                        </span>{" "}
+                        {statusDesc}
+                      </p>
                     </div>
                   </div>
-
-                  <div className="flex flex-col gap-1.5">
-                    <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
-                      Cicilan Lainnya
-                    </label>
-                    <div className="h-[44px] bg-white rounded-[12px] px-4 flex items-center text-[13px] text-gray-300 border border-gray-100 italic">
-                      Rp 0
-                    </div>
-                  </div>
-                </div>
-
-                <div className="bg-[#FFDDB2] rounded-[20px] p-4 mt-auto">
-                  <p className="text-[11px] text-[#A67B27] leading-relaxed">
-                    <span className="font-bold">
-                      Status Anda: Sangat Layak.
-                    </span>{" "}
-                    Rasio hutang Anda berada di bawah 30% dari penghasilan.
-                  </p>
-                </div>
-              </div>
+                );
+              })()}
             </div>
 
             {/* 4. TABEL BUNGA */}

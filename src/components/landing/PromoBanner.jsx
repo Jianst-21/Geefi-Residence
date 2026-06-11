@@ -1,31 +1,66 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+const SLIDES = [
+  {
+    desktop: "/images/landings/Promobannerdesktop.png",
+    mobile: "/images/landings/PromobannerMobile.png",
+  },
+  {
+    desktop: "/images/landings/Luxury House.png",
+    mobile: "/images/landings/HeroMobile.png",
+  },
+  {
+    desktop: "/images/tentang_hero.png",
+    mobile: "/images/landings/HeroMobile.png",
+  },
+];
+
 export default function PromoBanner() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % SLIDES.length);
+    }, 5000);
+
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section className="w-full bg-[#FFFFFF] flex justify-center items-center px-[32px] pt-[51px] md:pt-24 pb-[28px]">
       <div className="relative w-full max-w-[345px] md:max-w-[1216px] h-[236px] md:h-[400px] mx-auto rounded-[32px] overflow-hidden flex items-center shadow-2xl">
         {/* Gambar Background Desktop & Mobile */}
         <div className="absolute inset-0 w-full h-full">
-          <Image
-            src="/images/landings/Promobannerdesktop.png"
-            alt="Geefi Residence Promo Banner"
-            fill
-            className="hidden md:block object-cover"
-            priority
-          />
-          <Image
-            src="/images/landings/PromobannerMobile.png"
-            alt="Geefi Residence Promo Banner Mobile"
-            fill
-            className="block md:hidden object-cover"
-            priority
-          />
+          {SLIDES.map((slide, index) => (
+            <div
+              key={index}
+              className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                index === currentSlide ? "opacity-100" : "opacity-0 pointer-events-none"
+              }`}
+            >
+              <Image
+                src={slide.desktop}
+                alt={`Geefi Residence Promo Banner ${index + 1}`}
+                fill
+                className="hidden md:block object-cover"
+                priority={index === 0}
+              />
+              <Image
+                src={slide.mobile}
+                alt={`Geefi Residence Promo Banner Mobile ${index + 1}`}
+                fill
+                className="block md:hidden object-cover"
+                priority={index === 0}
+              />
+            </div>
+          ))}
         </div>
 
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent"></div>
+        {/* Gradient Overlay: Mengurangi silau di sebelah kanan */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-black/35"></div>
 
         {/* KONTEN TEKS & TOMBOL */}
         {/* Padding mobile diperkecil (px-6) agar pas di lebar 345px */}
@@ -53,9 +88,15 @@ export default function PromoBanner() {
 
         {/* Jarak dari bawah disesuaikan untuk mobile agar tidak menabrak teks */}
         <div className="absolute bottom-[16px] md:bottom-[28px] left-1/2 transform -translate-x-1/2 flex gap-2.5 z-10">
-          <div className="w-2 h-2 rounded-full bg-white shadow-md"></div>
-          <div className="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60 cursor-pointer transition"></div>
-          <div className="w-2 h-2 rounded-full bg-white/40 hover:bg-white/60 cursor-pointer transition"></div>
+          {SLIDES.map((_, index) => (
+            <div
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-2 h-2 rounded-full cursor-pointer transition ${
+                index === currentSlide ? "bg-white shadow-md scale-110" : "bg-white/40 hover:bg-white/60"
+              }`}
+            ></div>
+          ))}
         </div>
       </div>
     </section>

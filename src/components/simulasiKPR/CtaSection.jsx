@@ -35,7 +35,14 @@ export default function CtaSection() {
             
             <div className="flex flex-col sm:flex-row gap-[16px]">
               
-              <button className="flex items-center justify-center gap-2 bg-[#7E5300] hover:bg-[#634200] text-white px-[32px] py-[16px] rounded-full text-[14px] font-bold transition-colors">
+              <button 
+                onClick={() => {
+                  const adminNumber = "6288215012059";
+                  const message = "Halo Admin Geefi Residence, saya ingin berkonsultasi mengenai KPR dan rencana pembelian unit.";
+                  window.open(`https://wa.me/${adminNumber}?text=${encodeURIComponent(message)}`, "_blank");
+                }}
+                className="flex items-center justify-center gap-2 bg-[#7E5300] hover:bg-[#634200] text-white px-[32px] py-[16px] rounded-full text-[14px] font-bold transition-colors"
+              >
                 <MessageSquare size={18} />
                 Konsultasi KPR via WhatsApp
               </button>
