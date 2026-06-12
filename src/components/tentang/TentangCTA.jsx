@@ -25,18 +25,21 @@ export default function TentangCTA() {
 
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto justify-center">
-              <Link
+              <a
                 href={tentangCTA.primaryButton.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="px-8 py-4 bg-white text-[#9D7621] font-bold rounded-full text-[14px] md:text-[15px] text-center hover:bg-stone-50 transition-colors duration-200"
               >
                 {tentangCTA.primaryButton.label}
-              </Link>
-              <Link
+              </a>
+              <a
                 href={tentangCTA.secondaryButton.href}
+                download="Poster_Geefi_Residence.jpeg"
                 className="px-8 py-4 bg-transparent border border-white/40 text-white font-bold rounded-full text-[14px] md:text-[15px] text-center hover:bg-white/10 transition-colors duration-200"
               >
                 {tentangCTA.secondaryButton.label}
-              </Link>
+              </a>
             </div>
           </div>
 

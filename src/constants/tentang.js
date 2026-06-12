@@ -84,10 +84,10 @@ export const tentangCTA = {
     "Jadwalkan kunjungan Anda sekarang dan rasakan sendiri kemewahan hunian modern di lokasi paling strategis Sukoharjo.",
   primaryButton: {
     label: "Hubungi Marketing",
-    href: "#",
+    href: "https://wa.me/6288215012059?text=Halo%20Admin%20Geefi%20Residence%2C%20saya%20ingin%20mengetahui%20informasi%20lebih%20lanjut%20mengenai%20unit%20yang%20tersedia.%20Terima%20kasih.",
   },
   secondaryButton: {
-    label: "Unduh Brosur",
-    href: "#",
+    label: "Unduh Poster",
+    href: "/images/Poster.jpeg",
   },
 };

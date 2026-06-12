@@ -15,15 +15,16 @@ export default function FasilitasCTA() {
           Kunjungi unit contoh kami hari ini dan rasakan kenyamanan fasilitas yang kami tawarkan secara langsung.
         </p>
         
-        <div className="flex flex-col sm:flex-row gap-4 items-center">
-          <button className="bg-[var(--color-primary)] text-white font-semibold text-sm px-8 py-4 rounded-full hover:bg-[var(--color-primary)]/90 transition-colors w-full sm:w-auto">
-            Jadwalkan Kunjungan
-          </button>
-          
-          <button className="flex items-center gap-2 text-[var(--color-primary)] font-semibold text-sm px-8 py-4 rounded-full hover:bg-black/5 transition-colors w-full sm:w-auto justify-center">
+        <div className="flex justify-center items-center">
+          <a
+            href="https://wa.me/6288215012059?text=Halo%20Admin%20Geefi%20Residence%2C%20saya%20ingin%20mengetahui%20informasi%20lebih%20lanjut%20mengenai%20unit%20yang%20tersedia.%20Terima%20kasih."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-[var(--color-primary)] hover:bg-[var(--color-primary)]/90 text-white font-semibold text-sm px-8 py-4 rounded-full transition-colors w-full sm:w-auto justify-center shadow-sm"
+          >
             Hubungi WhatsApp Marketing
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </a>
         </div>
       </div>
     </div>
