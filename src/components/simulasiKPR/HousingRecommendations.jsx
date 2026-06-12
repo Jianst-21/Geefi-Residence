@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { BedDouble, Bath } from 'lucide-react';
+import Link from 'next/link';
 import { PROPERTIES_DATA } from '@/constants/properties'; 
 
 export default function HousingRecommendations() {
@@ -32,7 +33,7 @@ export default function HousingRecommendations() {
                 <img 
                   src={property.image} 
                   alt={property.name} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  className="w-full h-full object-cover scale-[1.08] group-hover:scale-115 transition-transform duration-700"
                 />
                 <div className="absolute top-[24px] left-[24px]">
                   <span className="bg-white/80 backdrop-blur-sm text-[#7E5300] text-[10px] font-bold px-4 py-2 rounded-full uppercase tracking-wider">
@@ -65,9 +66,12 @@ export default function HousingRecommendations() {
                   <span className="text-[10px] text-[#5F5E5E] font-medium italic">mulai dari</span>
                 </div>
                 
-                <button className="w-full bg-[#7E5300] hover:bg-[#634200] text-white text-[12px] font-bold py-[16px] rounded-full transition-colors uppercase tracking-widest mt-[16px]">
+                <Link 
+                  href={`/unit/${property.slug}`}
+                  className="w-full bg-[#7E5300] hover:bg-[#634200] text-white text-[12px] font-bold py-[16px] rounded-full transition-colors uppercase tracking-widest mt-[16px] text-center flex items-center justify-center"
+                >
                   LIHAT DETAIL
-                </button>
+                </Link>
               </div>
             </div>
           ))}

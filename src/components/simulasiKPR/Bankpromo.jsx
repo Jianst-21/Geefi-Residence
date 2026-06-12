@@ -1,7 +1,7 @@
 "use client";
 import React, { useRef } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { PROMOS_DATA } from "../../constants/promos"; 
+import { PROMOS_DATA } from "../../constants/promos";
 
 export default function BankPromo() {
   const scrollRef = useRef(null);
@@ -9,13 +9,13 @@ export default function BankPromo() {
   const scroll = (direction) => {
     if (scrollRef.current) {
       const firstChild = scrollRef.current.children[0];
-      const cardWidth = firstChild ? firstChild.offsetWidth : 383; 
-      
+      const cardWidth = firstChild ? firstChild.offsetWidth : 383;
+
       const isDesktop = typeof window !== 'undefined' ? window.matchMedia('(min-width: 768px)').matches : true;
       const gap = isDesktop ? 32 : 14.5;
-      
+
       const scrollAmount = cardWidth + gap;
-      
+
       scrollRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
@@ -23,10 +23,16 @@ export default function BankPromo() {
     }
   };
 
+  const handleWhatsAppRedirect = (promo) => {
+    const adminNumber = "6288215012059";
+    const message = `Halo Admin Geefi Residence, saya tertarik untuk mengambil promo dari ${promo.bank}: "${promo.title} - ${promo.desc}". Mohon informasi selengkapnya.`;
+    window.open(`https://wa.me/${adminNumber}?text=${encodeURIComponent(message)}`, "_blank");
+  };
+
   return (
     <section className="w-full bg-[#F2F1EF] pt-[48px] pb-[42px] overflow-hidden font-['Manrope']">
       <div className="max-w-[1280px] mx-auto flex flex-col items-center">
-        
+
         {/* ================= HEADER SECTION ================= */}
         <div className="flex flex-col items-center text-center w-full max-w-[800px] gap-[16px]">
           <h2 className="w-full px-4 md:px-0 text-[30px] md:text-[36px] font-bold leading-[36px] text-[#1A1C1A]">
@@ -39,10 +45,10 @@ export default function BankPromo() {
         </div>
 
         {/* ================= CARDS SLIDER CONTAINER ================= */}
-        <div className="relative w-full mt-[48px]">
+        <div className="relative w-full max-w-[1213px] mt-[48px] overflow-hidden">
           <div
             ref={scrollRef}
-            className="w-full flex flex-row flex-nowrap overflow-x-auto gap-[14.5px] md:gap-[32px] px-[14.5px] md:px-4 pb-4 md:pb-16 snap-x snap-mandatory scrollbar-hide scroll-smooth md:justify-center items-center"
+            className="w-full flex flex-row flex-nowrap overflow-x-auto gap-[14.5px] md:gap-[32px] px-[14.5px] md:px-0 pb-4 md:pb-16 snap-x snap-mandatory scrollbar-hide scroll-smooth md:justify-start items-center"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             {PROMOS_DATA.map((promo) => (
@@ -77,7 +83,10 @@ export default function BankPromo() {
 
                   {/* PERBAIKAN: Menggunakan flex-row, justify-between, dan flex-nowrap agar selalu satu baris */}
                   <div className="flex flex-row flex-nowrap items-center justify-between w-full mt-[24px] gap-[16px]">
-                    <button className="whitespace-nowrap shrink-0 flex items-center justify-center w-fit h-[48px] px-[24px] md:px-[32px] py-[12px] bg-white text-[#1A1C1A] rounded-full text-[14px] md:text-[16px] font-bold leading-[24px] hover:bg-gray-100 transition-colors">
+                    <button
+                      onClick={() => handleWhatsAppRedirect(promo)}
+                      className="whitespace-nowrap shrink-0 flex items-center justify-center w-fit h-[48px] px-[24px] md:px-[32px] py-[12px] bg-white text-[#1A1C1A] rounded-full text-[14px] md:text-[16px] font-bold leading-[24px] hover:bg-[#9D6A0C] hover:text-white hover:scale-105 hover:shadow-md active:scale-95 transition-all duration-300"
+                    >
                       {promo.btnText}
                     </button>
 
@@ -92,30 +101,32 @@ export default function BankPromo() {
           </div>
 
           {/* ================= NAVIGATION BUTTONS ================= */}
-          <div className="flex justify-center gap-[16px] mt-[24px] md:mt-[14px]">
-            <button
-              onClick={() => scroll("left")}
-              className="w-fit h-fit p-[11px] rounded-full bg-transparent border border-[#D4C4B1]/80 flex items-center justify-center hover:bg-[#D4C4B1]/20 transition-colors cursor-pointer group"
-              aria-label="Previous"
-            >
-              <ArrowLeft
-                size={20}
-                strokeWidth={1.5}
-                className="text-[#1A1C1A] group-hover:-translate-x-0.5 transition-transform"
-              />
-            </button>
-            <button
-              onClick={() => scroll("right")}
-              className="w-fit h-fit p-[11px] rounded-full bg-transparent border border-[#D4C4B1]/80 flex items-center justify-center hover:bg-[#D4C4B1]/20 transition-colors cursor-pointer group"
-              aria-label="Next"
-            >
-              <ArrowRight
-                size={20}
-                strokeWidth={1.5}
-                className="text-[#1A1C1A] group-hover:translate-x-0.5 transition-transform"
-              />
-            </button>
-          </div>
+          {PROMOS_DATA.length > 3 && (
+            <div className="flex justify-center gap-[16px] mt-[24px] md:mt-[14px]">
+              <button
+                onClick={() => scroll("left")}
+                className="w-fit h-fit p-[11px] rounded-full bg-transparent border border-[#D4C4B1]/80 flex items-center justify-center hover:bg-[#D4C4B1]/20 transition-colors cursor-pointer group"
+                aria-label="Previous"
+              >
+                <ArrowLeft
+                  size={20}
+                  strokeWidth={1.5}
+                  className="text-[#1A1C1A] group-hover:-translate-x-0.5 transition-transform"
+                />
+              </button>
+              <button
+                onClick={() => scroll("right")}
+                className="w-fit h-fit p-[11px] rounded-full bg-transparent border border-[#D4C4B1]/80 flex items-center justify-center hover:bg-[#D4C4B1]/20 transition-colors cursor-pointer group"
+                aria-label="Next"
+              >
+                <ArrowRight
+                  size={20}
+                  strokeWidth={1.5}
+                  className="text-[#1A1C1A] group-hover:translate-x-0.5 transition-transform"
+                />
+              </button>
+            </div>
+          )}
 
         </div>
       </div>

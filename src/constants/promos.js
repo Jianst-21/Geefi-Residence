@@ -32,4 +32,15 @@ export const PROMOS_DATA = [
     footerText: "KUOTA TERBATAS",
     bgImage: "/images/simulasiKPRs/Card 3_ BNI.png",
   },
+  {
+    id: 4,
+    bank: "BTN KPR",
+    tagBg: "bg-[#003366]",
+    tagText: "text-white",
+    title: "BUNGA KHUSUS BTN",
+    desc: "Suku bunga ringan mulai 2.99% fix 2 tahun untuk KPR pertama",
+    btnText: "Ambil Promo",
+    footerText: "KUOTA TERBATAS",
+    bgImage: "/images/simulasiKPRs/Card 1_ BCA.png",
+  },
 ];

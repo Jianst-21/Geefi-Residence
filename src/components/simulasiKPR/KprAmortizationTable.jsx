@@ -8,10 +8,10 @@ export default function KprAmortizationTable() {
   return (
     <section className="w-full bg-[#FAF9F6] pt-0 pb-[24px] lg:pb-[80px] font-['Manrope']">
       <div className="max-w-[1184px] mx-auto">
-        
+
         {/* ================= TAMPILAN DESKTOP ================= */}
         <div className="hidden lg:grid grid-cols-12 gap-[48px] pt-[40px] px-0">
-          
+
           <div className="col-span-4 flex flex-col gap-8">
             <div className="flex flex-col gap-4">
               <h2 className="text-[32px] font-bold leading-tight text-[#1A1C1A]">Rincian Pembayaran Tahunan</h2>
@@ -66,7 +66,7 @@ export default function KprAmortizationTable() {
                     </div>
                     <ChevronDown size={20} className="text-gray-400" />
                   </div>
-                  
+
                   {idx === 0 && (
                     <div className="mt-6 border-t border-gray-50 pt-5">
                       <div className="grid grid-cols-4 text-[10px] font-bold text-gray-400 mb-4 tracking-wider">
@@ -122,16 +122,6 @@ function ProTipBox() {
           </p>
         </div>
       </div>
-      
-      {/* PERUBAHAN DI SINI: Menggunakan tag <a> agar bisa mengunduh file */}
-      <a 
-        href="/dokumen/Laporan_Simulasi_KPR_Geefi.pdf" 
-        download="Laporan_KPR_Geefi_Residence.pdf"
-        className="flex items-center gap-2 text-[14px] font-bold text-[#A67B27] hover:text-[#8a651f] transition-colors w-fit group cursor-pointer"
-      >
-        Unduh Laporan PDF 
-        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-      </a>
     </div>
   );
 }
