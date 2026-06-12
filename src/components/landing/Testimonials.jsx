@@ -33,7 +33,6 @@ export default function Testimonials() {
     },
   ];
 
-  // Komponen Helper untuk merender 5 Bintang Emas
   const StarRating = () => (
     <div className="flex items-center gap-1 mb-5">
       {[...Array(5)].map((_, i) => (
@@ -57,7 +56,6 @@ export default function Testimonials() {
 
   return (
     <>
-      {/* PERBAIKAN: Padding responsif diatur di sini pada section utama */}
       <section className="w-full bg-[#FDFCF9] font-['Manrope'] pt-[48px] pb-[34px] md:pt-[96px] md:pb-[96px]">
         <div className="max-w-[1280px] mx-auto px-6 xl:px-0 flex flex-col items-center">
           <div className="flex flex-col items-center w-full px-[45px] md:px-0">

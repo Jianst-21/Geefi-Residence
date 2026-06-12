@@ -1,5 +1,6 @@
- import React from "react";
+import React from "react";
 import { Building2, GraduationCap, BriefcaseMedical, ShoppingBag, Banknote } from "lucide-react";
+import Link from "next/link";
 
 export default function FasilitasUmum() {
   return (
@@ -67,9 +68,9 @@ export default function FasilitasUmum() {
             <p className="text-white/90 text-[14px] mb-8 leading-relaxed font-light">
               Mewujudkan hunian impian dengan nilai investasi tinggi dan skema pembayaran yang fleksibel.
             </p>
-            <button className="bg-white text-[#8f6418] font-bold text-[13px] px-6 py-3.5 rounded-full hover:bg-gray-50 transition-colors w-max shadow-sm">
+            <Link href="/simulasi-kpr" className="bg-white text-[#8f6418] font-bold text-[13px] px-6 py-3.5 rounded-full hover:bg-gray-50 transition-colors w-max shadow-sm text-center flex items-center justify-center">
               Cek Simulasi KPR
-            </button>
+            </Link>
           </div>
         </div>
 
