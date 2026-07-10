@@ -1,6 +1,15 @@
 "use client";
-import React from "react";
-import { GraduationCap, Hospital, CarFront } from "lucide-react"; 
+import dynamic from "next/dynamic";
+import { GraduationCap, Hospital, CarFront, Loader2 } from "lucide-react"; 
+
+const LeafletMap = dynamic(() => import("../lokasi/LeafletMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full min-h-[300px] flex items-center justify-center bg-stone-100">
+      <Loader2 className="animate-spin text-[#9c7524]" size={32} />
+    </div>
+  ),
+});
 
 export default function LocationSection() {
   const accessibilities = [
@@ -35,15 +44,8 @@ export default function LocationSection() {
         <div className="w-full h-auto lg:h-[500px] flex flex-col lg:flex-row bg-white rounded-[32px] md:rounded-[40px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-gray-100">
           
           {/* SISI KIRI: PETA (Lebar ~60%) */}
-          <div className="w-full lg:w-[60%] h-[300px] lg:h-full relative bg-gray-200">
-            {/* PERBAIKAN: Embed Google Maps diubah ke Geefi Residence Sukoharjo */}
-            <iframe
-              src="https://www.google.com/maps?q=-7.7019289,110.8636104&output=embed"
-              className="absolute inset-0 w-full h-full border-0"
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <div className="w-full lg:w-[60%] h-[300px] lg:h-full relative z-0 bg-gray-200">
+            <LeafletMap activeCategory="Semua" />
           </div>
 
           {/* SISI KANAN: DAFTAR AKSESIBILITAS (Lebar ~40%) */}
@@ -78,7 +80,7 @@ export default function LocationSection() {
 
             {/* TOMBOL (Diubah menjadi tag <a> yang mengarah ke Google Maps) */}
             <a 
-              href="https://www.google.com/maps/search/?api=1&query=Geefi+Residence+Sukoharjo" 
+              href="https://www.google.com/maps/search/?api=1&query=Abyakta+Sukoharjo" 
               target="_blank" 
               rel="noopener noreferrer"
               className="mt-10 lg:mt-auto w-full h-[52px] rounded-full border-[1.5px] border-[#B48832] text-[#7E5300] font-bold text-[14px] tracking-wide hover:bg-[#7E5300] hover:text-white transition-all duration-300 flex items-center justify-center"

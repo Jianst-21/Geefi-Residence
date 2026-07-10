@@ -25,7 +25,7 @@ export default function BankPromo() {
 
   const handleWhatsAppRedirect = (promo) => {
     const adminNumber = "6288215012059";
-    const message = `Halo Admin Geefi Residence, saya tertarik untuk mengambil promo dari ${promo.bank}: "${promo.title} - ${promo.desc}". Mohon informasi selengkapnya.`;
+    const message = `Halo Admin Abyakta, saya tertarik untuk mengambil promo dari ${promo.bank}: "${promo.title} - ${promo.desc}". Mohon informasi selengkapnya.`;
     window.open(`https://wa.me/${adminNumber}?text=${encodeURIComponent(message)}`, "_blank");
   };
 

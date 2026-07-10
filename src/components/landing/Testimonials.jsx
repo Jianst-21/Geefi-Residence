@@ -66,7 +66,7 @@ export default function Testimonials() {
             {/* Batasi lebar teks max 322px untuk mobile, 640px untuk desktop. Hapus h-[24px] agar teks mobile rapi ke bawah */}
             <p className="text-[16px] text-gray-500 text-center w-full max-w-[322px] md:max-w-[640px] mb-[64px]">
               Pengalaman nyata dari mereka yang telah menemukan kebahagiaan di
-              Geefi Residence.
+              Abyakta.
             </p>
           </div>
 

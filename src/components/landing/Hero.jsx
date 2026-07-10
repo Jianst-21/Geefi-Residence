@@ -16,7 +16,7 @@ export default function Hero() {
 
           <p className="text-[#52525B] text-[15px] lg:text-[18px] leading-[1.6]">
             Menghadirkan harmoni antara desain arsitektur modern dan ketenangan
-            alam. Geefi Residence adalah simbol pencapaian hidup Anda yang
+            alam. Abyakta adalah simbol pencapaian hidup Anda yang
             eksklusif.
           </p>
 
@@ -38,7 +38,7 @@ export default function Hero() {
             {/* GAMBAR DESKTOP (Hanya muncul di layar lg ke atas) */}
             <Image
               src="/images/landings/Luxury House.png"
-              alt="Geefi Residence Luxury House"
+              alt="Abyakta Luxury House"
               fill
               className="hidden lg:block object-cover"
               priority
@@ -47,7 +47,7 @@ export default function Hero() {
             {/* GAMBAR MOBILE (Hanya muncul di layar di bawah lg) */}
             <Image
               src="/images/landings/HeroMobile.png" // Sesuaikan nama file ini dengan yang ada di folder Anda
-              alt="Geefi Residence Mobile View"
+              alt="Abyakta Mobile View"
               fill
               className="block lg:hidden object-cover"
               priority

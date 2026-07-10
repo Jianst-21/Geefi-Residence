@@ -13,9 +13,9 @@ import Footer from "@/components/ui/Footer";
 import ChatbotButton from "@/components/ui/ChatbotButton";
 
 export const metadata = {
-  title: "Geefi Residence",
+  title: "Abyakta",
   description:
-    "Geefi Residence menawarkan hunian modern minimalis dengan fasilitas lengkap dan lokasi strategis di Sukoharjo.",
+    "Abyakta menawarkan hunian modern minimalis dengan fasilitas lengkap dan lokasi strategis di Sukoharjo.",
 };
 
 export default function Home() {

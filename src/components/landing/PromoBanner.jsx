@@ -43,14 +43,14 @@ export default function PromoBanner() {
             >
               <Image
                 src={slide.desktop}
-                alt={`Geefi Residence Promo Banner ${index + 1}`}
+                alt={`Abyakta Promo Banner ${index + 1}`}
                 fill
                 className="hidden md:block object-cover"
                 priority={index === 0}
               />
               <Image
                 src={slide.mobile}
-                alt={`Geefi Residence Promo Banner Mobile ${index + 1}`}
+                alt={`Abyakta Promo Banner Mobile ${index + 1}`}
                 fill
                 className="block md:hidden object-cover"
                 priority={index === 0}

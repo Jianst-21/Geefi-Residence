@@ -29,7 +29,7 @@ export default function WhyChooseUs() {
         {/* PERUBAHAN: mb-[24px] untuk mobile, md:mb-[64px] untuk desktop */}
         <div className="text-center flex flex-col items-center mb-[24px] md:mb-[64px]">
           <h2 className="w-full max-w-[616px] md:h-[40px] text-3xl md:text-[32px] leading-[40px] font-bold text-gray-900 mb-4 font-['Manrope'] flex items-center justify-center">
-            Mengapa Memilih Geefi Residence?
+            Mengapa Memilih Abyakta?
           </h2>
           <p className="w-full max-w-[672px] md:h-[24px] text-gray-500 text-sm md:text-[16px] leading-[24px] flex items-start justify-center">
             Kami mengedepankan kualitas hidup penghuni melalui pemilihan lokasi dan fasilitas terbaik.

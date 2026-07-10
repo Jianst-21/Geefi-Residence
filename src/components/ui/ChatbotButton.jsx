@@ -11,7 +11,7 @@ const QUICK_REPLIES = ["Info Tipe Rumah", "Informasi Lokasi", "Hubungi Admin"];
 
 const INITIAL_MESSAGE = {
   role: "assistant",
-  text: "Halo! Saya asisten Geefi Residence.\nApakah ada yang bisa saya bantu?",
+  text: "Halo! Saya asisten Abyakta.\nApakah ada yang bisa saya bantu?",
   time: "Baru saja",
 };
 
@@ -144,7 +144,7 @@ export default function ChatbotButton() {
     let waNumber = whatsapp;
     if (waNumber.startsWith("0")) waNumber = waNumber.substring(1);
 
-    const message = `Halo Admin Geefi Residence,%0A%0ASaya ingin konsultasi mengenai unit:%0A- *Nama:* ${nama}%0A- *WhatsApp:* +62${waNumber}%0A- *Unit:* ${unit || "-"}%0A%0AMohon info lebih lanjut, terima kasih.`;
+    const message = `Halo Admin Abyakta,%0A%0ASaya ingin konsultasi mengenai unit:%0A- *Nama:* ${nama}%0A- *WhatsApp:* +62${waNumber}%0A- *Unit:* ${unit || "-"}%0A%0AMohon info lebih lanjut, terima kasih.`;
     const adminNumber = "6288215012059";
     window.open(`https://wa.me/${adminNumber}?text=${message}`, "_blank");
   };
@@ -166,7 +166,7 @@ export default function ChatbotButton() {
         },
         body: JSON.stringify({
           action: "sendMessage",
-          sessionId: "geefi-chat",
+          sessionId: "abyakta-chat",
           chatInput: text,
         }),
       });
@@ -259,7 +259,7 @@ export default function ChatbotButton() {
               </div>
               <div>
                 <h3 className="text-[15px] font-bold leading-tight tracking-wide">
-                  Asisten Geefi
+                  Asisten Abyakta
                 </h3>
                 <p className="text-[9px] font-bold text-white/80 tracking-[0.15em] mt-0.5 uppercase">
                   Online • Premium Support
