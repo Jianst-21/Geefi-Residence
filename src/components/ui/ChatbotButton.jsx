@@ -220,7 +220,7 @@ export default function ChatbotButton() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 top-6 z-[999] flex flex-col justify-end items-end font-sans pointer-events-none">
+    <div className="fixed bottom-6 right-6 z-[999] flex flex-col justify-end items-end font-sans pointer-events-none">
       {/* MODAL CONTAINER */}
       {isOpen && (
         <div className="mb-4 w-[calc(100vw-3rem)] md:w-[360px] max-h-[calc(100vh-5rem)] bg-[#FCFCFD] rounded-[40px] shadow-[0_20px_50px_rgba(0,0,0,0.15)] overflow-hidden flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-300 pointer-events-auto origin-bottom-right">
