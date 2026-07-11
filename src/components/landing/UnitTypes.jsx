@@ -74,7 +74,7 @@ export default function UnitTypes() {
         <div className="max-w-[1184px] mx-auto flex flex-col items-center">
           
           {/* HEADER SECTION */}
-          <div className="text-center mb-[32px] md:mb-[50px] flex flex-col items-center w-full px-6 lg:px-0">
+          <div className="text-center mb-[32px] md:mb-[50px] flex flex-col items-center w-full px-6 xl:px-0">
             <h2 className="text-[36px] md:text-[36px] font-extrabold text-[#1A1A1A] font-['Manrope']">
               Pilihan Tipe Unit
             </h2>
@@ -84,7 +84,7 @@ export default function UnitTypes() {
           <div className="relative w-full">
             <div
               ref={scrollRef}
-              className="w-full flex flex-row flex-nowrap overflow-x-auto gap-[18px] lg:gap-[32px] px-6 lg:px-0 pb-4 snap-x snap-mandatory scroll-smooth items-center lg:justify-start"
+              className="w-full flex flex-row flex-nowrap overflow-x-auto gap-[18px] lg:gap-[32px] px-6 xl:px-0 pb-4 snap-x snap-mandatory scroll-smooth items-center lg:justify-start"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {units.map((unit) => {

@@ -125,9 +125,9 @@ export default function KprCalculator({
         </div>
 
         {/* ================= MAIN LAYOUT ================= */}
-        <div className="flex flex-col xl:flex-row justify-center gap-[16px] w-full">
+        <div className="flex flex-col lg:flex-row justify-center gap-[16px] w-full">
           {/* 1. PARAMETER PINJAMAN */}
-          <div className="w-full xl:w-[448px] shrink-0 bg-white rounded-[24px] shadow-sm pt-[40px] pb-[60px] px-[32px] md:px-[64px] flex flex-col gap-[40px]">
+          <div className="w-full lg:w-[380px] xl:w-[448px] shrink-0 bg-white rounded-[24px] shadow-sm pt-[40px] pb-[60px] px-[32px] md:px-[64px] flex flex-col gap-[40px]">
             <h3 className="text-[20px] font-bold text-[#1A1C1A]">
               Parameter Pinjaman
             </h3>
@@ -305,7 +305,7 @@ export default function KprCalculator({
           </div>
 
           {/* ================= GRUP KANAN ================= */}
-          <div className="w-full xl:w-[742px] flex flex-col gap-[16px]">
+          <div className="w-full lg:flex-1 flex flex-col gap-[16px]">
             <div className="flex flex-col md:flex-row gap-[16px]">
               {/* 2. ESTIMASI ANGSURAN */}
               <div className="flex-1 bg-[#F4F3F1] rounded-[24px] flex flex-col overflow-hidden min-h-[360px]">

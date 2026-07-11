@@ -77,13 +77,13 @@ export default function KprCalculator() {
       `}</style>
 
       <div className="max-w-[1280px] mx-auto px-6 sm:px-10 flex justify-center">
-        <div className="w-full max-w-[1020px] bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-gray-100 flex flex-col lg:flex-row overflow-hidden font-['Manrope']">
-          <div className="w-full lg:w-[576px] p-[32px] md:p-[40px] flex flex-col justify-start items-start shrink-0">
+        <div className="w-full max-w-[1020px] bg-white rounded-[2rem] shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-gray-100 flex flex-col md:flex-row overflow-hidden font-['Manrope']">
+          <div className="w-full md:w-[55%] lg:w-[576px] p-[32px] md:p-[40px] flex flex-col justify-start items-start shrink-0">
             <h2 className="text-[30px] md:text-[30px] leading-[36px] font-bold text-[#1A1A1A] mb-[40px]">
               Simulasi Cicilan <br /> KPR
             </h2>
 
-            <div className="w-full md:w-[496px] flex flex-col gap-[32px]">
+            <div className="w-full md:max-w-[496px] flex flex-col gap-[32px]">
               {/* SLIDER HARGA RUMAH */}
               <div className="w-full relative">
                 <div className="flex justify-between items-center mb-3">
@@ -206,7 +206,7 @@ export default function KprCalculator() {
           </div>
 
           {/* SISI KANAN (HASIL & BUTTON) */}
-          <div className="w-full lg:flex-1 bg-[#B27C21] p-[32px] md:p-[40px] text-white flex flex-col justify-between items-start gap-[40px] lg:gap-0 shrink-0">
+          <div className="w-full md:flex-1 bg-[#B27C21] p-[32px] md:p-[40px] text-white flex flex-col justify-between items-start gap-[40px] md:gap-0 shrink-0">
             <div className="w-full">
               <div className="w-full mb-[32px]">
                 <p className="text-white/80 text-xs uppercase tracking-[0.1em] font-semibold mb-2">

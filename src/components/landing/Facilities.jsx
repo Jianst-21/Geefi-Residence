@@ -26,7 +26,7 @@ export default function Facilities() {
       {/* Ubah pt-[102px] menjadi pt-[46.5px] untuk mobile, lg:pt-[96px] untuk desktop */}
       <section className="w-full bg-[#FFFFFF] pt-[46.5px] lg:pt-[96px] pb-20 font-['Manrope']">
         
-        <div className="w-full px-[32px] flex flex-col gap-[64px] items-center">
+        <div className="w-full max-w-[1280px] mx-auto px-[32px] flex flex-col gap-[64px] items-center">
           
           <div className="flex flex-col items-center text-center gap-[16px] max-w-[500px]">
             <h2 className="text-[24px] md:text-[36px] font-bold text-[#18181B] leading-tight">
