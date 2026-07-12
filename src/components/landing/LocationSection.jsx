@@ -1,6 +1,15 @@
 "use client";
-import React from "react";
-import { GraduationCap, Hospital, CarFront } from "lucide-react"; 
+import dynamic from "next/dynamic";
+import { GraduationCap, Hospital, CarFront, Loader2 } from "lucide-react"; 
+
+const LeafletMap = dynamic(() => import("../lokasi/LeafletMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full h-full min-h-[300px] flex items-center justify-center bg-stone-100">
+      <Loader2 className="animate-spin text-[#9c7524]" size={32} />
+    </div>
+  ),
+});
 
 export default function LocationSection() {
   const accessibilities = [
@@ -32,42 +41,35 @@ export default function LocationSection() {
       <div className="max-w-[1216px] mx-auto px-6 xl:px-0">
         
         {/* KOTAK KONTEN (Tinggi presisi 500px di Desktop) */}
-        <div className="w-full h-auto lg:h-[500px] flex flex-col lg:flex-row bg-white rounded-[32px] md:rounded-[40px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-gray-100">
+        <div className="w-full h-auto md:h-[450px] lg:h-[500px] flex flex-col md:flex-row bg-white rounded-[32px] md:rounded-[40px] overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.04)] border border-gray-100">
           
           {/* SISI KIRI: PETA (Lebar ~60%) */}
-          <div className="w-full lg:w-[60%] h-[300px] lg:h-full relative bg-gray-200">
-            {/* PERBAIKAN: Embed Google Maps diubah ke Geefi Residence Sukoharjo */}
-            <iframe
-              src="https://www.google.com/maps?q=-7.7019289,110.8636104&output=embed"
-              className="absolute inset-0 w-full h-full border-0"
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+          <div className="w-full md:w-[60%] h-[300px] md:h-full relative z-0 bg-gray-200">
+            <LeafletMap activeCategory="Semua" />
           </div>
 
           {/* SISI KANAN: DAFTAR AKSESIBILITAS (Lebar ~40%) */}
           {/* Padding mobile p-[24px], Desktop xl:p-[56px] */}
-          <div className="w-full lg:w-[40%] p-[24px] md:p-10 xl:p-[56px] flex flex-col justify-between">
+          <div className="w-full md:w-[40%] p-[24px] md:p-6 lg:p-8 xl:p-[56px] flex flex-col justify-between">
             
             <div>
-              <h2 className="text-[28px] lg:text-[32px] font-bold text-[#1A1C1A] mb-6 lg:mb-10 leading-tight">
+              <h2 className="text-[24px] lg:text-[32px] font-bold text-[#1A1C1A] mb-4 lg:mb-10 leading-tight">
                 Aksesibilitas Utama
               </h2>
 
-              <div className="flex flex-col gap-6 lg:gap-8">
+              <div className="flex flex-col gap-4 lg:gap-8">
                 {accessibilities.map((item) => (
-                  <div key={item.id} className="flex items-center gap-5">
+                  <div key={item.id} className="flex items-center gap-4 lg:gap-5">
                     {/* Wadah Ikon (Background Emas Transparan 10%) */}
-                    <div className="w-[48px] h-[48px] rounded-full bg-[#7E5300]/10 flex items-center justify-center shrink-0 text-[#7E5300]">
+                    <div className="w-[40px] lg:w-[48px] h-[40px] lg:h-[48px] rounded-full bg-[#7E5300]/10 flex items-center justify-center shrink-0 text-[#7E5300]">
                       {item.icon}
                     </div>
                     {/* Teks Informasi */}
                     <div className="flex flex-col">
-                      <span className="font-bold text-[#1A1C1A] text-[15px] lg:text-[16px] mb-0.5">
+                      <span className="font-bold text-[#1A1C1A] text-[14px] lg:text-[16px] mb-0.5">
                         {item.name}
                       </span>
-                      <span className="text-[#5F5E5E] text-[13px] lg:text-[14px]">
+                      <span className="text-[#5F5E5E] text-[12px] lg:text-[14px]">
                         {item.time}
                       </span>
                     </div>
@@ -78,10 +80,10 @@ export default function LocationSection() {
 
             {/* TOMBOL (Diubah menjadi tag <a> yang mengarah ke Google Maps) */}
             <a 
-              href="https://www.google.com/maps/search/?api=1&query=Geefi+Residence+Sukoharjo" 
+              href="https://www.google.com/maps/search/?api=1&query=Abyakta+Sukoharjo" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="mt-10 lg:mt-auto w-full h-[52px] rounded-full border-[1.5px] border-[#B48832] text-[#7E5300] font-bold text-[14px] tracking-wide hover:bg-[#7E5300] hover:text-white transition-all duration-300 flex items-center justify-center"
+              className="mt-6 md:mt-auto w-full h-[48px] lg:h-[52px] rounded-full border-[1.5px] border-[#B48832] text-[#7E5300] font-bold text-[13px] lg:text-[14px] tracking-wide hover:bg-[#7E5300] hover:text-white transition-all duration-300 flex items-center justify-center"
             >
               Lihat alamat lengkap
             </a>

@@ -3,12 +3,16 @@ import React, { useState, useEffect } from "react";
 import { ShieldCheck } from "lucide-react";
 import { formatIDR } from "../../utils/formatters";
 
-export default function KprCalculator() {
-  // State Parameter - Default diatur ke nilai paling minimum (Mentok Kiri)
-  const [hargaRumah, setHargaRumah] = useState(50000000);
-  const [uangMuka, setUangMuka] = useState(0);
-  const [tenor, setTenor] = useState(1);
-  const [bunga, setBunga] = useState(1);
+export default function KprCalculator({
+  hargaRumah,
+  setHargaRumah,
+  uangMuka,
+  setUangMuka,
+  tenor,
+  setTenor,
+  bunga,
+  setBunga
+}) {
 
   // State Cek Kelayakan KPR
   const [penghasilanBulanan, setPenghasilanBulanan] = useState(50000000);
@@ -63,14 +67,49 @@ export default function KprCalculator() {
     setCicilanLainnya(0);
   };
 
-  // Helper untuk mewarnai track slider (kiri cokelat, kanan abu-abu)
+  // Helper untuk mewarnai track slider (kiri emas, kanan abu-abu)
   const getSliderBackground = (value, min, max) => {
-    const percentage = ((value - min) / (max - min)) * 100;
-    return `linear-gradient(to right, #A67B27 ${percentage}%, #E5E5E5 ${percentage}%)`;
+    // Math.max dan Math.min memastikan persentase tidak bocor di bawah 0 atau di atas 100 saat diketik manual
+    const percentage = Math.max(
+      0,
+      Math.min(100, ((value - min) / (max - min)) * 100),
+    );
+    return `linear-gradient(to right, #B27C21 ${percentage}%, #E5E7EB ${percentage}%)`;
   };
 
   return (
     <section className="w-full bg-[#FAF9F6] pb-[80px] font-['Manrope']">
+      <style>{`
+        .custom-range::-webkit-slider-thumb {
+          -webkit-appearance: none;
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: #B27C21;
+          cursor: pointer;
+          box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+          border: 2px solid white;
+        }
+        .custom-range::-moz-range-thumb {
+          appearance: none;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: #B27C21;
+          cursor: pointer;
+          box-shadow: 0px 2px 4px rgba(0,0,0,0.2);
+          border: 2px solid white;
+        }
+        .no-arrows::-webkit-inner-spin-button,
+        .no-arrows::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+        }
+        .no-arrows {
+          -moz-appearance: textfield;
+        }
+      `}</style>
       <div className="max-w-[1280px] mx-auto px-4 md:px-[20px]">
         {/* ================= HEADER SECTION ================= */}
         <div className="flex flex-col items-center text-center max-w-[800px] mx-auto mb-[48px] pt-[48px] gap-[16px]">
@@ -86,9 +125,9 @@ export default function KprCalculator() {
         </div>
 
         {/* ================= MAIN LAYOUT ================= */}
-        <div className="flex flex-col xl:flex-row justify-center gap-[16px] w-full">
+        <div className="flex flex-col lg:flex-row justify-center gap-[16px] w-full">
           {/* 1. PARAMETER PINJAMAN */}
-          <div className="w-full xl:w-[448px] shrink-0 bg-white rounded-[24px] shadow-sm pt-[40px] pb-[60px] px-[32px] md:px-[64px] flex flex-col gap-[40px]">
+          <div className="w-full lg:w-[380px] xl:w-[448px] shrink-0 bg-white rounded-[24px] shadow-sm pt-[40px] pb-[60px] px-[32px] md:px-[64px] flex flex-col gap-[40px]">
             <h3 className="text-[20px] font-bold text-[#1A1C1A]">
               Parameter Pinjaman
             </h3>
@@ -100,9 +139,21 @@ export default function KprCalculator() {
                   <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
                     Harga Rumah
                   </label>
-                  <span className="text-[16px] font-bold text-[#A67B27]">
-                    Rp {formatIDR(hargaRumah)}
-                  </span>
+                  <div className="flex items-center">
+                    <span className="text-[16px] font-bold text-[#A67B27] mr-1">
+                      Rp
+                    </span>
+                    <input
+                      type="text"
+                      value={formatIDR(hargaRumah)}
+                      onChange={(e) => {
+                        const val = Number(e.target.value.replace(/\D/g, ""));
+                        if (isNaN(val)) return;
+                        setHargaRumah(Math.min(265000000, Math.max(0, val)));
+                      }}
+                      className="no-arrows font-bold text-[#A67B27] text-[16px] bg-transparent outline-none w-[110px] text-right p-0 m-0 border-none focus:ring-0"
+                    />
+                  </div>
                 </div>
                 <input
                   type="range"
@@ -111,7 +162,7 @@ export default function KprCalculator() {
                   step="1000000"
                   value={hargaRumah}
                   onChange={(e) => setHargaRumah(Number(e.target.value))}
-                  className="w-full h-1.5 rounded-lg appearance-none cursor-pointer outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-[18px] [&::-webkit-slider-thumb]:h-[18px] [&::-webkit-slider-thumb]:bg-[#A67B27] [&::-webkit-slider-thumb]:rounded-full"
+                  className="custom-range w-full h-[6px] bg-gray-200 rounded-lg appearance-none outline-none relative z-10"
                   style={{
                     background: getSliderBackground(
                       hargaRumah,
@@ -132,9 +183,21 @@ export default function KprCalculator() {
                       : 0}
                     %)
                   </label>
-                  <span className="text-[16px] font-bold text-[#A67B27]">
-                    Rp {formatIDR(uangMuka)}
-                  </span>
+                  <div className="flex items-center">
+                    <span className="text-[16px] font-bold text-[#A67B27] mr-1">
+                      Rp
+                    </span>
+                    <input
+                      type="text"
+                      value={formatIDR(uangMuka)}
+                      onChange={(e) => {
+                        const val = Number(e.target.value.replace(/\D/g, ""));
+                        if (isNaN(val)) return;
+                        setUangMuka(Math.min(hargaRumah, Math.max(0, val)));
+                      }}
+                      className="no-arrows font-bold text-[#A67B27] text-[16px] bg-transparent outline-none w-[110px] text-right p-0 m-0 border-none focus:ring-0"
+                    />
+                  </div>
                 </div>
                 <input
                   type="range"
@@ -143,7 +206,7 @@ export default function KprCalculator() {
                   step="1000000"
                   value={uangMuka}
                   onChange={(e) => setUangMuka(Number(e.target.value))}
-                  className="w-full h-1.5 rounded-lg appearance-none cursor-pointer outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-[18px] [&::-webkit-slider-thumb]:h-[18px] [&::-webkit-slider-thumb]:bg-[#A67B27] [&::-webkit-slider-thumb]:rounded-full"
+                  className="custom-range w-full h-[6px] bg-gray-200 rounded-lg appearance-none outline-none relative z-10"
                   style={{
                     background: getSliderBackground(uangMuka, 0, hargaRumah),
                   }}
@@ -156,9 +219,21 @@ export default function KprCalculator() {
                   <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
                     Masa Pinjaman (Tenor)
                   </label>
-                  <span className="text-[16px] font-bold text-[#A67B27]">
-                    {tenor} Tahun
-                  </span>
+                  <div className="flex items-center">
+                    <input
+                      type="number"
+                      value={tenor}
+                      onChange={(e) => {
+                        const val = Number(e.target.value);
+                        if (isNaN(val)) return;
+                        setTenor(Math.min(30, Math.max(0, val)));
+                      }}
+                      className="no-arrows font-bold text-[#A67B27] text-[16px] bg-transparent outline-none w-[32px] text-right p-0 m-0 border-none focus:ring-0"
+                    />
+                    <span className="text-[16px] font-bold text-[#A67B27] ml-1">
+                      Tahun
+                    </span>
+                  </div>
                 </div>
                 <input
                   type="range"
@@ -167,7 +242,7 @@ export default function KprCalculator() {
                   step="1"
                   value={tenor}
                   onChange={(e) => setTenor(Number(e.target.value))}
-                  className="w-full h-1.5 rounded-lg appearance-none cursor-pointer outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-[18px] [&::-webkit-slider-thumb]:h-[18px] [&::-webkit-slider-thumb]:bg-[#A67B27] [&::-webkit-slider-thumb]:rounded-full"
+                  className="custom-range w-full h-[6px] bg-gray-200 rounded-lg appearance-none outline-none relative z-10"
                   style={{ background: getSliderBackground(tenor, 1, 30) }}
                 />
               </div>
@@ -178,9 +253,22 @@ export default function KprCalculator() {
                   <label className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">
                     Suku Bunga Efektif
                   </label>
-                  <span className="text-[16px] font-bold text-[#A67B27]">
-                    {bunga}%
-                  </span>
+                  <div className="flex items-center">
+                    <input
+                      type="number"
+                      step="0.1"
+                      value={bunga}
+                      onChange={(e) => {
+                        const val = Number(e.target.value);
+                        if (isNaN(val)) return;
+                        setBunga(Math.min(15, Math.max(0, val)));
+                      }}
+                      className="no-arrows font-bold text-[#A67B27] text-[16px] bg-transparent outline-none w-[44px] text-right p-0 m-0 border-none focus:ring-0"
+                    />
+                    <span className="text-[16px] font-bold text-[#A67B27] ml-0.5">
+                      %
+                    </span>
+                  </div>
                 </div>
                 <input
                   type="range"
@@ -189,7 +277,7 @@ export default function KprCalculator() {
                   step="0.1"
                   value={bunga}
                   onChange={(e) => setBunga(Number(e.target.value))}
-                  className="w-full h-1.5 rounded-lg appearance-none cursor-pointer outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-[18px] [&::-webkit-slider-thumb]:h-[18px] [&::-webkit-slider-thumb]:bg-[#A67B27] [&::-webkit-slider-thumb]:rounded-full"
+                  className="custom-range w-full h-[6px] bg-gray-200 rounded-lg appearance-none outline-none relative z-10"
                   style={{ background: getSliderBackground(bunga, 1, 15) }}
                 />
               </div>
@@ -217,7 +305,7 @@ export default function KprCalculator() {
           </div>
 
           {/* ================= GRUP KANAN ================= */}
-          <div className="w-full xl:w-[742px] flex flex-col gap-[16px]">
+          <div className="w-full lg:flex-1 flex flex-col gap-[16px]">
             <div className="flex flex-col md:flex-row gap-[16px]">
               {/* 2. ESTIMASI ANGSURAN */}
               <div className="flex-1 bg-[#F4F3F1] rounded-[24px] flex flex-col overflow-hidden min-h-[360px]">
@@ -335,16 +423,8 @@ export default function KprCalculator() {
               <h3 className="text-[18px] font-bold mb-4">Bunga Bank Rekanan</h3>
               <div className="divide-y divide-white/10 text-[14px]">
                 <div className="py-3 flex justify-between items-center">
-                  <span className="opacity-70">BCA</span>
-                  <span className="font-bold">6.25% (Fixed 3th)</span>
-                </div>
-                <div className="py-3 flex justify-between items-center">
-                  <span className="opacity-70">Mandiri</span>
-                  <span className="font-bold">6.50% (Fixed 5th)</span>
-                </div>
-                <div className="py-3 flex justify-between items-center">
-                  <span className="opacity-70">CIMB Niaga</span>
-                  <span className="font-bold">6.10% (Fixed 2th)</span>
+                  <span className="opacity-70">BRI</span>
+                  <span className="font-bold">5.88% (Fixed 3th)</span>
                 </div>
               </div>
             </div>

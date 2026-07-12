@@ -11,6 +11,7 @@ const units = [
     name: "Geefi Subsidi Plumpung 30/60",
     badge: "Geefi Subsidi Plumpung",
     slug: "geefi-subsidi-plumpung-30-60", 
+    image: "/images/units/Geefi Subsidi Plumpung 30-60/3.jpg",
     beds: 2,
     baths: 1,
     price: "Rp 160 Juta",
@@ -20,6 +21,7 @@ const units = [
     name: "Geefi Subsidi 2 Plumpung 30/60",
     badge: "Geefi Subsidi 2 Plumpung",
     slug: "geefi-subsidi-2-plumpung", 
+    image: "/images/units/Geefi Subsidi 2 Plumpung 30-60/1.jpeg",
     beds: 2,
     baths: 1,
     price: "Rp 166 Juta",
@@ -27,8 +29,9 @@ const units = [
   {
     id: "residence-42",
     name: "Geefi Residence 42/60",
-    badge: "Geefi Residence",
+    badge: "Geefi Residence Silver",
     slug: "classic-haven-42-65", 
+    image: "/images/units/Geefi Residence Silver 42-60/3.jpg",
     beds: 2,
     baths: 1,
     price: "Rp 200 Juta",
@@ -38,6 +41,7 @@ const units = [
     name: "Geefi Residence 54/60",
     badge: "Geefi Residence",
     slug: "geefi-residence-54-60",
+    image: "/images/units/Geefi Residence 54-60/3.jpg",
     beds: 2,
     baths: 1,
     price: "Rp 265 Juta",
@@ -70,7 +74,7 @@ export default function UnitTypes() {
         <div className="max-w-[1184px] mx-auto flex flex-col items-center">
           
           {/* HEADER SECTION */}
-          <div className="text-center mb-[32px] md:mb-[50px] flex flex-col items-center w-full px-6 lg:px-0">
+          <div className="text-center mb-[32px] md:mb-[50px] flex flex-col items-center w-full px-6 xl:px-0">
             <h2 className="text-[36px] md:text-[36px] font-extrabold text-[#1A1A1A] font-['Manrope']">
               Pilihan Tipe Unit
             </h2>
@@ -80,13 +84,10 @@ export default function UnitTypes() {
           <div className="relative w-full">
             <div
               ref={scrollRef}
-              className="w-full flex flex-row flex-nowrap overflow-x-auto gap-[18px] lg:gap-[32px] px-6 lg:px-0 pb-4 snap-x snap-mandatory scroll-smooth items-center lg:justify-start"
+              className="w-full flex flex-row flex-nowrap overflow-x-auto gap-[18px] lg:gap-[32px] px-6 xl:px-0 pb-4 snap-x snap-mandatory scroll-smooth items-center lg:justify-start"
               style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
             >
               {units.map((unit) => {
-                const formattedSlug = unit.slug.replaceAll('-', '');
-                const imageUnitPath = `/images/units/${formattedSlug}.png`;
-
                 return (
                   <div
                     key={unit.id}
@@ -95,10 +96,10 @@ export default function UnitTypes() {
                     {/* GAMBAR RUMAH */}
                     <div className="relative w-full h-[453px] rounded-[48px] overflow-hidden mb-6 group cursor-pointer bg-gray-200">
                       <Image
-                        src={imageUnitPath}
+                        src={unit.image}
                         alt={unit.name}
                         fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                        className="object-cover scale-[1.20] group-hover:scale-[1.25] transition-transform duration-700 ease-in-out"
                       />
 
                       <div className="absolute top-6 left-6 z-10 bg-white/95 backdrop-blur-sm px-4 h-[28px] flex items-center justify-center rounded-full shadow-sm">

@@ -11,11 +11,11 @@ export default function HousingRecommendations() {
         
         {/* ================= HEADER SECTION ================= */}
         <div className="flex flex-col items-center text-center mb-[64px]">
-          <h2 className="text-[36px] font-bold leading-[40px] text-[#1A1C1A] mb-[16px]">
+          <h2 className="text-[32px] md:text-[36px] font-bold leading-[40px] text-[#1A1C1A] mb-[16px]">
             Rekomendasi Hunian
           </h2>
           <div className="w-[96px] h-[4px] bg-[#B27C21] mb-[24px]"></div>
-          <p className="text-[24px] font-normal leading-[36px] text-[#5F5E5E] max-w-[800px]">
+          <p className="text-[18px] md:text-[24px] font-normal leading-relaxed md:leading-[36px] text-[#5F5E5E] max-w-[800px]">
             Temukan pilihan unit eksklusif kami yang dirancang dengan presisi untuk memenuhi standar gaya hidup modern Anda.
           </p>
         </div>
@@ -29,7 +29,7 @@ export default function HousingRecommendations() {
               className="w-full flex flex-col group"
             >
               {/* ================= DIV GAMBAR ================= */}
-              <div className="relative h-[453.31px] w-full overflow-hidden shrink-0 rounded-[48px] bg-[#F4F3F1] shadow-sm">
+              <div className="relative h-[320px] md:h-[400px] lg:h-[453.31px] w-full overflow-hidden shrink-0 rounded-[48px] bg-[#F4F3F1] shadow-sm">
                 <img 
                   src={property.image} 
                   alt={property.name} 

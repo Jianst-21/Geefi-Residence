@@ -66,23 +66,21 @@ export default function Testimonials() {
             {/* Batasi lebar teks max 322px untuk mobile, 640px untuk desktop. Hapus h-[24px] agar teks mobile rapi ke bawah */}
             <p className="text-[16px] text-gray-500 text-center w-full max-w-[322px] md:max-w-[640px] mb-[64px]">
               Pengalaman nyata dari mereka yang telah menemukan kebahagiaan di
-              Geefi Residence.
+              Abyakta.
             </p>
           </div>
 
           {/* AREA KARTU TESTIMONI (Gap antar elemen persis 32px) */}
-          <div className="flex flex-col lg:flex-row justify-center items-start gap-[32px] w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[32px] w-full max-w-[1200px] justify-items-center items-stretch">
             {testimonials.map((testi) => (
               <div
                 key={testi.id}
                 className={`
-                  bg-white rounded-[24px] p-8 flex flex-col justify-between shrink-0
+                  bg-white rounded-[24px] p-8 flex flex-col justify-between w-full max-w-[384px] min-h-[257px] shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-gray-50/50
                   ${
                     testi.type === "center"
-                      ? // KARTU TENGAH: Presisi ukuran 384x283 dengan bayangan menonjol
-                        "w-full lg:w-[384px] h-auto lg:h-[283px] shadow-[0_20px_50px_rgba(0,0,0,0.06)] border border-gray-50/50"
-                      : // KARTU KIRI & KANAN: Presisi ukuran 384x257
-                        "w-full lg:w-[384px] h-auto lg:h-[257px] shadow-[0_20px_50px_rgba(0,0,0,0.06)] border-gray-100"
+                      ? "md:col-span-1"
+                      : ""
                   }
                 `}
               >

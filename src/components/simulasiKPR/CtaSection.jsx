@@ -30,7 +30,7 @@ export default function CtaSection() {
             </h2>
             
             <p className="text-[16px] md:text-[18px] text-gray-300 leading-relaxed mb-[48px]">
-              Konsultasikan rencana pembelian unit Geefi Residence Anda secara langsung dengan Financial Advisor kami untuk mendapatkan penawaran suku bunga khusus.
+              Konsultasikan rencana pembelian unit Abyakta Anda secara langsung dengan Financial Advisor kami untuk mendapatkan penawaran suku bunga khusus.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-[16px]">
@@ -38,7 +38,7 @@ export default function CtaSection() {
               <button 
                 onClick={() => {
                   const adminNumber = "6288215012059";
-                  const message = "Halo Admin Geefi Residence, saya ingin berkonsultasi mengenai KPR dan rencana pembelian unit.";
+                  const message = "Halo Admin Abyakta, saya ingin berkonsultasi mengenai KPR dan rencana pembelian unit.";
                   window.open(`https://wa.me/${adminNumber}?text=${encodeURIComponent(message)}`, "_blank");
                 }}
                 className="flex items-center justify-center gap-2 bg-[#7E5300] hover:bg-[#634200] text-white px-[32px] py-[16px] rounded-full text-[14px] font-bold transition-colors"

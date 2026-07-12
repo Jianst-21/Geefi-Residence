@@ -70,7 +70,7 @@ function UnitPriceCard({ unit }) {
       return;
     }
     const formattedDate = formatIndonesianDate(selectedDate);
-    const message = `Halo Admin Geefi Residence, saya ingin menjadwalkan kunjungan untuk melihat unit *${unit.label}* pada:\n\n📅 Hari/Tanggal: ${formattedDate}\n⏰ Waktu/Jam: ${selectedTime} WIB\n\nMohon konfirmasi ketersediaan jadwal tersebut. Terima kasih.`;
+    const message = `Halo Admin Geefi Residence, saya ingin menjadwalkan kunjungan untuk melihat unit *${unit.label}* pada:\n\n Hari/Tanggal: ${formattedDate}\n Waktu/Jam: ${selectedTime} WIB\n\nMohon konfirmasi ketersediaan jadwal tersebut. Terima kasih.`;
     const waNumber = unit.whatsappNumber || "6288215012059";
     window.open(`https://wa.me/${waNumber}?text=${encodeURIComponent(message)}`, "_blank");
     setShowScheduleModal(false);

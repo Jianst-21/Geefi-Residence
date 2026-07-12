@@ -4,19 +4,19 @@ import Link from "next/link"; // Tambahkan import Link dari next/link
 
 export default function Hero() {
   return (
-    <section className="w-full bg-[#FFFFFF] font-['Manrope'] flex justify-center items-center pt-8 pb-0 lg:pt-0 lg:pb-[115px] overflow-hidden">
-      <div className="relative w-full max-w-[1220px] flex flex-col lg:flex-row items-center lg:items-stretch px-[33.5px] lg:px-0 gap-[24px] lg:gap-[52px] pt-16">
+    <section className="w-full bg-[#FFFFFF] font-['Manrope'] flex justify-center items-center pt-8 pb-0 md:pt-0 md:pb-16 lg:pb-[115px] overflow-hidden">
+      <div className="relative w-full max-w-[1220px] flex flex-col md:flex-row items-center md:items-stretch px-[33.5px] md:px-8 lg:px-8 xl:px-0 gap-[24px] md:gap-[32px] lg:gap-[52px] pt-16">
         {/* KOLOM KIRI: Teks & Tombol */}
-        <div className="flex flex-col justify-center gap-[31px] w-full lg:w-[584px] shrink-0">
-          <h1 className="text-[44px] md:text-[56px] lg:text-[60px] font-extrabold leading-[1.1] text-[#18181B] tracking-tight">
+        <div className="flex flex-col justify-center gap-[24px] md:gap-[31px] w-full md:flex-1 lg:w-[584px] lg:shrink-0">
+          <h1 className="text-[36px] sm:text-[44px] md:text-[40px] lg:text-[60px] font-extrabold leading-[1.1] text-[#18181B] tracking-tight">
             Hunian <span className="text-[#B48332]">Minimalis</span> di
             <br />
             Jantung Kota
           </h1>
 
-          <p className="text-[#52525B] text-[15px] lg:text-[18px] leading-[1.6]">
+          <p className="text-[#52525B] text-[14px] md:text-[15px] lg:text-[18px] leading-[1.6]">
             Menghadirkan harmoni antara desain arsitektur modern dan ketenangan
-            alam. Geefi Residence adalah simbol pencapaian hidup Anda yang
+            alam. Abyakta adalah simbol pencapaian hidup Anda yang
             eksklusif.
           </p>
 
@@ -33,30 +33,30 @@ export default function Hero() {
         </div>
 
         {/* KOLOM KANAN: Gambar & Floating Badge */}
-        <div className="relative w-full max-w-[345px] lg:max-w-none lg:w-[584px] h-[355px] lg:h-[500px] shrink-0 mx-auto lg:mx-0">
+        <div className="relative w-full max-w-[345px] md:max-w-none md:flex-1 lg:w-[584px] lg:shrink-0 h-[355px] md:h-[360px] lg:h-[500px] mx-auto lg:mx-0">
           <div className="absolute inset-0 w-full h-full rounded-[32px] lg:rounded-[48px] overflow-hidden bg-gray-100">
-            {/* GAMBAR DESKTOP (Hanya muncul di layar lg ke atas) */}
+            {/* GAMBAR DESKTOP & TABLET (Muncul di layar md ke atas) */}
             <Image
               src="/images/landings/Luxury House.png"
-              alt="Geefi Residence Luxury House"
+              alt="Abyakta Luxury House"
               fill
-              className="hidden lg:block object-cover"
+              className="hidden md:block object-cover"
               priority
             />
 
-            {/* GAMBAR MOBILE (Hanya muncul di layar di bawah lg) */}
+            {/* GAMBAR MOBILE (Hanya muncul di layar di bawah md) */}
             <Image
               src="/images/landings/HeroMobile.png" // Sesuaikan nama file ini dengan yang ada di folder Anda
-              alt="Geefi Residence Mobile View"
+              alt="Abyakta Mobile View"
               fill
-              className="block lg:hidden object-cover"
+              className="block md:hidden object-cover"
               priority
             />
           </div>
 
           {/* Floating Badge */}
-          <div className="flex absolute top-[30%] lg:top-[35%] -left-[16px] lg:-left-[70px] bg-white/95 backdrop-blur-md rounded-[2rem] shadow-[0_12px_40px_rgb(0,0,0,0.08)] items-center justify-start gap-3 border border-gray-100 z-10 w-[255.78px] h-[92px] pl-5 pr-6">
-            <div className="w-[44px] h-[44px] bg-[#FFF4E5] rounded-full text-[#B48332] flex items-center justify-center shrink-0">
+          <div className="flex absolute top-[30%] lg:top-[35%] -left-[16px] md:-left-[24px] lg:-left-[70px] bg-white/95 backdrop-blur-md rounded-[2rem] shadow-[0_12px_40px_rgb(0,0,0,0.08)] items-center justify-start gap-3 border border-gray-100 z-10 w-[220px] md:w-[240px] lg:w-[255.78px] h-[80px] lg:h-[92px] pl-4 lg:pl-5 pr-4 lg:pr-6">
+            <div className="w-[38px] lg:w-[44px] h-[38px] lg:h-[44px] bg-[#FFF4E5] rounded-full text-[#B48332] flex items-center justify-center shrink-0">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
@@ -65,16 +65,16 @@ export default function Hero() {
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-5 h-5"
+                className="w-4 h-4 lg:w-5 lg:h-5"
               >
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
               </svg>
             </div>
             <div className="flex flex-col justify-center">
-              <p className="font-bold text-[16px] text-[#18181B] leading-tight mb-0.5">
+              <p className="font-bold text-[14px] lg:text-[16px] text-[#18181B] leading-tight mb-0.5">
                 Pilihan No. 1
               </p>
-              <p className="text-[14px] text-[#52525B] leading-tight">
+              <p className="text-[12px] lg:text-[14px] text-[#52525B] leading-tight">
                 Keluarga Muda Modern
               </p>
             </div>

@@ -21,7 +21,7 @@ const PERUMAHAN = {
 };
 
 const MAPS_LINK =
-  "https://www.google.com/maps/search/?api=1&query=Geefi+Residence+Sukoharjo";
+  "https://www.google.com/maps/search/?api=1&query=Abyakta+Sukoharjo";
 
 // ─── Kategori filter yang tersedia ───────────────────────────────────────────
 const CATEGORIES = [

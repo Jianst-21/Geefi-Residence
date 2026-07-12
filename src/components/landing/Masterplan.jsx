@@ -19,6 +19,7 @@ const unitData = [
     typeSize: "Tipe 30/60",
     category: "Subsidi",
     slug: "geefi-subsidi-plumpung-30-60", 
+    image: "/images/units/Geefi Subsidi Plumpung 30-60/3.jpg",
     beds: 2,
     baths: 1,
     cars: 1,
@@ -32,6 +33,7 @@ const unitData = [
     typeSize: "Tipe 30/60",
     category: "Subsidi",
     slug: "geefi-subsidi-2-plumpung", 
+    image: "/images/units/Geefi Subsidi 2 Plumpung 30-60/1.jpeg",
     beds: 2,
     baths: 1,
     cars: 1,
@@ -45,6 +47,7 @@ const unitData = [
     typeSize: "Tipe 42/60",
     category: "Premium",
     slug: "geefi-residence-42-60",
+    image: "/images/units/Geefi Residence Silver 42-60/3.jpg",
     beds: 2,
     baths: 1,
     cars: 1,
@@ -58,6 +61,7 @@ const unitData = [
     typeSize: "Tipe 54/60",
     category: "Premium",
     slug: "geefi-residence-54-60",
+    image: "/images/units/Geefi Residence 54-60/3.jpg",
     beds: 2,
     baths: 1,
     cars: 1,
@@ -68,10 +72,6 @@ const unitData = [
 
 export default function Masterplan() {
   const [selectedPlot, setSelectedPlot] = useState(unitData[0]);
-
-  // Logika path gambar
-  const selectedFormattedSlug = selectedPlot ? selectedPlot.slug.replaceAll('-', '') : '';
-  const selectedImageUnitPath = `/images/units/${selectedFormattedSlug}.png`;
 
   return (
     <>
@@ -96,16 +96,13 @@ export default function Masterplan() {
           </div>
 
           {/* WADAH UTAMA INTERAKTIF */}
-          <div className="w-full bg-[#F4F3F1] rounded-[48px] flex flex-col xl:flex-row min-h-[781px] overflow-hidden shadow-sm border border-gray-100">
+          <div className="w-full bg-[#F4F3F1] rounded-[48px] flex flex-col lg:flex-row min-h-[781px] overflow-hidden shadow-sm border border-gray-100">
             
             {/* SISI KIRI: GRID 2x2 KARTU RUMAH */}
             <div className="flex-1 flex flex-col p-6 md:p-10 overflow-y-auto">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {unitData.map((unit) => {
                   const isSelected = selectedPlot?.id === unit.id;
-                  
-                  const formattedSlug = unit.slug.replaceAll('-', '');
-                  const imageUnitPath = `/images/units/${formattedSlug}.png`;
                   
                   return (
                     <div 
@@ -117,12 +114,20 @@ export default function Masterplan() {
                           : 'border-transparent shadow-sm hover:shadow-md hover:-translate-y-1'
                       }`}
                     >
-                      <div className="w-full h-[180px] md:h-[200px] rounded-[16px] overflow-hidden mb-5 relative pointer-events-none">
+                      <div className="w-full h-[180px] md:h-[200px] rounded-[16px] overflow-hidden mb-5 relative pointer-events-none bg-gray-50">
+                        {/* Blurred background image to fill the card container */}
                         <Image 
-                          src={imageUnitPath} 
+                          src={unit.image} 
+                          alt="" 
+                          fill
+                          className="object-cover blur-xl opacity-30 scale-110"
+                        />
+                        {/* Sharp foreground image fitted completely (zoom out) */}
+                        <Image 
+                          src={unit.image} 
                           alt={unit.name} 
                           fill
-                          className="object-cover"
+                          className="object-contain scale-[1.20]"
                         />
                         <div className="absolute top-3 left-3 z-10 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-[10px] font-bold text-[#9D6A0C] uppercase tracking-wider shadow-sm">
                           {unit.blockRange}
@@ -150,68 +155,79 @@ export default function Masterplan() {
             </div>
 
             {/* SISI KANAN: PANEL DETAIL UNIT */}
-            <div className="w-full xl:w-[320px] shrink-0 bg-white p-6 md:p-8 flex flex-col border-l border-gray-100">
+            <div className="w-full lg:w-[320px] shrink-0 bg-white p-6 md:p-8 flex flex-col border-t lg:border-t-0 lg:border-l border-gray-100">
               <div className="flex items-center gap-3 text-[#7E5300] font-bold text-lg mb-8 border-b border-gray-100 pb-4">
                 <Home size={22} />
                 <h3>Detail Unit</h3>
               </div>
 
               {selectedPlot ? (
-                <div className="flex flex-col h-full">
-                  <div className="mb-8">
-                    <p className="text-[10px] md:text-xs font-bold text-gray-400 tracking-widest uppercase mb-1">
-                      Tipe Terpilih
-                    </p>
-                    <h4 className="text-[28px] md:text-[32px] font-bold text-[#7E5300] mb-6">
-                      {selectedPlot.typeSize}
-                    </h4>
-                    <div className="space-y-4">
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-500 text-xs md:text-sm">Tipe Unit</span>
-                        <span className="font-bold text-gray-900 text-xs md:text-sm">{selectedPlot.category}</span>
+                <div className="flex flex-col md:flex-row lg:flex-col gap-6 md:gap-8 lg:gap-0 h-full">
+                  <div className="flex-1 flex flex-col justify-between">
+                    <div className="mb-6 md:mb-0 lg:mb-8">
+                      <p className="text-[10px] md:text-xs font-bold text-gray-400 tracking-widest uppercase mb-1">
+                        Tipe Terpilih
+                      </p>
+                      <h4 className="text-[28px] md:text-[32px] font-bold text-[#7E5300] mb-6">
+                        {selectedPlot.typeSize}
+                      </h4>
+                      <div className="space-y-4">
+                        <div className="flex justify-between items-center">
+                          <span className="text-gray-500 text-xs md:text-sm">Tipe Unit</span>
+                          <span className="font-bold text-gray-900 text-xs md:text-sm">{selectedPlot.category}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-gray-500 text-xs md:text-sm">Harga Mulai dari</span>
+                          <span className="font-bold text-[#7E5300] text-xs md:text-sm">{selectedPlot.price}</span>
+                        </div>
                       </div>
-                      <div className="flex justify-between items-center">
-                        <span className="text-gray-500 text-xs md:text-sm">Harga Mulai dari</span>
-                        <span className="font-bold text-[#7E5300] text-xs md:text-sm">{selectedPlot.price}</span>
+                    </div>
+
+                    <div className="flex justify-between gap-2 mb-6 md:mb-0 lg:mb-8 mt-auto">
+                      <div className="bg-[#F4F3F1] rounded-[16px] py-4 px-2 flex-1 flex flex-col items-center justify-center gap-1.5">
+                        <Bed size={20} className="text-gray-500" />
+                        <span className="block font-bold text-gray-900 leading-none mt-1">{selectedPlot.beds}</span>
+                        <span className="text-[10px] text-gray-500 font-bold">KT</span>
+                      </div>
+                      <div className="bg-[#F4F3F1] rounded-[16px] py-4 px-2 flex-1 flex flex-col items-center justify-center gap-1.5">
+                        <Bath size={20} className="text-gray-500" />
+                        <span className="block font-bold text-gray-900 leading-none mt-1">{selectedPlot.baths}</span>
+                        <span className="text-[10px] text-gray-500 font-bold">KM</span>
+                      </div>
+                      <div className="bg-[#F4F3F1] rounded-[16px] py-4 px-2 flex-1 flex flex-col items-center justify-center gap-1.5">
+                        <CarFront size={20} className="text-gray-500" />
+                        <span className="block font-bold text-gray-900 leading-none mt-1">{selectedPlot.cars}</span>
+                        <span className="text-[10px] text-gray-500 font-bold">Mobil</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex justify-between gap-2 mb-8">
-                    <div className="bg-[#F4F3F1] rounded-[16px] py-4 px-2 flex-1 flex flex-col items-center justify-center gap-1.5">
-                      <Bed size={20} className="text-gray-500" />
-                      <span className="block font-bold text-gray-900 leading-none mt-1">{selectedPlot.beds}</span>
-                      <span className="text-[10px] text-gray-500 font-bold">KT</span>
+                  <div className="flex-1 flex flex-col justify-between">
+                    <div className="w-full h-[180px] bg-gray-50 rounded-[20px] mb-6 md:mb-4 lg:mb-8 overflow-hidden relative border border-gray-200 shadow-sm">
+                      {/* Blurred background image to fill the detail panel container */}
+                      <Image 
+                        src={selectedPlot.image} 
+                        alt="" 
+                        fill
+                        className="object-cover blur-xl opacity-30 scale-110"
+                      />
+                      {/* Sharp foreground image fitted completely (zoom out) */}
+                      <Image
+                        src={selectedPlot.image}
+                        alt={selectedPlot.name}
+                        fill
+                        className="object-contain scale-[1.40]"
+                      />
                     </div>
-                    <div className="bg-[#F4F3F1] rounded-[16px] py-4 px-2 flex-1 flex flex-col items-center justify-center gap-1.5">
-                      <Bath size={20} className="text-gray-500" />
-                      <span className="block font-bold text-gray-900 leading-none mt-1">{selectedPlot.baths}</span>
-                      <span className="text-[10px] text-gray-500 font-bold">KM</span>
-                    </div>
-                    <div className="bg-[#F4F3F1] rounded-[16px] py-4 px-2 flex-1 flex flex-col items-center justify-center gap-1.5">
-                      <CarFront size={20} className="text-gray-500" />
-                      <span className="block font-bold text-gray-900 leading-none mt-1">{selectedPlot.cars}</span>
-                      <span className="text-[10px] text-gray-500 font-bold">Mobil</span>
-                    </div>
-                  </div>
 
-                  <div className="w-full h-[180px] bg-gray-100 rounded-[20px] mb-8 overflow-hidden relative border border-gray-200 shadow-sm">
-                    <Image
-                      src={selectedImageUnitPath}
-                      alt={selectedPlot.name}
-                      fill
-                      className="object-cover"
-                    />
+                    <Link 
+                      href={`/unit/${selectedPlot.slug}`}
+                      className="mt-auto w-full bg-[#7E5300] text-white text-sm md:text-base font-bold py-4 rounded-full hover:bg-[#684400] transition-colors shadow-lg flex justify-center items-center gap-2"
+                    >
+                      Reservasi Sekarang
+                      <ArrowRight size={18} />
+                    </Link>
                   </div>
-
-                  {/* 2. Diubah dari <button> menjadi <Link href="..."> */}
-                  <Link 
-                    href={`/unit/${selectedPlot.slug}`}
-                    className="mt-auto w-full bg-[#7E5300] text-white text-sm md:text-base font-bold py-4 rounded-full hover:bg-[#684400] transition-colors shadow-lg flex justify-center items-center gap-2"
-                  >
-                    Reservasi Sekarang
-                    <ArrowRight size={18} />
-                  </Link>
                 </div>
               ) : null}
             </div>

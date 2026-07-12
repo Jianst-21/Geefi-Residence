@@ -6,7 +6,7 @@ import "leaflet/dist/leaflet.css";
 
 // ─── Koordinat Geefi Residence Sukoharjo ──────────────────────────────────────
 const PERUMAHAN = {
-  nama: "Geefi Residence",
+  nama: "Abyakta",
   alamat: "Begajah, Sukoharjo, Jawa Tengah",
   lat: -7.7019289,
   lng: 110.8636104,
